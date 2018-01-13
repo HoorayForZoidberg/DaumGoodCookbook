@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  step_number: MyString
+  measure_amount: MyString
+  instructions: MyString
+
+two:
+  step_number: MyString
+  measure_amount: MyString
+  instructions: MyString
