@@ -1,14 +1,14 @@
 <h1><%= @recipe.name %></h1>
 <h2>
-  <%= pluralize @recipe.reviews.size, "review" %>
+  <%= pluralize @recipe.comments.size, "comment" %>
 </h2>
 
-<div id="reviews">
-  <% if @recipe.reviews.blank? %>
-    Be the first to leave a review for <%= @recipe.name %>
+<div id="comments">
+  <% if @recipe.comments.blank? %>
+    Be the first to leave a comment for <%= @recipe.name %>
   <% else %>
-    <% @recipe.reviews.each do |review| %>
-      <%= render 'reviews/show', review: review %>
+    <% @recipe.comments.each do |comment| %>
+      <%= render 'comments/show', comment: comment %>
     <% end %>
   <% end %>
 </div>
