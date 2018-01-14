@@ -1,2 +1,18 @@
 class CommentsController < ApplicationController
+  def create
+    @recipe = recipe.find(params[:recipe_id])
+    @comment = comment.new(comment_params)
+    @comment.recipe = @recipe
+    if @comment.save
+      redirect_to recipe_path(@recipe)
+    else
+      render 'recipes/show'
+    end
+  end
+
+  private
+
+  def comment_params
+    params.require(:comment).permit(:content)
+  end
 end
