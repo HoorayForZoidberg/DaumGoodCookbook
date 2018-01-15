@@ -5,6 +5,6 @@ class RecipesController < ApplicationController
 
   def show
     @recipe = Recipe.find(params[:id])
-    @rcomment = Comment.new
+    @comment = Comment.new
   end
 end
