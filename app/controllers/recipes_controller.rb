@@ -14,13 +14,10 @@ class RecipesController < ApplicationController
 
   def create
     @recipe = Recipe.new(recipe_params)
+    @recipe.owner_id = current_user.id
     @recipe.save
 
     redirect_to recipe_path(@recipe)
-  end
-
-  def method_name
-
   end
 
   private
