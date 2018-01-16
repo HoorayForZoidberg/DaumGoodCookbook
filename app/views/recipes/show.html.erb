@@ -4,6 +4,14 @@
 <% else %>
   <h2>(this recipe has no owner)</h2>
 <% end %>
+<div>
+  <%= link_to "Edit this recipe", edit_recipe_path(@recipe) %>
+</div>
+<div>
+  <%= link_to "Delete this recipe", recipe_path(@recipe),
+        method: :delete,
+        data: { confirm: "Are you sure?" } %>
+</div>
 <h2>
   <%= pluralize @recipe.comments.size, "comment" %>
 </h2>
