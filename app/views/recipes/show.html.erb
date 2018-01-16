@@ -1,6 +1,6 @@
 <h1><%= @recipe.name %></h1>
 <% if @recipe.owner_id %>
-  <h2>Created by <%= User.find(@recipe.owner_id).name %></h2>
+  <h2>Created by <%= @recipe.owner %></h2>
 <% else %>
   <h2>(this recipe has no owner)</h2>
 <% end %>
