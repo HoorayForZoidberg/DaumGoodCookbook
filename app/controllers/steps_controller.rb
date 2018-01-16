@@ -6,7 +6,7 @@ def index
 end
 
 def create
-  @recipe = Recipe.find(params[:id])
+  @recipe = Recipe.find(params[:recipe_id])
   @step = Step.new(step_params)
   @step.recipe = @recipe
   if @step.save
@@ -21,6 +21,5 @@ private
 def step_params
   params.require(:step).permit(:instructions)
 end
-
 
 end
