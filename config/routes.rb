@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   Rails.application.routes.draw do
     resources :recipes do
       resources :comments, only: [ :create, :delete ]
+      resources :steps
     end
   end
 end

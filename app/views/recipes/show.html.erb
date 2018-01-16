@@ -12,6 +12,23 @@
         method: :delete,
         data: { confirm: "Are you sure?" } %>
 </div>
+
+<h2>
+  <%= pluralize @recipe.steps.size, "step" %>
+</h2>
+
+<div id="steps">
+  <% if @recipe.steps.blank? %>
+    This recipe has no steps yet
+  <% else %>
+    <% @recipe.steps.each do |step| %>
+      <%= render 'steps/show', step: step %>
+    <% end %>
+  <% end %>
+</div>
+
+<%= render 'steps/form', recipe: @recipe, step: @step %>
+
 <h2>
   <%= pluralize @recipe.comments.size, "comment" %>
 </h2>
