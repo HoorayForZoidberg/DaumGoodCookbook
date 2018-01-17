@@ -1,4 +1,6 @@
-<%= simple_form_for([ recipe, step ]) do |form| %>
-  <%= form.input :instructions, as: :text %>
-  <%= form.button :submit %>
-<% end %>
+<div class="owner-edit">
+  <%= simple_form_for([ recipe, step ]) do |form| %>
+    <%= form.input :instructions, as: :text %>
+    <%= form.button :submit %>
+  <% end %>
+</div>
