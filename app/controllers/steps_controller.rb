@@ -16,6 +16,16 @@ def create
   end
 end
 
+def edit
+  @recipe = Recipe.find(params[:recipe_id])
+  @step = Step.find(params[:id])
+
+  respond_to do |format|
+    format.html { redirect_to recipe_path(@recipe) }
+    format.js
+  end
+end
+
 private
 
 def step_params

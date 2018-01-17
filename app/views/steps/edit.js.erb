@@ -1,0 +1,7 @@
+function editStep(stepHTML) {
+  const step = document.getElementById('<%= "step_#{@step.id}" %>');
+  step.insertAdjacentHTML('beforeend', stepHTML);
+  // also toggle an "edit-active" class in the step element to change the behavior of clicking on the edit button and avoid creating multiple edit fields
+}
+
+editStep('<%= j render "steps/form", recipe: @recipe, step: @step %>');

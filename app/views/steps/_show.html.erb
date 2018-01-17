@@ -1,1 +1,4 @@
-<p><%= step.instructions %></p>
+<div class="edit-button" id=<%= "step_#{step.id}" %>>
+  <%= step.instructions %>
+  <%= link_to '<i class="fa fa-pencil" aria-hidden="true"></i>'.html_safe, edit_recipe_step_path(@recipe.id, step.id), remote: true %>
+</div>
