@@ -21,7 +21,29 @@ def edit
   @step = Step.find(params[:id])
 
   respond_to do |format|
+    format.html { redirect_to edit_recipe_step_path(@recipe, @step) }
+    format.js
+  end
+end
+
+def update
+  @recipe = Recipe.find(params[:recipe_id])
+  @step = Step.find(params[:id])
+  @step.update(step_params)
+
+  respond_to do |format|
     format.html { redirect_to recipe_path(@recipe) }
+    format.js
+  end
+end
+
+def destroy
+  @recipe = Recipe.find(params[:recipe_id])
+  @step = Step.find(params[:id])
+  @step.destroy
+
+  respond_to do |format|
+    format.html { redirect_to recipe_step_path(@recipe, @step) }
     format.js
   end
 end
