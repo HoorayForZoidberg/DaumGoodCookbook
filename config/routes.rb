@@ -8,4 +8,7 @@ Rails.application.routes.draw do
       resources :steps
     end
   end
+
+  get "/recipes/:recipe_id/steps/:id/amend", to: "steps#amend", as: :amend_recipe_step
+
 end
