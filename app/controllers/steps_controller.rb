@@ -41,13 +41,6 @@ class StepsController < ApplicationController
     end
   end
 
-  def amend
-    respond_to do |format|
-      format.html { redirect_to amend_recipe_step_path(@recipe, @step) }
-      format.js
-    end
-  end
-
   private
 
   def step_params

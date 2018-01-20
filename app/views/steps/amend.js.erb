@@ -1,7 +1,0 @@
-function editStep(stepHTML) {
-  const step = document.getElementById('<%= "step_#{@step.id}" %>');
-  step.querySelector('.instructions').classList.add('amended')
-  step.insertAdjacentHTML('beforeend', stepHTML);
-}
-
-editStep('<%= j render "steps/form", recipe: @recipe, step: @step %>');

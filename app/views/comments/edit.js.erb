@@ -1,0 +1,11 @@
+function editComment(commentHTML) {
+  const comment = document.getElementById('<%= "comment_#{@comment.id}" %>');
+  if (comment.querySelector(".owner-edit")) {
+    const element = comment.querySelector(".owner-edit");
+    element.parentNode.removeChild(element);
+  } else {
+    comment.insertAdjacentHTML('beforeend', commentHTML);
+  }
+}
+
+editComment('<%= j render "comments/form", recipe: @recipe, comment: @comment %>');
