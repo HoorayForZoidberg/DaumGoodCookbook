@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   Rails.application.routes.draw do
     resources :recipes do
-      resources :comments, only: [ :create, :edit, :update, :delete ]
+      resources :comments, except: [ :index, :new ]
       resources :steps
     end
   end
