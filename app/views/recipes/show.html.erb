@@ -22,7 +22,9 @@
     This recipe has no steps yet
   <% else %>
     <% @recipe.steps.each do |step| %>
-      <%= render 'steps/show', step: step %>
+      <div id=<%= "step_#{step.id}" %> class="flex">
+        <%= render 'steps/show', step: step %>
+      </div>
     <% end %>
   <% end %>
 </div>
@@ -43,7 +45,9 @@
     Be the first to leave a comment for <%= @recipe.name %>
   <% else %>
     <% @recipe.comments.each do |comment| %>
-      <%= render 'comments/show', comment: comment %>
+      <div id=<%= "comment_#{comment.id}" %> class="flex">
+        <%= render 'comments/show', comment: comment %>
+      </div>
     <% end %>
   <% end %>
 </div>

@@ -1,23 +1,21 @@
-<div id=<%= "comment_#{comment.id}" %> class="flex">
-  <p>
-    <strong>
-      <%= User.find(comment.owner_id).name %>
-    </strong>
-    says:
-  </p>
-  <p>
-    <%= comment.content %>
-    <% if current_user.id == comment.owner_id %>
-      <span class="edit-button">
-        <%= link_to '<i class="fa fa-pencil" aria-hidden="true"></i>'.html_safe, edit_recipe_comment_path(@recipe.id, comment.id), remote: true %>
-      </span>
-      <span class="delete-button">
-        <%= link_to '<i class="fa fa-trash-o" aria-hidden="true"></i>'.html_safe,
-          recipe_comment_path(@recipe.id, comment.id),
-          method: :delete,
-          data: { confirm: "Are you sure?" },
-          remote: true %>
-      </span>
-    <% end %>
-  </p>
-</div>
+<p>
+  <strong>
+    <%= User.find(comment.owner_id).name %>
+  </strong>
+  says:
+</p>
+<p>
+  <%= comment.content %>
+  <% if current_user.id == comment.owner_id %>
+    <span class="edit-button">
+      <%= link_to '<i class="fa fa-pencil" aria-hidden="true"></i>'.html_safe, edit_recipe_comment_path(@recipe.id, comment.id), remote: true %>
+    </span>
+    <span class="delete-button">
+      <%= link_to '<i class="fa fa-trash-o" aria-hidden="true"></i>'.html_safe,
+        recipe_comment_path(@recipe.id, comment.id),
+        method: :delete,
+        data: { confirm: "Are you sure?" },
+        remote: true %>
+    </span>
+  <% end %>
+</p>

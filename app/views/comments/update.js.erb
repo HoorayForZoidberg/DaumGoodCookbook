@@ -1,2 +1,2 @@
 const comment = document.getElementById('<%= "comment_#{@comment.id}" %>');
-comment.innerHTML = '<%= render "comments/show" %>';
+comment.innerHTML = '<%= j render "comments/show", comment: @comment %>';

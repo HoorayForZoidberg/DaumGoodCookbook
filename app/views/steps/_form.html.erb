@@ -1,5 +1,5 @@
 <div class="owner-edit">
-  <%= simple_form_for([ recipe, step ]) do |form| %>
+  <%= simple_form_for [ recipe, step ], remote: true do |form| %>
     <%= form.input :instructions, as: :text %>
     <%= form.button :submit %>
   <% end %>
