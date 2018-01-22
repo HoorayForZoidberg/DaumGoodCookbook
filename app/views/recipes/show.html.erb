@@ -36,9 +36,9 @@
 <% end %>
 
 <!-- Comments -->
-<h2>
-  <%= pluralize @recipe.comments.size, "comment" %>
-</h2>
+<div id="comments-title">
+  <%= render 'comments/title' %>
+</div>
 
 <div id="comments">
   <% if @recipe.comments.blank? %>
@@ -54,5 +54,6 @@
 
 <!-- New Comment -->
 <h3>Add a comment</h3>
-
-<%= render 'comments/form', recipe: @recipe, comment: @comment %>
+<div class="new-comment">
+  <%= render 'comments/form', recipe: @recipe, comment: @comment %>
+</div>

@@ -1,0 +1,18 @@
+function addComment(commentHTML) {
+  const comments = document.getElementById('comments');
+  comments.insertAdjacentHTML('beforeend', commentHTML);
+}
+
+// if not comments, remove the "no comments yet" sentence
+<% if @recipe.comments.size == 1 %>
+  document.getElementById('comments').innerHTML = '';
+<% end %>
+
+// add html of the comment at the end
+addComment('<%= j render "comments/show", comment: @comment %>')
+
+// reload empty input form
+document.querySelector('.new-comment').innerHTML = '<%= j render "comments/form", recipe: @recipe, comment: Comment.new %>'
+
+// update number of comments
+document.getElementById('comments-title').innerHTML = '<%= j render "comments/title" %>'

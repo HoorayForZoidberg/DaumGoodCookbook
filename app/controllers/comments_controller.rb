@@ -5,9 +5,12 @@ class CommentsController < ApplicationController
   def create
     @comment = Comment.new(comment_params)
     @comment.recipe = @recipe
-    @comment.owner = current_user
+    @comment.owner_id = current_user.id
     if @comment.save
-      redirect_to recipe_path(@recipe)
+      respond_to do |format|
+        format.html { redirect_to recipe_path(@recipe) }
+        format.js
+      end
     else
       render 'recipes/show'
     end
