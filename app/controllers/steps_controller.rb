@@ -12,7 +12,10 @@ class StepsController < ApplicationController
     @step = Step.new(step_params)
     @step.recipe = @recipe
     if @step.save
-      redirect_to recipe_path(@recipe)
+      respond_to do |format|
+        format.html { redirect_to recipe_path(@recipe) }
+        format.js
+      end
     else
       render 'recipes/show'
     end

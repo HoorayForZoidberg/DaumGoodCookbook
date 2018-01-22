@@ -1,0 +1,18 @@
+function addStep(stepHTML) {
+  const steps = document.getElementById('steps');
+  steps.insertAdjacentHTML('beforeend', stepHTML);
+}
+
+// if not steps, remove the "no steps yet" sentence
+<% if @recipe.steps.size == 1 %>
+  document.getElementById('steps').innerHTML = '';
+<% end %>
+
+// add html of the step at the end
+addStep('<%= j render "steps/show", step: @step %>')
+
+// reload empty input form
+document.querySelector('.new-step').innerHTML = '<%= j render "steps/form", recipe: @recipe, step: Step.new %>'
+
+// update number of steps
+document.getElementById('steps-title').innerHTML = '<%= j render "steps/title" %>'

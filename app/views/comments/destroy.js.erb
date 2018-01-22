@@ -1,2 +1,11 @@
+// remove comment
 const comment = document.getElementById('<%= "comment_#{@comment.id}" %>');
 comment.parentNode.removeChild(comment);
+
+// update comment count
+document.getElementById('comments-title').innerHTML = '<%= j render "comments/title" %>'
+
+// if no comments, add appropriate text
+<% if @recipe.comments.blank? %>
+  document.getElementById('comments').innerHTML = 'Be the first to leave a comment for <%= @recipe.name %>';
+<% end %>
