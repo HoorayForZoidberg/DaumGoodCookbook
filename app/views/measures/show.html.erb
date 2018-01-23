@@ -1,0 +1,14 @@
+<div class="measure">
+  <h2>
+    <%= @measure.name.capitalize %>
+    <span class="edit-button">
+      <%= link_to '<i class="fa fa-pencil" aria-hidden="true"></i>'.html_safe, edit_measure_path(@measure.id) %>
+    </span>
+    <span class="delete-button">
+      <%= link_to '<i class="fa fa-trash-o" aria-hidden="true"></i>'.html_safe,
+        measure_path(@measure.id),
+        method: :delete,
+        data: { confirm: "Are you sure?" } %>
+    </span>
+  </h2>
+</div>
