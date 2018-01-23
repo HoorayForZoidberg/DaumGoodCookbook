@@ -1,0 +1,9 @@
+<%= render "measures/title" %>
+
+<div class="btn btn-primary">
+  <%= link_to 'Add New measure', new_measure_path %>
+</div>
+
+<% @measures.each do |measure| %>
+  <%= render "measures/show", measure: measure %>
+<% end %>
