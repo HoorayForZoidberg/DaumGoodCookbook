@@ -1,0 +1,9 @@
+<%= render "ingredients/title" %>
+
+<div class="btn btn-primary">
+  <%= link_to 'Add New Ingredient', new_ingredient_path %>
+</div>
+
+<% @ingredients.each do |ingredient| %>
+  <%= render "ingredients/show", ingredient: ingredient %>
+<% end %>

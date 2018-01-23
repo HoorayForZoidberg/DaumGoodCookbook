@@ -1,0 +1,5 @@
+<%= simple_form_for [ @ingredient ] do |form| %>
+  <%= form.input :name, as: :string %>
+  <%= form.input :description, as: :text %>
+  <%= form.button :submit %>
+<% end %>

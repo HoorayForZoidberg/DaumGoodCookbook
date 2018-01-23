@@ -1,0 +1,17 @@
+<div class="ingredient">
+  <h2>
+    <%= @ingredient.name.capitalize %>
+    <span class="edit-button">
+      <%= link_to '<i class="fa fa-pencil" aria-hidden="true"></i>'.html_safe, edit_ingredient_path(@ingredient.id) %>
+    </span>
+    <span class="delete-button">
+      <%= link_to '<i class="fa fa-trash-o" aria-hidden="true"></i>'.html_safe,
+        ingredient_path(@ingredient.id),
+        method: :delete,
+        data: { confirm: "Are you sure?" } %>
+    </span>
+  </h2>
+  <p>
+    <%= @ingredient.description %>
+  </p>
+</div>
