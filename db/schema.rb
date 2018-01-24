@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180124042316) do
+ActiveRecord::Schema.define(version: 20180124195855) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -18,18 +18,18 @@ ActiveRecord::Schema.define(version: 20180124042316) do
   create_table "comments", force: :cascade do |t|
     t.text "content"
     t.bigint "recipe_id"
+    t.bigint "owner_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "owner_id"
     t.index ["owner_id"], name: "index_comments_on_owner_id"
     t.index ["recipe_id"], name: "index_comments_on_recipe_id"
   end
 
   create_table "ingredients", force: :cascade do |t|
     t.string "name"
+    t.text "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.text "description"
   end
 
   create_table "measures", force: :cascade do |t|
@@ -39,32 +39,29 @@ ActiveRecord::Schema.define(version: 20180124042316) do
   end
 
   create_table "recipe_ingredients", force: :cascade do |t|
-    t.string "measure_amount"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
     t.bigint "recipe_id"
     t.bigint "ingredient_id"
-    t.bigint "measure_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["ingredient_id"], name: "index_recipe_ingredients_on_ingredient_id"
-    t.index ["measure_id"], name: "index_recipe_ingredients_on_measure_id"
     t.index ["recipe_id"], name: "index_recipe_ingredients_on_recipe_id"
   end
 
   create_table "recipes", force: :cascade do |t|
     t.string "name"
     t.text "summary"
+    t.bigint "owner_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "owner_id"
     t.index ["owner_id"], name: "index_recipes_on_owner_id"
   end
 
   create_table "steps", force: :cascade do |t|
     t.integer "step_number"
     t.text "instructions"
+    t.bigint "recipe_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "recipe_id"
     t.index ["recipe_id"], name: "index_steps_on_recipe_id"
   end
 
@@ -87,5 +84,9 @@ ActiveRecord::Schema.define(version: 20180124042316) do
   end
 
   add_foreign_key "comments", "recipes"
+  add_foreign_key "comments", "users", column: "owner_id"
+  add_foreign_key "recipe_ingredients", "ingredients"
+  add_foreign_key "recipe_ingredients", "recipes"
+  add_foreign_key "recipes", "users", column: "owner_id"
   add_foreign_key "steps", "recipes"
 end
