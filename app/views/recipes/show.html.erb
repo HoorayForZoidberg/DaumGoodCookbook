@@ -1,17 +1,44 @@
+<!-- Recipe Name -->
 <h1><%= @recipe.name %></h1>
+
+<!-- Recipe Owner Info -->
 <% if @recipe.owner_id %>
   <h2>Created by <%= @recipe.owner %></h2>
 <% else %>
   <h2>(this recipe has no owner)</h2>
 <% end %>
-<div>
-  <%= link_to "Edit this recipe", edit_recipe_path(@recipe) %>
+
+<% if @recipe.owner_id == current_user.id %>
+  <div>
+    <%= link_to "Edit this recipe", edit_recipe_path(@recipe) %>
+  </div>
+  <div>
+    <%= link_to "Delete this recipe", recipe_path(@recipe),
+          method: :delete,
+          data: { confirm: "Are you sure?" } %>
+  </div>
+<% end %>
+
+<!-- Ingredients -->
+<div id="ingredients-title">
+  <%= render 'ingredients/title' %>
 </div>
-<div>
-  <%= link_to "Delete this recipe", recipe_path(@recipe),
-        method: :delete,
-        data: { confirm: "Are you sure?" } %>
+
+<div id="ingredients">
+  <% if @ingredients.blank? %>
+    This recipe does not have any ingredients
+  <% else %>
+    <% @ingredient.each do |ingredient| %>
+      <div id=<%= "ingredient_#{ingredient.id}" %> class="flex">
+        <%= render 'ingredients/show', ingredient: ingredient %>
+      </div>
+  <% end %>
 </div>
+
+<!-- New Ingredient -->
+
+
+<!-- Steps -->
 <div id="steps-title">
   <%= render 'steps/title' %>
 </div>
