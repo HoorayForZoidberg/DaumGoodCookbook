@@ -28,14 +28,19 @@
   <% if @ingredients.blank? %>
     This recipe does not have any ingredients
   <% else %>
-    <% @ingredient.each do |ingredient| %>
+    <% @ingredients.each do |ingredient| %>
       <div id=<%= "ingredient_#{ingredient.id}" %> class="flex">
         <%= render 'ingredients/show', ingredient: ingredient %>
       </div>
+    <% end %>
   <% end %>
 </div>
 
 <!-- New Ingredient -->
+<% if current_user.id == @recipe.owner_id %>
+  <h3>Add an ingredient</h3>
+  <!-- need to figure our how to create a form that updates the RecipeIngredient association -->
+<% end %>
 
 
 <!-- Steps -->
@@ -86,3 +91,4 @@
 <div class="new-comment">
   <%= render 'comments/form', recipe: @recipe, comment: @comment %>
 </div>
+
