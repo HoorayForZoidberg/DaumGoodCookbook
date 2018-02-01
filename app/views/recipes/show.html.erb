@@ -1,5 +1,21 @@
 <!-- Recipe Name -->
-<h1><%= @recipe.name %></h1>
+<div id="recipe-title" class="flex align-baseline">
+  <div>
+    <h1><%= @recipe.name %></h1>
+  </div>
+  <div>
+    <% if @recipe.owner_id == current_user.id %>
+      <span class="edit-button">
+        <%= link_to '<i class="fa fa-pencil" aria-hidden="true"></i>'.html_safe, edit_recipe_path(@recipe) %>
+      </span>
+      <span class="delete-button">
+        <%= link_to '<i class="fa fa-trash-o" aria-hidden="true"></i>'.html_safe, recipe_path(@recipe),
+              method: :delete,
+              data: { confirm: "Are you sure?" } %>
+      </span>
+    <% end %>
+  </div>
+</div>
 
 <!-- Recipe Owner Info -->
 <% if @recipe.owner_id %>
@@ -8,16 +24,6 @@
   <h2>(this recipe has no owner)</h2>
 <% end %>
 
-<% if @recipe.owner_id == current_user.id %>
-  <div>
-    <%= link_to "Edit this recipe", edit_recipe_path(@recipe) %>
-  </div>
-  <div>
-    <%= link_to "Delete this recipe", recipe_path(@recipe),
-          method: :delete,
-          data: { confirm: "Are you sure?" } %>
-  </div>
-<% end %>
 
 <!-- Ingredients -->
 <div id="ingredients-title">
