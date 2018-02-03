@@ -40,6 +40,13 @@ class RecipesController < ApplicationController
     redirect_to recipes_path
   end
 
+  def new_recipe_ingredient
+    respond_to do |format|
+      format.html
+      format.js
+    end
+  end
+
   private
 
   def recipe_params

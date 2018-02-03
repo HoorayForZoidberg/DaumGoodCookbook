@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   resources :recipes do
     resources :comments, except: [ :index, :new ]
     resources :steps
+    get '/new_recipe_ingredient', to: "recipes#new_recipe_ingredient"
   end
 
   resources :ingredients
