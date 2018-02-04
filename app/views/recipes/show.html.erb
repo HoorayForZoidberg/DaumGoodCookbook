@@ -47,7 +47,7 @@
   <h3>Add an ingredient</h3>
   <!-- need to figure our how to create a form that updates the RecipeIngredient association -->
   <%= link_to '<i class="fa fa-plus-square" aria-hidden="true"></i>'.html_safe, recipe_new_recipe_ingredient_path(@recipe),  {:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#modal-window'}  %>
-  <div id="modal-window" class="modal hide fade" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"></div>
+  <div id="modal-window" class="modal fade" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"></div>
 <% end %>
 
 
