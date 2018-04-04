@@ -1,7 +1,9 @@
-<h1>Recipes</h1>
+<div id="main">
+  <h1>Recipes</h1>
 
-<ul>
-  <% @recipes.each do |recipe| %>
-    <li><%= link_to recipe.name, recipe_path(recipe) %></li>
-  <% end %>
-</ul>
+  <ul>
+    <% @recipes.each do |recipe| %>
+      <li><%= link_to recipe.name, recipe_path(recipe) %></li>
+    <% end %>
+  </ul>
+</div>
