@@ -1,3 +1,6 @@
+<div class="photo" style="background-image: linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.3)), url(https://picsum.photos/800/300/?random)">
+</div>
+
 <div id="main">
   <!-- Recipe Name -->
   <div id="recipe-title" class="flex align-baseline">
@@ -25,64 +28,65 @@
     <p>(this recipe has no owner)</p>
   <% end %>
 
+  <div id="recipe" class="flex">
 
-  <!-- Ingredients -->
-  <div id="ingredients-title">
-    <%= render 'ingredients/title' %>
-  </div>
-
-  <div id="ingredients">
-    <% if @ingredients.blank? %>
-      <p>(this recipe does not have any ingredients)</p>
-    <% else %>
-      <% @ingredients.each do |ingredient| %>
-        <div id=<%= "ingredient_#{ingredient.id}" %> class="flex">
-          <%= render 'ingredients/show', ingredient: ingredient %>
-        </div>
+    <!-- Ingredients -->
+    <div id="ingredients">
+      <div id="ingredients-title">
+        <%= render 'ingredients/title' %>
+      </div>
+      <% if @ingredients.blank? %>
+        <p>(this recipe does not have any ingredients)</p>
+      <% else %>
+        <% @ingredients.each do |ingredient| %>
+          <div id=<%= "ingredient_#{ingredient.id}" %> class="flex">
+            <%= render 'ingredients/show', ingredient: ingredient %>
+          </div>
+        <% end %>
       <% end %>
-    <% end %>
 
-    <!-- New Ingredient -->
-    <% if current_user.id == @recipe.owner_id %>
-      <h3>Add an ingredient</h3>
-      <!-- need to figure our how to create a form that updates the RecipeIngredient association -->
-      <%= link_to '<i class="fa fa-plus-square" aria-hidden="true"></i>'.html_safe, recipe_new_recipe_ingredient_path(@recipe),  {:remote => true}  %>
-      <div id="modal-window" class="modal fade" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"></div>
-    <% end %>
-  </div>
-
-  <!-- Steps -->
-  <div id="steps-title">
-    <%= render 'steps/title' %>
-  </div>
-
-  <div id="steps">
-    <% if @recipe.steps.blank? %>
-      <p>(this recipe has no steps yet)</p>
-    <% else %>
-      <% @recipe.steps.each do |step| %>
-        <div id=<%= "step_#{step.id}" %> class="flex">
-          <%= render 'steps/show', step: step %>
-        </div>
+      <!-- New Ingredient -->
+      <% if current_user.id == @recipe.owner_id %>
+        <h3>Add an ingredient</h3>
+        <!-- need to figure our how to create a form that updates the RecipeIngredient association -->
+        <%= link_to '<i class="fa fa-plus-square" aria-hidden="true"></i>'.html_safe, recipe_new_recipe_ingredient_path(@recipe),  {:remote => true}  %>
+        <div id="modal-window" class="modal fade" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"></div>
       <% end %>
-    <% end %>
-  </div>
-
-  <!-- New step -->
-  <% if current_user.id == @recipe.owner_id %>
-    <h3>Add a step</h3>
-    <div class="new-step">
-      <%= render 'steps/form', recipe: @recipe, step: @step %>
     </div>
-  <% end %>
+
+    <!-- Steps -->
+
+    <div id="steps">
+      <div id="steps-title">
+        <%= render 'steps/title' %>
+      </div>
+      <% if @recipe.steps.blank? %>
+        <p>(this recipe has no steps yet)</p>
+      <% else %>
+        <% @recipe.steps.each do |step| %>
+          <div id=<%= "step_#{step.id}" %> class="flex">
+            <%= render 'steps/show', step: step %>
+          </div>
+        <% end %>
+      <% end %>
+
+      <!-- New step -->
+      <% if current_user.id == @recipe.owner_id %>
+        <h3>Add a step</h3>
+        <div class="new-step">
+          <%= render 'steps/form', recipe: @recipe, step: @step %>
+        </div>
+      <% end %>
+    </div>
+  </div>
 
 
   <!-- Comments -->
-  <div id="comments-title">
-    <%= render 'comments/title' %>
-  </div>
 
   <div id="comments">
+    <div id="comments-title">
+      <%= render 'comments/title' %>
+    </div>
     <% if @recipe.comments.blank? %>
       <p>Be the first to leave a comment for <%= @recipe.name %></p>
     <% else %>
