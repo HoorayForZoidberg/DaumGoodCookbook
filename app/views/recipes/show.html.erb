@@ -1,102 +1,106 @@
-<!-- Recipe Name -->
-<div id="recipe-title" class="flex align-baseline">
-  <div>
-    <h1><%= @recipe.name %></h1>
+<div class="photo" style="background-image: linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.3)), url(https://picsum.photos/800/300/?random)">
+</div>
+
+<div id="main">
+  <!-- Recipe Name -->
+  <div id="recipe-title" class="flex align-baseline">
+    <div>
+      <h1><%= @recipe.name %></h1>
+    </div>
+    <div>
+      <% if @recipe.owner_id == current_user.id %>
+        <span class="edit-button">
+          <%= link_to '<i class="fa fa-pencil" aria-hidden="true"></i>'.html_safe, edit_recipe_path(@recipe) %>
+        </span>
+        <span class="delete-button">
+          <%= link_to '<i class="fa fa-trash-o" aria-hidden="true"></i>'.html_safe, recipe_path(@recipe),
+                method: :delete,
+                data: { confirm: "Are you sure?" } %>
+        </span>
+      <% end %>
+    </div>
   </div>
-  <div>
-    <% if @recipe.owner_id == current_user.id %>
-      <span class="edit-button">
-        <%= link_to '<i class="fa fa-pencil" aria-hidden="true"></i>'.html_safe, edit_recipe_path(@recipe) %>
-      </span>
-      <span class="delete-button">
-        <%= link_to '<i class="fa fa-trash-o" aria-hidden="true"></i>'.html_safe, recipe_path(@recipe),
-              method: :delete,
-              data: { confirm: "Are you sure?" } %>
-      </span>
-    <% end %>
+
+  <!-- Recipe Owner Info -->
+  <% if @recipe.owner_id %>
+    <p>Created by <%= @recipe.owner %></p>
+  <% else %>
+    <p>(this recipe has no owner)</p>
+  <% end %>
+
+  <div id="recipe" class="flex">
+
+    <!-- Ingredients -->
+    <div class="ingredients-container" style="background-color: red">
+      <div id="ingredients-title">
+        <%= render 'ingredients/title' %>
+      </div>
+      <% if @ingredients.blank? %>
+        <p>(this recipe does not have any ingredients)</p>
+      <% else %>
+        <% @ingredients.each do |ingredient| %>
+          <div id=<%= "ingredient_#{ingredient.id}" %> class="flex">
+            <%= render 'ingredients/show', ingredient: ingredient %>
+          </div>
+        <% end %>
+      <% end %>
+
+      <!-- New Ingredient -->
+      <% if current_user.id == @recipe.owner_id %>
+        <h3>Add an ingredient</h3>
+        <!-- need to figure our how to create a form that updates the RecipeIngredient association -->
+        <%= link_to '<i class="fa fa-plus-square" aria-hidden="true"></i>'.html_safe, recipe_new_recipe_ingredient_path(@recipe),  {:remote => true}  %>
+        <div id="modal-window" class="modal fade" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"></div>
+      <% end %>
+    </div>
+
+    <!-- Steps -->
+    <div id="steps" class="steps-container" style="background-color: blue">
+      <div id="steps-title">
+        <%= render 'steps/title' %>
+      </div>
+      <% if @recipe.steps.blank? %>
+        <p>(this recipe has no steps yet)</p>
+      <% else %>
+        <% @recipe.steps.each do |step| %>
+          <div id=<%= "step_#{step.id}" %> class="flex">
+            <%= render 'steps/show', step: step %>
+          </div>
+        <% end %>
+      <% end %>
+
+      <!-- New step -->
+      <% if current_user.id == @recipe.owner_id %>
+        <h3>Add a step</h3>
+        <div class="new-step">
+          <%= render 'steps/form', recipe: @recipe, step: @step %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+
+
+  <!-- Comments -->
+  <div class="comments-container" style="background-color: green">
+    <div id="comments">
+      <div id="comments-title">
+        <%= render 'comments/title' %>
+      </div>
+      <% if @recipe.comments.blank? %>
+        <p>Be the first to leave a comment for <%= @recipe.name %></p>
+      <% else %>
+        <% @recipe.comments.each do |comment| %>
+          <div id=<%= "comment_#{comment.id}" %> class="flex">
+            <%= render 'comments/show', comment: comment %>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+
+    <!-- New Comment -->
+    <h3>Add a comment</h3>
+    <div class="new-comment">
+      <%= render 'comments/form', recipe: @recipe, comment: @comment %>
+    </div>
   </div>
 </div>
-
-<!-- Recipe Owner Info -->
-<% if @recipe.owner_id %>
-  <h2>Created by <%= @recipe.owner %></h2>
-<% else %>
-  <h2>(this recipe has no owner)</h2>
-<% end %>
-
-
-<!-- Ingredients -->
-<div id="ingredients-title">
-  <%= render 'ingredients/title' %>
-</div>
-
-<div id="ingredients">
-  <% if @ingredients.blank? %>
-    This recipe does not have any ingredients
-  <% else %>
-    <% @ingredients.each do |ingredient| %>
-      <div id=<%= "ingredient_#{ingredient.id}" %> class="flex">
-        <%= render 'ingredients/show', ingredient: ingredient %>
-      </div>
-    <% end %>
-  <% end %>
-</div>
-
-<!-- New Ingredient -->
-<% if current_user.id == @recipe.owner_id %>
-  <h3>Add an ingredient</h3>
-  <!-- need to figure our how to create a form that updates the RecipeIngredient association -->
-  <%= link_to '<i class="fa fa-plus-square" aria-hidden="true"></i>'.html_safe, recipe_new_recipe_ingredient_path(@recipe),  {:remote => true}  %>
-  <div id="modal-window" class="modal fade" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"></div>
-<% end %>
-
-
-<!-- Steps -->
-<div id="steps-title">
-  <%= render 'steps/title' %>
-</div>
-
-<div id="steps">
-  <% if @recipe.steps.blank? %>
-    This recipe has no steps yet
-  <% else %>
-    <% @recipe.steps.each do |step| %>
-      <div id=<%= "step_#{step.id}" %> class="flex">
-        <%= render 'steps/show', step: step %>
-      </div>
-    <% end %>
-  <% end %>
-</div>
-
-<!-- New step -->
-<% if current_user.id == @recipe.owner_id %>
-  <h3>Add a step</h3>
-  <div class="new-step">
-    <%= render 'steps/form', recipe: @recipe, step: @step %>
-  </div>
-<% end %>
-
-
-<!-- Comments -->
-<div id="comments-title">
-  <%= render 'comments/title' %>
-</div>
-
-<div id="comments">
-  <% if @recipe.comments.blank? %>
-    Be the first to leave a comment for <%= @recipe.name %>
-  <% else %>
-    <% @recipe.comments.each do |comment| %>
-      <div id=<%= "comment_#{comment.id}" %> class="flex">
-        <%= render 'comments/show', comment: comment %>
-      </div>
-    <% end %>
-  <% end %>
-</div>
-
-<!-- New Comment -->
-<h3>Add a comment</h3>
-<div class="new-comment">
-  <%= render 'comments/form', recipe: @recipe, comment: @comment %>
-</div>
-

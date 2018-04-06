@@ -1,6 +1,6 @@
 <div class="owner-edit">
   <%= simple_form_for [ recipe, comment ], remote: true do |form| %>
-    <%= form.input :content, as: :text %>
+    <%= form.input :content, as: :text, label: false %>
     <%= form.button :submit %>
   <% end %>
 </div>
