@@ -31,7 +31,7 @@
   <div id="recipe" class="flex">
 
     <!-- Ingredients -->
-    <div id="ingredients">
+    <div class="ingredients-container" style="background-color: red">
       <div id="ingredients-title">
         <%= render 'ingredients/title' %>
       </div>
@@ -55,8 +55,7 @@
     </div>
 
     <!-- Steps -->
-
-    <div id="steps">
+    <div id="steps" class="steps-container" style="background-color: blue">
       <div id="steps-title">
         <%= render 'steps/title' %>
       </div>
@@ -82,25 +81,26 @@
 
 
   <!-- Comments -->
-
-  <div id="comments">
-    <div id="comments-title">
-      <%= render 'comments/title' %>
-    </div>
-    <% if @recipe.comments.blank? %>
-      <p>Be the first to leave a comment for <%= @recipe.name %></p>
-    <% else %>
-      <% @recipe.comments.each do |comment| %>
-        <div id=<%= "comment_#{comment.id}" %> class="flex">
-          <%= render 'comments/show', comment: comment %>
-        </div>
+  <div class="comments-container" style="background-color: green">
+    <div id="comments">
+      <div id="comments-title">
+        <%= render 'comments/title' %>
+      </div>
+      <% if @recipe.comments.blank? %>
+        <p>Be the first to leave a comment for <%= @recipe.name %></p>
+      <% else %>
+        <% @recipe.comments.each do |comment| %>
+          <div id=<%= "comment_#{comment.id}" %> class="flex">
+            <%= render 'comments/show', comment: comment %>
+          </div>
+        <% end %>
       <% end %>
-    <% end %>
-  </div>
+    </div>
 
-  <!-- New Comment -->
-  <h3>Add a comment</h3>
-  <div class="new-comment">
-    <%= render 'comments/form', recipe: @recipe, comment: @comment %>
+    <!-- New Comment -->
+    <h3>Add a comment</h3>
+    <div class="new-comment">
+      <%= render 'comments/form', recipe: @recipe, comment: @comment %>
+    </div>
   </div>
 </div>

@@ -2,13 +2,13 @@
   text-decoration: underline;
   text-decoration-style: dotted;
 }
-#steps {
+.steps-container {
   min-width: 70%;
 }
-#ingredients {
+.ingredients-container {
   margin-right: 5%;
 }
 .photo {
   background-size: cover;
-  height: 300px;
+  height: 400px;
 }
