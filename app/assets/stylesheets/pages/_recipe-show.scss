@@ -7,8 +7,29 @@
 }
 .ingredients-container {
   margin-right: 5%;
+  padding: 10px;
+  border: 10px;
+  border-radius: 20px;
+  border-style: dotted;
 }
 .photo {
   background-size: cover;
   height: 400px;
+}
+
+#main {
+  p {
+    // provide indent from headers
+    margin-left: 20px;
+  }
+  h3 {
+   display: inline;
+  }
+}
+
+// Responsive design
+@media screen and (max-width : 768px) {
+  .ingredients-container {
+    margin: 0px;
+  }
 }

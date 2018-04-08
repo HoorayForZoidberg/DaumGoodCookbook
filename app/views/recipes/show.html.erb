@@ -31,7 +31,7 @@
   <div id="recipe" class="flex">
 
     <!-- Ingredients -->
-    <div class="ingredients-container" style="background-color: red">
+    <div class="ingredients-container">
       <div id="ingredients-title">
         <%= render 'ingredients/title' %>
       </div>
@@ -47,15 +47,17 @@
 
       <!-- New Ingredient -->
       <% if current_user.id == @recipe.owner_id %>
-        <h3>Add an ingredient</h3>
-        <!-- need to figure our how to create a form that updates the RecipeIngredient association -->
-        <%= link_to '<i class="fa fa-plus-square" aria-hidden="true"></i>'.html_safe, recipe_new_recipe_ingredient_path(@recipe),  {:remote => true}  %>
+        <div>
+          <h3>Add an ingredient</h3>
+          <!-- need to figure our how to create a form that updates the RecipeIngredient association -->
+          <%= link_to '<i class="fa fa-plus-square" aria-hidden="true"></i>'.html_safe, recipe_new_recipe_ingredient_path(@recipe),  {:remote => true}  %>
+        </div>
         <div id="modal-window" class="modal modal-lg fade" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"></div>
       <% end %>
     </div>
 
     <!-- Steps -->
-    <div id="steps" class="steps-container" style="background-color: blue">
+    <div id="steps" class="steps-container">
       <div id="steps-title">
         <%= render 'steps/title' %>
       </div>
@@ -81,7 +83,7 @@
 
 
   <!-- Comments -->
-  <div class="comments-container" style="background-color: green">
+  <div class="comments-container">
     <div id="comments">
       <div id="comments-title">
         <%= render 'comments/title' %>

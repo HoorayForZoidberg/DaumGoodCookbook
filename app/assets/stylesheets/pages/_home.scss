@@ -27,9 +27,13 @@ h1 {
 h2 {
   font-size: 55px;
 }
+h3 {
+  font-size: 40px;
+}
 
-// Paragraphs
-p {
-  // provide indent (recipes/show;...)
-  margin-left: 20px;
+// Responsive design
+@media screen and (max-width : 768px) {
+  #main{
+    margin: 0px;
+  }
 }
