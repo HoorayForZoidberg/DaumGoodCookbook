@@ -80,3 +80,10 @@
   border-left: 1px solid #E6E6E6;
   border-top: 1px solid #E6E6E6;
 }
+
+// Responsive design
+@media screen and (max-width : 768px) {
+  .navbar-wagon {
+    padding: 0px 20px;
+  }
+}

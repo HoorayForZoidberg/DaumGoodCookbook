@@ -28,56 +28,62 @@
     <p>(this recipe has no owner)</p>
   <% end %>
 
-  <div id="recipe" class="flex">
+  <div id="recipe">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-xs-12 col-sm-4">
+          <!-- Ingredients -->
+          <div class="ingredients-container">
+            <div id="ingredients-title">
+              <%= render 'ingredients/title' %>
+            </div>
+            <% if @ingredients.blank? %>
+              <p>(this recipe does not have any ingredients)</p>
+            <% else %>
+              <% @ingredients.each do |ingredient| %>
+                <div id=<%= "ingredient_#{ingredient.id}" %> class="flex">
+                  <%= render 'ingredients/show', ingredient: ingredient %>
+                </div>
+              <% end %>
+            <% end %>
 
-    <!-- Ingredients -->
-    <div class="ingredients-container">
-      <div id="ingredients-title">
-        <%= render 'ingredients/title' %>
-      </div>
-      <% if @ingredients.blank? %>
-        <p>(this recipe does not have any ingredients)</p>
-      <% else %>
-        <% @ingredients.each do |ingredient| %>
-          <div id=<%= "ingredient_#{ingredient.id}" %> class="flex">
-            <%= render 'ingredients/show', ingredient: ingredient %>
+            <!-- New Ingredient -->
+            <% if current_user.id == @recipe.owner_id %>
+              <div>
+                <h3>Add ingredient</h3>
+                <!-- need to figure our how to create a form that updates the RecipeIngredient association -->
+                <%= link_to '<i class="fa fa-plus-square" aria-hidden="true"></i>'.html_safe, recipe_new_recipe_ingredient_path(@recipe),  {:remote => true}  %>
+              </div>
+              <div id="modal-window" class="modal modal-lg fade" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"></div>
+            <% end %>
           </div>
-        <% end %>
-      <% end %>
-
-      <!-- New Ingredient -->
-      <% if current_user.id == @recipe.owner_id %>
-        <div>
-          <h3>Add an ingredient</h3>
-          <!-- need to figure our how to create a form that updates the RecipeIngredient association -->
-          <%= link_to '<i class="fa fa-plus-square" aria-hidden="true"></i>'.html_safe, recipe_new_recipe_ingredient_path(@recipe),  {:remote => true}  %>
         </div>
-        <div id="modal-window" class="modal modal-lg fade" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"></div>
-      <% end %>
-    </div>
+        <div class="col-xs-12 col-sm-8">
+          <!-- Steps -->
+          <div id="steps" class="steps-container">
+            <div id="steps-title">
+              <%= render 'steps/title' %>
+            </div>
+            <% if @recipe.steps.blank? %>
+              <p>(this recipe has no steps yet)</p>
+            <% else %>
+              <% @recipe.steps.each do |step| %>
+                <div id=<%= "step_#{step.id}" %> class="flex">
+                  <%= render 'steps/show', step: step %>
+                </div>
+              <% end %>
+            <% end %>
 
-    <!-- Steps -->
-    <div id="steps" class="steps-container">
-      <div id="steps-title">
-        <%= render 'steps/title' %>
-      </div>
-      <% if @recipe.steps.blank? %>
-        <p>(this recipe has no steps yet)</p>
-      <% else %>
-        <% @recipe.steps.each do |step| %>
-          <div id=<%= "step_#{step.id}" %> class="flex">
-            <%= render 'steps/show', step: step %>
+            <!-- New step -->
+            <% if current_user.id == @recipe.owner_id %>
+              <h3>Add a step</h3>
+              <div class="new-step">
+                <%= render 'steps/form', recipe: @recipe, step: @step %>
+              </div>
+            <% end %>
           </div>
-        <% end %>
-      <% end %>
-
-      <!-- New step -->
-      <% if current_user.id == @recipe.owner_id %>
-        <h3>Add a step</h3>
-        <div class="new-step">
-          <%= render 'steps/form', recipe: @recipe, step: @step %>
         </div>
-      <% end %>
+      </div>
     </div>
   </div>
 

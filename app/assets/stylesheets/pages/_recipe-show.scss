@@ -2,22 +2,22 @@
   text-decoration: underline;
   text-decoration-style: dotted;
 }
-.steps-container {
-  min-width: 70%;
-}
 .ingredients-container {
-  margin-right: 5%;
   padding: 10px;
   border: 10px;
   border-radius: 20px;
   border-style: dotted;
+}
+.steps-container {
+  padding-left: 20px;
+  padding-top: 20px;
 }
 .photo {
   background-size: cover;
   height: 400px;
 }
 
-#main {
+#recipe {
   p {
     // provide indent from headers
     margin-left: 20px;
@@ -25,11 +25,20 @@
   h3 {
    display: inline;
   }
+  .row>div {
+    position: static;
+  }
+  .row:last-child {
+    padding-right: 0px;
+  }
+  .container-fluid{
+    padding: 0px;
+  }
 }
 
 // Responsive design
 @media screen and (max-width : 768px) {
-  .ingredients-container {
-    margin: 0px;
+  .container-fluid {
+    padding: 0px;
   }
 }
