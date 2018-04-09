@@ -43,7 +43,7 @@
 /* Navbar link */
 .navbar-wagon-link {
   color: #616668;
-  font-size: 30px;
+  font-size: 40px;
 }
 .navbar-wagon-link:hover {
   color: #da552f;
@@ -79,4 +79,11 @@
   transform: rotate(45deg);
   border-left: 1px solid #E6E6E6;
   border-top: 1px solid #E6E6E6;
+}
+
+// Responsive design
+@media screen and (max-width : 768px) {
+  .navbar-wagon {
+    padding: 0px 20px;
+  }
 }
