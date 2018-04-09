@@ -2,20 +2,6 @@
   text-decoration: underline;
   text-decoration-style: dotted;
 }
-.ingredients-container {
-  padding: 10px;
-  border: 10px;
-  border-radius: 20px;
-  border-style: dotted;
-}
-.steps-container {
-  padding-left: 20px;
-  padding-top: 20px;
-}
-.photo {
-  background-size: cover;
-  height: 400px;
-}
 
 #recipe {
   p {
@@ -24,6 +10,16 @@
   }
   h3 {
    display: inline;
+  }
+  .ingredients-container {
+    padding: 10px;
+    border: 10px;
+    border-radius: 20px;
+    border-style: dotted;
+  }
+  .steps-container {
+    padding-left: 20px;
+    padding-top: 20px;
   }
   .row>div {
     position: static;
