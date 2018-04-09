@@ -1,11 +1,19 @@
 class StepsController < ApplicationController
 
   before_action :find_recipe, except: [ :index ]
-  before_action :find_step, except: [ :index, :create ]
+  before_action :find_step, except: [ :index, :new, :create  ]
 
   def index
     @recipe = Recipe.find(params[:id])
     @steps = Step.where(recipe_id: @recipe.id)
+  end
+
+  def new
+    @step = Step.new
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
   def create
