@@ -82,13 +82,15 @@
             <% end %>
 
             <!-- New step -->
-            <% if current_user.id == @recipe.owner_id %>
-              <h3>Add a step</h3>
-              <%= link_to '<i class="fa fa-plus-square" aria-hidden="true"></i>'.html_safe, new_recipe_step_path(@recipe),  {:remote => true}  %>
-              <div class="new-step">
-                <%= render 'steps/form', recipe: @recipe, step: @step %>
-              </div>
-            <% end %>
+            <div class="new-step">
+              <% if current_user.id == @recipe.owner_id %>
+                <h3>Add a step</h3>
+                <%= link_to '<i class="fa fa-plus-square" aria-hidden="true"></i>'.html_safe, new_recipe_step_path(@recipe),  {:remote => true}  %>
+                <div class="new-step-form hidden">
+                  <%= render 'steps/form', recipe: @recipe, step: @step %>
+                </div>
+              <% end %>
+            </div>
           </div>
         </div>
       </div>
