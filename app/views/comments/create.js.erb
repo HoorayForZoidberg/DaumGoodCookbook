@@ -4,8 +4,8 @@ function addComment(commentHTML) {
 }
 
 // if not comments, remove the "no comments yet" sentence
-<% if @recipe.comments.size == 1 %>
-  document.getElementById('comments').innerHTML = '';
+<% if @recipe.comments.size > 0 %>
+  $('#comments p').hide();
 <% end %>
 
 // add html of the comment at the end

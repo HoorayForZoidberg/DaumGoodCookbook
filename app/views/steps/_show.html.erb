@@ -3,10 +3,10 @@
     <%= step.instructions %>
   </span>
   <% if current_user.id == @recipe.owner_id %>
-    <span class="edit-button">
+    <span class="editable hidden edit-button">
       <%= link_to '<i class="fa fa-pencil" aria-hidden="true"></i>'.html_safe, edit_recipe_step_path(@recipe.id, step.id), remote: true %>
     </span>
-    <span class="delete-button">
+    <span class="editable hidden delete-button">
       <%= link_to '<i class="fa fa-trash-o" aria-hidden="true"></i>'.html_safe,
         recipe_step_path(@recipe.id, step.id),
         method: :delete,

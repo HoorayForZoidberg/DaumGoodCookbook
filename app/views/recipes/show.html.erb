@@ -9,10 +9,10 @@
     </div>
     <div>
       <% if @recipe.owner_id == current_user.id %>
-        <span class="edit-button">
+        <span class="editable hidden edit-button">
           <%= link_to '<i class="fa fa-pencil" aria-hidden="true"></i>'.html_safe, edit_recipe_path(@recipe) %>
         </span>
-        <span class="delete-button">
+        <span class="editable hidden delete-button">
           <%= link_to '<i class="fa fa-trash-o" aria-hidden="true"></i>'.html_safe, recipe_path(@recipe),
                 method: :delete,
                 data: { confirm: "Are you sure?" } %>
@@ -23,7 +23,16 @@
 
   <!-- Recipe Owner Info -->
   <% if @recipe.owner_id %>
-    <p>Created by <%= @recipe.owner %></p>
+    <p>
+      Created by <%= @recipe.owner %>
+      <% if @recipe.owner_id == current_user.id %>
+        -
+        <span class="edit-mode">
+          <%= link_to "Edit this recipe", "#" %>
+          <%= link_to "Click here when done editing", "#", class: "hidden" %>
+        </span>
+      <% end %>
+    </p>
   <% else %>
     <p>(this recipe has no owner)</p>
   <% end %>
@@ -53,10 +62,10 @@
 
             <!-- New Ingredient -->
             <% if current_user.id == @recipe.owner_id %>
-              <div>
-                <h3>Add ingredient</h3>
-                <!-- need to figure our how to create a form that updates the RecipeIngredient association -->
+              <div class="editable hidden">
                 <%= link_to '<i class="fa fa-plus-square" aria-hidden="true"></i>'.html_safe, recipe_new_recipe_ingredient_path(@recipe),  {:remote => true}  %>
+                <!-- need to figure our how to create a form that updates the RecipeIngredient association -->
+                <h3>Add ingredient</h3>
               </div>
             <% end %>
           </div>
@@ -72,20 +81,18 @@
             <% else %>
               <ol>
                 <% @recipe.steps.each do |step| %>
-                  <li>
                     <div id=<%= "step_#{step.id}" %> class="flex">
                       <%= render 'steps/show', step: step %>
                     </div>
-                  </li>
                 <% end %>
               </ol>
             <% end %>
 
             <!-- New step -->
-            <div class="new-step">
+            <div class="new-step editable hidden">
               <% if current_user.id == @recipe.owner_id %>
-                <h3>Add a step</h3>
                 <%= link_to '<i class="fa fa-plus-square" aria-hidden="true"></i>'.html_safe, new_recipe_step_path(@recipe),  {:remote => true}  %>
+                <h3>Add a step</h3>
                 <div class="new-step-form hidden">
                   <%= render 'steps/form', recipe: @recipe, step: @step %>
                 </div>
