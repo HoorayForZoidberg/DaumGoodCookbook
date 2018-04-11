@@ -5,7 +5,7 @@ step.parentNode.removeChild(step);
 // update step count
 document.getElementById('steps-title').innerHTML = '<%= j render "steps/title" %>'
 
-// if no comments, add appropriate text
+// if no steps, add appropriate text
 <% if @recipe.steps.blank? %>
   document.getElementById('steps').innerHTML = 'This recipe has no steps yet.';
 <% end %>

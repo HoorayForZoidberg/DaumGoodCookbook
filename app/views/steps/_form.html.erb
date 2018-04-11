@@ -1,7 +1,7 @@
 <div class="owner-edit">
   <%= simple_form_for [ recipe, step ], remote: true do |form| %>
     <%= form.input :instructions, as: :text, label: false %>
-    <%= form.button :submit, 'Add Step', :class => 'btn-primary' %>
+    <%= form.button :submit, 'Confirm', :class => 'btn-primary' %>
     <%= form.button :button, 'Cancel', :type => 'button', :class => 'btn btn-none cancel-step' %>
   <% end %>
 </div>

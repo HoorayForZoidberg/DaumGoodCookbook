@@ -1,11 +1,12 @@
-function editStep(stepHTML) {
-  const step = document.getElementById('<%= "step_#{@step.id}" %>');
-  if (step.querySelector(".owner-edit")) {
-    const element = step.querySelector(".owner-edit");
-    element.parentNode.removeChild(element);
-  } else {
-    step.insertAdjacentHTML('beforeend', stepHTML);
-  }
-}
+// hide current step
+$('#<%= "step_#{@step.id}" %> > *').addClass("hidden");
+// add edit box
+$('#<%= "step_#{@step.id}" %>').append('<%= j render "steps/form", recipe: @recipe, step: @step %>');
 
-editStep('<%= j render "steps/form", recipe: @recipe, step: @step %>');
+// add eventListener for Cancel button
+$('#<%= "step_#{@step.id}" %> .cancel-step').click(function(){
+  // show current step
+  $('#<%= "step_#{@step.id}" %> > *').removeClass("hidden");
+  // remove edit box
+  $('#<%= "step_#{@step.id}" %> > .owner-edit').remove();
+})

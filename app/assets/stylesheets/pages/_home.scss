@@ -4,6 +4,8 @@
 }
 .flex {
   display: flex;
+}
+.flex, .flex-wrap {
   &.align-center { align-items: center; }
   &.align-baseline { align-items: baseline; }
   &.align-top { align-items: flex-start; }
