@@ -3,10 +3,8 @@ import "bootstrap";
 // NAVBAR
 
 // Navbar avatar dropwdown menu toggle
-$(document).ready(function(){
-  $(".navbar-wagon .dropdown").click(function() {
-    $(".dropdown-toggle").dropdown();
-  });
+$(".navbar-wagon .dropdown").click(function(e) {
+  $(".dropdown-toggle").dropdown();
 })
 
 
