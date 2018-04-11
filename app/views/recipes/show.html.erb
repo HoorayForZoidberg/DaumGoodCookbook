@@ -81,9 +81,11 @@
             <% else %>
               <ol>
                 <% @recipe.steps.each do |step| %>
-                    <div id=<%= "step_#{step.id}" %> class="flex">
+                  <li>
+                    <div id=<%= "step_#{step.id}" %> class="flex-wrap">
                       <%= render 'steps/show', step: step %>
                     </div>
+                  </li>
                 <% end %>
               </ol>
             <% end %>
