@@ -7,5 +7,5 @@ document.getElementById('comments-title').innerHTML = '<%= j render "comments/ti
 
 // if no comments, add appropriate text
 <% if @recipe.comments.blank? %>
-  document.getElementById('comments').innerHTML = 'Be the first to leave a comment for <%= @recipe.name %>';
+  $('#comments p').show();
 <% end %>

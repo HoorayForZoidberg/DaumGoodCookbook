@@ -1,19 +1,21 @@
-<span class="instructions">
-  <%= step.instructions %>
-</span>
-<% if current_user.id == @recipe.owner_id %>
-  <span class="edit-button">
-    <%= link_to '<i class="fa fa-pencil" aria-hidden="true"></i>'.html_safe, edit_recipe_step_path(@recipe.id, step.id), remote: true %>
+<li>
+  <span class="instructions">
+    <%= step.instructions %>
   </span>
-  <span class="delete-button">
-    <%= link_to '<i class="fa fa-trash-o" aria-hidden="true"></i>'.html_safe,
-      recipe_step_path(@recipe.id, step.id),
-      method: :delete,
-      data: { confirm: "Are you sure?" },
-      remote: true %>
-  </span>
-<% else %>
-<!--     <span class="amend-button">
-    <#%= link_to '<i class="fa fa-pencil" aria-hidden="true"></i>'.html_safe, amend_recipe_step_path(@recipe.id, step.id), remote: true %>
-  </span> -->
-<% end %>
+  <% if current_user.id == @recipe.owner_id %>
+    <span class="editable hidden edit-button">
+      <%= link_to '<i class="fa fa-pencil" aria-hidden="true"></i>'.html_safe, edit_recipe_step_path(@recipe.id, step.id), remote: true %>
+    </span>
+    <span class="editable hidden delete-button">
+      <%= link_to '<i class="fa fa-trash-o" aria-hidden="true"></i>'.html_safe,
+        recipe_step_path(@recipe.id, step.id),
+        method: :delete,
+        data: { confirm: "Are you sure?" },
+        remote: true %>
+    </span>
+  <% else %>
+  <!--     <span class="amend-button">
+      <#%= link_to '<i class="fa fa-pencil" aria-hidden="true"></i>'.html_safe, amend_recipe_step_path(@recipe.id, step.id), remote: true %>
+    </span> -->
+  <% end %>
+</li>

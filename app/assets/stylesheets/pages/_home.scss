@@ -31,6 +31,13 @@ h3 {
   font-size: 40px;
 }
 
+// Links
+a {
+  &:hover{
+    text-decoration: none;
+  }
+}
+
 // Graphics
 .photo {
   background-size: cover;
