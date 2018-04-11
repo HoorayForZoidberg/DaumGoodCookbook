@@ -80,10 +80,26 @@
   border-left: 1px solid #E6E6E6;
   border-top: 1px solid #E6E6E6;
 }
+#navbar-recipe-title {
+  text-align: center;
+  h1 {
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  width: calc(100vw - 400px);
+  white-space: nowrap;
+}
+
 
 // Responsive design
 @media screen and (max-width : 768px) {
   .navbar-wagon {
     padding: 0px 20px;
+  }
+  #navbar-recipe-title {
+    h1 {
+      @include fluid-type(font-size, 400px, 768px, 40px, 80px);
+    }
+    width: calc(100vw - 200px);
   }
 }
