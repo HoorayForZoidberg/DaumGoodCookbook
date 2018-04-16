@@ -79,7 +79,7 @@
             <% if @recipe.steps.blank? %>
               <p>(this recipe has no steps yet)</p>
             <% else %>
-              <ol>
+              <ol class="sortable">
                 <% @recipe.steps.each do |step| %>
                   <li>
                     <div id=<%= "step_#{step.id}" %> class="flex-wrap">

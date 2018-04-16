@@ -6,11 +6,19 @@
   li {
     padding-left: 20px;
     padding-top: 10px;
+    border-width: 0 0 1px 0;
+    border-style: solid;
+    &:first-child {
+      border-top-width: 1px;
+    }
+    border-color: white;
   }
   h3 {
     padding-left: 20px;
   }
-  li .editable {
-    float: right;
+  li {
+    .edit-button, .delete-button{
+      float: right;
+    }
   }
 }

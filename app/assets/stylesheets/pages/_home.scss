@@ -41,6 +41,9 @@ a {
 }
 
 // Graphics
+body {
+  background-image: image-url("fabric_plaid_transparent.png");
+}
 .photo {
   background-size: cover;
   height: 400px;
