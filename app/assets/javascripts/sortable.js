@@ -1,5 +1,15 @@
 $(document).ready(function() {
-    $(".sortable").sortable({disabled: true, handle: ".handle"});
+  $(".sortable").sortable({
+    disabled: true,
+    handle: ".handle",
+    update: function(e, ui) {
+      Rails.ajax({
+        url: $(this).data("url"),
+        type: "PATCH",
+        data: $(this).sortable('serialize'),
+      });
+    }
+  });
 });
 
 // toggle sortable when edit button is clicked in recipe page

@@ -5,7 +5,11 @@ Rails.application.routes.draw do
 
   resources :recipes do
     resources :comments, except: [ :index, :new ]
-    resources :steps
+    resources :steps do
+      collection do
+        patch :sort
+      end
+    end
     get '/new_recipe_ingredient', to: "recipes#new_recipe_ingredient"
   end
 
