@@ -1,5 +1,5 @@
 // remove step
-const step = document.getElementById('<%= "step_#{@step.id}" %>');
+const step = $('.<%= "step_#{@step.id}" %>');
 step.parentNode.removeChild(step);
 
 // update step count

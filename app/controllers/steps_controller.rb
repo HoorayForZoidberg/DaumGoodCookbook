@@ -1,11 +1,11 @@
 class StepsController < ApplicationController
 
-  before_action :find_recipe, except: [ :index ]
-  before_action :find_step, except: [ :index, :new, :create  ]
+  before_action :find_recipe, except: [ :index, :sort ]
+  before_action :find_step, except: [ :index, :new, :create, :sort  ]
 
   def index
     @recipe = Recipe.find(params[:id])
-    @steps = Step.where(recipe_id: @recipe.id)
+    @steps = Step.where(recipe_id: @recipe.id).order(:position)
   end
 
   def new
@@ -52,10 +52,18 @@ class StepsController < ApplicationController
     end
   end
 
+  def sort
+    params[:step].each_with_index do |id, index|
+        Step.where(id: id).update_all(position: index + 1)
+    end
+
+    head :ok
+  end
+
   private
 
   def step_params
-    params.require(:step).permit(:instructions)
+    params.require(:step).permit(:instructions, :position)
   end
 
   def find_recipe

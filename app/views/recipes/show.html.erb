@@ -79,12 +79,10 @@
             <% if @recipe.steps.blank? %>
               <p>(this recipe has no steps yet)</p>
             <% else %>
-              <ol>
-                <% @recipe.steps.each do |step| %>
-                  <li>
-                    <div id=<%= "step_#{step.id}" %> class="flex-wrap">
-                      <%= render 'steps/show', step: step %>
-                    </div>
+              <ol class="sortable" data-url=" <%= sort_recipe_steps_path(params[:id]) %> ">
+                <% @recipe.steps.order(:position).each do |step| %>
+                  <li id=<%= dom_id(step) %> class="flex-wrap">
+                    <%= render 'steps/show', step: step %>
                   </li>
                 <% end %>
               </ol>
