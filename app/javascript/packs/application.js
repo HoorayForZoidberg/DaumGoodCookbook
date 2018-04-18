@@ -1,5 +1,3 @@
-import "bootstrap";
-
 // NAVBAR
 
 // Navbar avatar dropwdown menu toggle

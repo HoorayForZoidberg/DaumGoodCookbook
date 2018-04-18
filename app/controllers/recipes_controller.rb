@@ -41,10 +41,17 @@ class RecipesController < ApplicationController
   end
 
   def new_recipe_ingredient
+    @new_recipe_ingredient = RecipeIngredient.new
+    @ingredients = Ingredient.all.map{ |ing| [ing.name, ing.id] } #formatted as double array for simple_form_for
     respond_to do |format|
       format.html
       format.js
     end
+  end
+
+  def create_recipe_ingredient
+    @recipe_ingredient = Ingredient.new(recipe_id: params[:recipe_id], ingredient_id: params[:id])
+    @recipe_ingredient.save
   end
 
   private
