@@ -7,10 +7,10 @@
   </div>
   <div class="modal-body">
       <!-- form to select recipe ingredient from existing ingredients and add it to the recipe -->
-      <%#= simple_form_for(@new_recipe_ingredient, method: :post, url: recipe_new_recipe_ingredient_path) do |form| %>
-        <%#= form.input :ingredient_id, label: 'Select an ingredient', collection: @ingredients %>
-        <%#= form.button :submit %>
-      <%# end %>
+      <%= simple_form_for(@new_recipe_ingredient, method: :post, url: recipe_new_recipe_ingredient_path) do |form| %>
+        <%= form.input :ingredient_id, label: 'Select an ingredient', collection: @ingredients %>
+        <%= form.button :submit %>
+      <% end %>
   </div>
   <div>
     <p>
