@@ -50,21 +50,14 @@
             <div id="ingredients-title">
               <%= render 'ingredients/title' %>
             </div>
-            <% if @ingredients.blank? %>
-              <p>(this recipe does not have any ingredients)</p>
-            <% else %>
-              <% @ingredients.each do |ingredient| %>
-                <div id=<%= "ingredient_#{ingredient.id}" %> class="flex">
-                  <%= render 'ingredients/show', ingredient: ingredient %>
-                </div>
-              <% end %>
-            <% end %>
+            <div id="ingredient-list">
+              <%= render 'ingredient_list' %>
+            </div>
 
             <!-- New Ingredient -->
             <% if current_user.id == @recipe.owner_id %>
               <div class="editable hidden">
                 <%= link_to '<i class="fa fa-plus-square" aria-hidden="true"></i>'.html_safe, recipe_new_recipe_ingredient_path(@recipe),  {:remote => true}  %>
-                <!-- need to figure our how to create a form that updates the RecipeIngredient association -->
                 <h3>Add ingredient</h3>
               </div>
             <% end %>

@@ -1,0 +1,11 @@
+<% if @ingredients.blank? %>
+  <p>(this recipe does not have any ingredients)</p>
+<% else %>
+  <ul>
+    <% @ingredients.each do |ingredient| %>
+      <li id=<%= "ingredient_#{ingredient.id}" %>>
+        <%= link_to ingredient.name.capitalize, ingredient_path(ingredient.id) %>
+      </li>
+    <% end %>
+  </ul>
+<% end %>

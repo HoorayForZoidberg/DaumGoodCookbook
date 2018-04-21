@@ -41,17 +41,29 @@ class RecipesController < ApplicationController
   end
 
   def new_recipe_ingredient
+    @new_ingredient = Ingredient.new
     @new_recipe_ingredient = RecipeIngredient.new
     @ingredients = Ingredient.all.order(:name).map{ |ing| [ing.name, ing.id] } #formatted as double array for simple_form_for
-    respond_to do |format|
-      format.html
-      format.js
-    end
   end
 
   def create_recipe_ingredient
     @recipe_ingredient = RecipeIngredient.new(recipe_id: params[:recipe_id], ingredient_id: params[:recipe_ingredient][:ingredient_id])
     @recipe_ingredient.save
+    respond_to do |format|
+      format.html { redirect_to recipe_path(params[:recipe_id])}
+      format.js
+    end
+  end
+
+  def add_new_ingredient
+    @new_ingredient = Ingredient.new(params[:name])
+    @new_ingredient.save!
+    @recipe_ingredient = RecipeIngredient.new(recipe_id: params[:recipe_id], ingredient_id: Ingredient.last.id)
+    @recipe_ingredient.save
+    respond_to do |format|
+      format.html
+      format.js { 'create_recipe_ingredient.js.erb' }
+    end
   end
 
   private
