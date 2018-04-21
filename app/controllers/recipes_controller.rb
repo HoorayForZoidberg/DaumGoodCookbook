@@ -47,22 +47,28 @@ class RecipesController < ApplicationController
   end
 
   def create_recipe_ingredient
-    @recipe_ingredient = RecipeIngredient.new(recipe_id: params[:recipe_id], ingredient_id: params[:recipe_ingredient][:ingredient_id])
-    @recipe_ingredient.save
-    respond_to do |format|
-      format.html { redirect_to recipe_path(params[:recipe_id])}
-      format.js
+    @recipe = Recipe.find(params[:recipe_id])
+    @ingredients = @recipe.ingredients
+    @recipe_ingredient = RecipeIngredient.new(recipe_id: @recipe.id, ingredient_id: params[:recipe_ingredient][:ingredient_id])
+    if @recipe_ingredient.save!
+      respond_to do |format|
+        format.html { redirect_to recipe_path(params[:recipe_id]) }
+        format.js { render 'update_recipe_ingredient.js.erb' }
+      end
     end
   end
 
   def add_new_ingredient
-    @new_ingredient = Ingredient.new(params[:name])
-    @new_ingredient.save!
+    @recipe = Recipe.find(params[:recipe_id])
+    @ingredients = @recipe.ingredients
+    @new_ingredient = Ingredient.new(name: params[:ingredient][:name])
+    @new_ingredient.save
     @recipe_ingredient = RecipeIngredient.new(recipe_id: params[:recipe_id], ingredient_id: Ingredient.last.id)
-    @recipe_ingredient.save
-    respond_to do |format|
-      format.html
-      format.js { 'create_recipe_ingredient.js.erb' }
+    if @recipe_ingredient.save!
+      respond_to do |format|
+        format.html
+        format.js { render 'update_recipe_ingredient.js.erb' }
+      end
     end
   end
 
