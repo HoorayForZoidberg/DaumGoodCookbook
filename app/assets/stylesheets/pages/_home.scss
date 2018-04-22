@@ -36,9 +36,14 @@ h3 {
 
 // Links
 a {
-  &:hover{
+  &:hover, &:visited, &:focus {
     text-decoration: none;
   }
+}
+
+// Paragraphs
+p {
+  margin: 20px 0;
 }
 
 // Graphics

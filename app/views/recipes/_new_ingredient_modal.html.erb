@@ -1,0 +1,20 @@
+<div class="modal-content">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h2 id="myModalLabel">
+      <%= "Add some ingredients" %>
+    </h2>
+  </div>
+  <div class="modal-body">
+    <!-- form to select recipe ingredient from existing ingredients and add it to the recipe -->
+    <%= render 'new_recipe_ingredient' %>
+    <p>
+      Can't find the right ingredient?
+      <%= link_to 'Create a new one!', '#', id: "new-ingredient-link"%>
+    </p>
+    <%= render 'new_ingredient_from_recipe' %>
+  </div>
+  <div class="modal-footer">
+    <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+  </div>
+</div>

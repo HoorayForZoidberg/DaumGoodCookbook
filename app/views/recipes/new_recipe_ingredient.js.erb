@@ -1,3 +1,7 @@
 $('#modal-window').modal('toggle');
-$("#modal-window").html('<%= j render "recipes/new_recipe_ingredient" %>');
+$('#modal-window').html('<%= j render "recipes/new_ingredient_modal" %>');
+$('#new-ingredient-link').click(function(e) {
+  e.preventDefault();
+  $('#new-ingredient-form').removeClass("hidden")
+})
 
