@@ -67,6 +67,7 @@ class RecipesController < ApplicationController
     # @recipe_ingredient = RecipeIngredient.new(recipe_id: params[:recipe_id], ingredient_id: Ingredient.where(name: params[:ingredient][:name])[0].id)
     # if @recipe_ingredient.save!
       load_new_recipe_ingredient_params
+      @new_ingredient = Ingredient.new
       respond_to do |format|
         format.html { redirect_to recipe_path(params[:recipe_id]) }
         format.js

@@ -1,9 +1,12 @@
+// ALERT
+import swal from 'sweetalert'
+
 // NAVBAR
 
 // Navbar avatar dropwdown menu toggle
-$(".navbar-wagon .dropdown").click(function(e) {
-  $(".dropdown-toggle").dropdown();
-})
+// $(".navbar-wagon .dropdown").click(function(e) {
+//   $(".dropdown-toggle").dropdown();
+// })
 
 
 // RECIPE PAGE
