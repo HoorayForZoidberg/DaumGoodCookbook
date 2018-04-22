@@ -1,10 +1,12 @@
 // Import Google fonts
-@import url("https://fonts.googleapis.com/css?family=Open+Sans:400,300,700|Raleway:400,100,300,700,500");
-@import url('https://fonts.googleapis.com/css?family=Amatic+SC:400,700|Sacramento');
+// @import url("https://fonts.googleapis.com/css?family=Open+Sans:400,300,700|Raleway:400,100,300,700,500");
+// @import url('https://fonts.googleapis.com/css?family=Amatic+SC:400,700|Sacramento');
+@import url('https://fonts.googleapis.com/css?family=Fredericka+the+Great');
+@import url('https://fonts.googleapis.com/css?family=Josefin+Slab:400,400i,700');
 
 // Define fonts for body and headers
-$body-font: "Sacramento", cursive;
-$headers-font: "Amatic SC", cursive;
+$body-font: "Josefin Slab", serif;
+$headers-font: "Fredericka the Great", cursive;
 
 // To use a font file (.woff) uncomment following lines
 // @font-face {
