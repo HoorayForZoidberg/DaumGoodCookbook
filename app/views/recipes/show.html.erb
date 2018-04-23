@@ -67,22 +67,15 @@
         <div class="col-xs-12 col-sm-8">
           <!-- Steps -->
           <div id="steps" class="steps-container">
+            <!-- Steps Title -->
             <div id="steps-title">
               <%= render 'steps/title' %>
             </div>
-            <% if @recipe.steps.blank? %>
-              <p>(this recipe has no steps yet)</p>
-            <% else %>
-              <ol class="sortable" data-url=" <%= sort_recipe_steps_path(params[:id]) %> ">
-                <% @recipe.steps.order(:position).each do |step| %>
-                  <li id=<%= dom_id(step) %> class="flex-wrap">
-                    <%= render 'steps/show', step: step %>
-                  </li>
-                <% end %>
-              </ol>
-            <% end %>
-
-            <!-- New step -->
+            <!-- Steps list -->
+            <div id="step-list">
+              <%= render 'steps/show' %>
+            </div>
+            <!-- New step form -->
             <div class="new-step editable hidden">
               <% if current_user.id == @recipe.owner_id %>
                 <%= link_to '<i class="fa fa-plus-square" aria-hidden="true"></i>'.html_safe, new_recipe_step_path(@recipe),  {:remote => true}  %>

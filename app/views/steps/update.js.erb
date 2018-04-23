@@ -1,4 +1,4 @@
-// add newly edited step
-$('.<%= "step_#{@step.id}" %>').html('<%= j render "steps/show", step: @step %>');
+// update steps
+$('#step-list').html('<%= j render "steps/show" %>');
 // display edit commands
-$('.<%= "step_#{@step.id}" %> *').removeClass("hidden")
+$('.editable').removeClass('hidden');

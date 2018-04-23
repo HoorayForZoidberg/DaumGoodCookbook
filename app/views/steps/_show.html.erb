@@ -1,22 +1,26 @@
-<span class="instructions">
-  <i class="fa fa-arrows handle editable hidden" aria-hidden="true"></i>
-  <%= step.instructions %>
-</span>
-<% if current_user.id == @recipe.owner_id %>
-  <span class="editable hidden">
-    <span class="edit-button">
-      <%= link_to '<i class="fa fa-pencil" aria-hidden="true"></i>'.html_safe, edit_recipe_step_path(@recipe.id, step.id), remote: true %>
-    </span>
-    <span class="delete-button">
-      <%= link_to '<i class="fa fa-trash-o" aria-hidden="true"></i>'.html_safe,
-        recipe_step_path(@recipe.id, step.id),
-        method: :delete,
-        data: { confirm: "Are you sure you want to delete this step?" },
-        remote: true %>
-    </span>
-  </span>
+<% if @recipe.steps.blank? %>
+  <p>(this recipe has no steps yet)</p>
 <% else %>
-<!--     <span class="amend-button">
-    <#%= link_to '<i class="fa fa-pencil" aria-hidden="true"></i>'.html_safe, amend_recipe_step_path(@recipe.id, step.id), remote: true %>
-  </span> -->
+  <ol class="sortable" data-url=" <%= sort_recipe_steps_path(@recipe.id) %> ">
+    <% @recipe.steps.order(:position).each do |step| %>
+      <li id=<%= dom_id(step) %> class="flex-wrap">
+        <span class="instructions">
+          <i class="fa fa-arrows handle editable hidden" aria-hidden="true"></i>
+          <%= step.instructions %>
+        </span>
+        <span class="editable hidden">
+          <span class="edit-button">
+            <%= link_to '<i class="fa fa-pencil" aria-hidden="true"></i>'.html_safe, edit_recipe_step_path(@recipe.id, step.id), remote: true %>
+          </span>
+          <span class="delete-button">
+            <%= link_to '<i class="fa fa-trash-o" aria-hidden="true"></i>'.html_safe,
+              recipe_step_path(@recipe.id, step.id),
+              method: :delete,
+              data: { confirm: "Are you sure you want to delete this step?" },
+              remote: true %>
+          </span>
+        </span>
+      </li>
+    <% end %>
+  </ol>
 <% end %>

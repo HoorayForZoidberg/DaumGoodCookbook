@@ -1,18 +1,9 @@
-function addStep(stepHTML) {
-  $('#steps ol').append(stepHTML);
-  $('#steps ol *').removeClass("hidden")
-}
-
-// if not steps, remove the "no steps yet" sentence
-<% if @recipe.steps.size > 0 %>
-  $('#steps p').hide();
-<% end %>
-
-// add html of the step at the end of the ordered list
-addStep('<%= j render "steps/show", step: @step %>');
-
+// update steps
+$('#step-list').html('<%= j render "steps/show" %>');
+// update title
+$('#steps-title').html('<%= j render "steps/title" %>');
 // reload empty input form
 $('.new-step-form').html('<%= j render "steps/form", recipe: @recipe, step: Step.new %>');
+// display edit commands
+$('.editable').removeClass("hidden");
 
-// update number of steps
-$('steps-title').html('<%= j render "steps/title" %>');
