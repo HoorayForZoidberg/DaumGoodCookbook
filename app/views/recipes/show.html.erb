@@ -4,7 +4,7 @@
 <div id="main">
   <!-- Recipe Name -->
   <div id="recipe-title" class="flex align-baseline">
-    <h1><%= @recipe.name %></h1>
+    <h1><%= @recipe.name.capitalize %></h1>
     <div class="edit-buttons">
       <% if @recipe.owner_id == current_user.id %>
         <span class="editable hidden edit-button">
