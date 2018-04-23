@@ -5,6 +5,10 @@
     <% @ingredients.each do |ingredient| %>
       <li id=<%= "ingredient_#{ingredient.id}" %>>
         <%= link_to ingredient.name.capitalize, ingredient_path(ingredient.id) %>
+        <%# recipe_ingredient = RecipeIngredient.where("name like ?", ingredient.name) %>
+        <%# if recipe_ingredient.measure_amount %>
+          <%#= " - #{recipe_ingredient.measure_amount} #{Measure.find(recipe_ingredient.measure_id)}" %>
+        <%# end %>
       </li>
     <% end %>
   </ul>
