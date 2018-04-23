@@ -1,5 +1,7 @@
 // update steps
 $('#step-list').html('<%= j render "steps/show" %>');
 $(sortable('.sortable', true));
+// remove edit box
+$('#<%= "step_#{@step.id}" %> .new-step-form').remove();
 // display edit commands
 $('.editable').removeClass('hidden');

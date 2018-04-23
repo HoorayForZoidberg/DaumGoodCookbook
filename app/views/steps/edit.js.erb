@@ -1,5 +1,5 @@
 // hide current step
-$('#<%= "step_#{@step.id}" %> > *').addClass("hidden");
+$('#<%= "step_#{@step.id}" %> > *').hide();
 // add edit box
 $('#<%= "step_#{@step.id}" %>').append('<%= j render "steps/form", recipe: @recipe, step: @step %>');
 
@@ -7,7 +7,7 @@ $('#<%= "step_#{@step.id}" %>').append('<%= j render "steps/form", recipe: @reci
 $('#<%= "step_#{@step.id}" %> .cancel-step').click(function(e){
   e.preventDefault();
   // show current step
-  $('#<%= "step_#{@step.id}" %> > *').removeClass("hidden");
+  $('#<%= "step_#{@step.id}" %> > *').show();
   // remove edit box
-  $('#<%= "step_#{@step.id}" %> > .owner-edit').remove();
+  $('#<%= "step_#{@step.id}" %> > .new-step-form').remove();
 })
