@@ -1,4 +1,4 @@
-<div class="owner-edit">
+<div class="owner-edit new-step-form">
   <%= simple_form_for [ recipe, step ], remote: true do |form| %>
     <%= form.input :instructions, as: :text, label: false %>
     <%= form.button :submit, 'Confirm', :class => 'btn-primary' %>

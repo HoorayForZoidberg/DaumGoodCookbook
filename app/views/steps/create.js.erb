@@ -3,15 +3,10 @@ $('#steps-title').html('<%= j render "steps/title" %>');
 // update steps
 $('#step-list').html('<%= j render "steps/show" %>');
 $(sortable('.sortable', true));
-// reload empty input form
-$('.new-step-form').html('<%= j render "steps/form", recipe: @recipe, step: Step.new %>');
-// display edit commands
-$('.editable').removeClass("hidden");
-// reload cancel button event listener
-$(".cancel-step").click(function(e){
-  e.preventDefault();
-  $(".new-step .new-step-form").addClass("hidden");
-  $(".new-step a").removeClass("hidden");
-});
+$('.editable').removeClass('hidden')
+// remove new step form
+$('.new-step-form').remove();
+// show + button
+$('.new-step a').show();
 
 

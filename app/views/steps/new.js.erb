@@ -1,0 +1,11 @@
+// render new step form
+$('.new-step').append('<%= j render "steps/form", recipe: @recipe, step: @step %>');
+// hide the + button
+$('.new-step a').hide();
+
+// Add event handler to remove step-addition menu when cancel button is clicked
+$('.new-step-form .cancel-step').click(function(e){
+  $('.new-step-form').empty();
+  $('.new-step a').show();
+});
+
