@@ -1,4 +1,5 @@
 // update steps
 $('#step-list').html('<%= j render "steps/show" %>');
+$(sortable('.sortable', true));
 // display edit commands
 $('.editable').removeClass('hidden');

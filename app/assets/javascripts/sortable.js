@@ -1,6 +1,7 @@
-$(document).ready(function() {
-  $(".sortable").sortable({
-    disabled: true,
+// gives sortable properties to an element based on class
+function sortable(selector, enabled=false) {
+  $(selector).sortable({
+    disabled: !enabled,
     handle: ".handle",
     update: function(e, ui) {
       Rails.ajax({
@@ -10,9 +11,13 @@ $(document).ready(function() {
       });
     }
   });
-});
+};
 
-// toggle sortable when edit button is clicked in recipe page
+// call sortable on dom load
+$(sortable(".sortable"));
+
+
+// toggle sortable when edit link is clicked in recipe page
 if ($("#recipe")) {
   $(".edit-mode").click(function(e){
     e.preventDefault();

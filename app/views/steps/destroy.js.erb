@@ -1,7 +1,8 @@
-// update steps
-$('#step-list').html('<%= j render "steps/show" %>');
 // update title
 $('#steps-title').html('<%= j render "steps/title" %>');
+// update steps
+$('#step-list').html('<%= j render "steps/show" %>');
+$(sortable('.sortable', true));
 // reload empty input form
 $('.new-step-form').html('<%= j render "steps/form", recipe: @recipe, step: Step.new %>');
 // display edit commands
