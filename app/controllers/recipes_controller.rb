@@ -24,13 +24,19 @@ class RecipesController < ApplicationController
 
   def edit
     @recipe = Recipe.find(params[:id])
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
   def update
     @recipe = Recipe.find(params[:id])
     @recipe.update(recipe_params)
-
-    redirect_to recipe_path(@recipe)
+    respond_to do |format|
+      format.html { redirect_to recipe_path(@recipe) }
+      format.js
+    end
   end
 
   def destroy

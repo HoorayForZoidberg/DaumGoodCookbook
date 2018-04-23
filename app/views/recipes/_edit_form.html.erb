@@ -1,4 +1,4 @@
-<%= simple_form_for(@recipe) do |f| %>
+<%= simple_form_for @recipe, remote: true do |f| %>
   <% if @recipe.errors.any? %>
     <div class="errors-container">
       <ul>
@@ -10,5 +10,5 @@
   <% end %>
   <%= f.label :name %>
   <%= f.text_field :name %>
-  <%= f.submit %>
+  <%= f.submit 'Confirm'%>
 <% end %>

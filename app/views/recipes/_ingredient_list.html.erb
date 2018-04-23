@@ -4,11 +4,17 @@
   <ul>
     <% @ingredients.each do |ingredient| %>
       <li id=<%= "ingredient_#{ingredient.id}" %>>
-        <%= link_to ingredient.name.capitalize, ingredient_path(ingredient.id) %>
-        <%# recipe_ingredient = RecipeIngredient.where("name like ?", ingredient.name) %>
-        <%# if recipe_ingredient.measure_amount %>
-          <%#= " - #{recipe_ingredient.measure_amount} #{Measure.find(recipe_ingredient.measure_id)}" %>
-        <%# end %>
+        <% recipe_ingredient = RecipeIngredient.where("ingredient_id = ?", ingredient.id).first %>
+        <% if (recipe_ingredient.measure_amount && recipe_ingredient.measure_id) %>
+          <% amount = recipe_ingredient.measure_amount %>
+          <% measure =  Measure.find(recipe_ingredient.measure_id).name %>
+          <%= link_to "#{amount} #{measure.pluralize(amount.to_i)} #{ingredient.name.capitalize}", ingredient_path(ingredient.id) %>
+        <% elsif recipe_ingredient.measure_amount %>
+          <% amount = recipe_ingredient.measure_amount %>
+          <%= link_to "#{amount} #{ingredient.name.capitalize.pluralize(amount.to_i)}", ingredient_path(ingredient.id) %>
+        <% else %>
+          <%= link_to ingredient.name.capitalize, ingredient_path(ingredient.id) %>
+        <% end %>
       </li>
     <% end %>
   </ul>

@@ -4,18 +4,13 @@
 <div id="main">
   <!-- Recipe Name -->
   <div id="recipe-title" class="flex align-baseline">
-    <div>
-      <h1><%= @recipe.name %></h1>
-    </div>
+    <h1><%= @recipe.name %></h1>
     <div class="edit-buttons">
       <% if @recipe.owner_id == current_user.id %>
         <span class="editable hidden edit-button">
-          <%= link_to '<i class="fa fa-pencil" aria-hidden="true"></i>'.html_safe, edit_recipe_path(@recipe) %>
-        </span>
-        <span class="editable hidden delete-button">
-          <%= link_to '<i class="fa fa-trash-o" aria-hidden="true"></i>'.html_safe, recipe_path(@recipe),
-                method: :delete,
-                data: { confirm: "Are you sure?" } %>
+          <%= link_to '<i class="fa fa-pencil" aria-hidden="true"></i>'.html_safe,
+              edit_recipe_path(@recipe),
+              remote: true %>
         </span>
       <% end %>
     </div>
@@ -26,11 +21,17 @@
     <p>
       Created by <%= @recipe.owner %>
       <% if @recipe.owner_id == current_user.id %>
-        -
+        (
         <span class="edit-mode">
           <%= link_to "Edit this recipe", "#" %>
           <%= link_to "Click here when done editing", "#", class: "hidden" %>
         </span>
+        -
+        <%= link_to "Delete this recipe",
+                    recipe_path(@recipe),
+                    method: :delete,
+                    data: { confirm: 'Are you sure you wish to delete this recipe?' } %>
+        )
       <% end %>
     </p>
   <% else %>
