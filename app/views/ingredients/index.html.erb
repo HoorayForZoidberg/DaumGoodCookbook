@@ -3,7 +3,10 @@
 <div class="btn btn-primary">
   <%= link_to 'Add New Ingredient', new_ingredient_path %>
 </div>
-
-<% @ingredients.each do |ingredient| %>
-  <%= render "ingredients/show", ingredient: ingredient %>
-<% end %>
+<ul>
+  <% @ingredients.each do |ingredient| %>
+    <li>
+      <%= link_to ingredient.name.capitalize, ingredient_path(ingredient.id) %>
+    </li>
+  <% end %>
+</ul>

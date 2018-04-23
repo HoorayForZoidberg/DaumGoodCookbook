@@ -16,29 +16,51 @@
 }
 #main{
   margin: 0px 100px;
+  margin-top: 20px;
+  margin-bottom: 100px;
+  padding: 10px;
+  border-radius: 20px;
   background-image: image-url("white_linen.png");
 }
 
 // Headers
 h1, h2, h3, h4 {
-  margin-top: 0.25em;
-  margin-bottom: 0.25em;
+  margin-top: 0.20em;
+  margin-bottom: 0.20em;
 }
 h1 {
-  font-size: 80px;
+  font-size: 60px;
 }
 h2 {
-  font-size: 55px;
+  font-size: 45px;
 }
 h3 {
-  font-size: 40px;
+  font-size: 30px;
+}
+
+// Icons
+.fa {
+  padding: 0 10px;
+}
+.edit-buttons {
+  padding-left: 10px;
 }
 
 // Links
 a {
-  &:hover{
+  &:hover, &:visited, &:focus {
     text-decoration: none;
   }
+}
+
+// Paragraphs
+p {
+  margin: 20px 0;
+}
+
+// Lists
+ul {
+  list-style-type: none;
 }
 
 // Graphics

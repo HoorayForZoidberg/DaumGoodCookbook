@@ -1,0 +1,7 @@
+// close modal window
+$('#modal-window').html('');
+$('#modal-window').modal('toggle');
+// update ingredient list
+$('#ingredient-list').html('<%= j render "ingredient_list"%>')
+// update ingredient title count
+$('#ingredients-title').html('<%= j render "ingredients/title" %>')
