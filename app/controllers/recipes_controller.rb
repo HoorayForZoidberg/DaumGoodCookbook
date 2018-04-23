@@ -41,16 +41,13 @@ class RecipesController < ApplicationController
   end
 
   def new_recipe_ingredient
-    @new_ingredient = Ingredient.new
-    @new_recipe_ingredient = RecipeIngredient.new
-    @ingredients = Ingredient.all.order(:name).map{ |ing| [ing.name, ing.id] } #formatted as double array for simple_form_for
-    @measures = Measure.all.order(:name).map{ |measure| [measure.name, measure.id] }
+    load_new_recipe_ingredient_params
   end
 
   def create_recipe_ingredient
     @recipe = Recipe.find(params[:recipe_id])
     @ingredients = @recipe.ingredients
-    @recipe_ingredient = RecipeIngredient.new(recipe_id: @recipe.id, ingredient_id: params[:recipe_ingredient][:ingredient_id], measure_id: params[:measure_id], measure_amount: params[:measure_amount])
+    @recipe_ingredient = RecipeIngredient.new(recipe_ingredient_params)
     if @recipe_ingredient.save!
       respond_to do |format|
         format.html { redirect_to recipe_path(params[:recipe_id]) }
@@ -62,12 +59,11 @@ class RecipesController < ApplicationController
   def add_new_ingredient
     @recipe = Recipe.find(params[:recipe_id])
     @ingredients = @recipe.ingredients
-    @new_ingredient = Ingredient.new(name: params[:ingredient][:name])
+    @new_ingredient = Ingredient.new(new_ingredient_params)
     if @new_ingredient.save!
     # @recipe_ingredient = RecipeIngredient.new(recipe_id: params[:recipe_id], ingredient_id: Ingredient.where(name: params[:ingredient][:name])[0].id)
     # if @recipe_ingredient.save!
       load_new_recipe_ingredient_params
-      @new_ingredient = Ingredient.new
       respond_to do |format|
         format.html { redirect_to recipe_path(params[:recipe_id]) }
         format.js
@@ -81,7 +77,19 @@ class RecipesController < ApplicationController
     params.require(:recipe).permit(:name)
   end
 
+  def recipe_ingredient_params
+    params.permit(:recipe_id)
+    params.require(:recipe_ingredient).permit(:ingredient_id, :measure_id, :measure_amount)
+    return { recipe_id: params[:recipe_id], ingredient_id: params[:recipe_ingredient][:ingredient_id], measure_id: params[:recipe_ingredient][:measure_id], measure_amount: params[:recipe_ingredient][:measure_amount] }
+  end
+
+  def new_ingredient_params
+    params.require(:ingredient).permit(:name)
+    return { name: params[:ingredient][:name] }
+  end
+
   def load_new_recipe_ingredient_params
+    @new_ingredient = Ingredient.new
     @new_recipe_ingredient = RecipeIngredient.new
     @ingredients = Ingredient.all.order(:name).map{ |ing| [ing.name, ing.id] } #formatted as double array for simple_form_for
     @measures = Measure.all.order(:name).map{ |measure| [measure.name, measure.id] }
