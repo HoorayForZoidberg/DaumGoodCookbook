@@ -3,8 +3,9 @@ $('#<%= "step_#{@step.id}" %> > *').addClass("hidden");
 // add edit box
 $('#<%= "step_#{@step.id}" %>').append('<%= j render "steps/form", recipe: @recipe, step: @step %>');
 
-// add eventListener for Cancel button
-$('#<%= "step_#{@step.id}" %> .cancel-step').click(function(){
+// add eventListener for Cancel button - THIS SHOULD BE ITS OWN PARTIAL
+$('#<%= "step_#{@step.id}" %> .cancel-step').click(function(e){
+  e.preventDefault();
   // show current step
   $('#<%= "step_#{@step.id}" %> > *').removeClass("hidden");
   // remove edit box
