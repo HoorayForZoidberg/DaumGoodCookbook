@@ -21,6 +21,7 @@ class StepsController < ApplicationController
     @step.recipe = @recipe
     @step.position = (Step.where("recipe_id = ?", @recipe.id).count + 1)
     if @step.save
+      @step = Step.new
       respond_to do |format|
         format.html { redirect_to recipe_path(@recipe) }
         format.js
