@@ -1,11 +1,9 @@
-// remove step
-const step = $('.<%= "step_#{@step.id}" %>');
-step.parentNode.removeChild(step);
-
-// update step count
-document.getElementById('steps-title').innerHTML = '<%= j render "steps/title" %>'
-
-// if no steps, add appropriate text
-<% if @recipe.steps.blank? %>
-  document.getElementById('steps').innerHTML = 'This recipe has no steps yet.';
-<% end %>
+// update title
+$('#steps-title').html('<%= j render "steps/title" %>');
+// update steps
+$('#step-list').html('<%= j render "steps/show" %>');
+$(sortable('.sortable', true));
+// reload empty input form
+$('.new-step-form').html('<%= j render "steps/form", recipe: @recipe, step: Step.new %>');
+// display edit commands
+$('.editable').removeClass('hidden');

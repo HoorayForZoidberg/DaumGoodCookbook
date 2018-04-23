@@ -1,6 +1,6 @@
 class StepsController < ApplicationController
 
-  before_action :find_recipe, except: [ :index, :sort ]
+  before_action :find_recipe, except: [ :index ]
   before_action :find_step, except: [ :index, :new, :create, :sort  ]
 
   def index
@@ -19,7 +19,9 @@ class StepsController < ApplicationController
   def create
     @step = Step.new(step_params)
     @step.recipe = @recipe
+    @step.position = (Step.where("recipe_id = ?", @recipe.id).count + 1)
     if @step.save
+      @step = Step.new
       respond_to do |format|
         format.html { redirect_to recipe_path(@recipe) }
         format.js
