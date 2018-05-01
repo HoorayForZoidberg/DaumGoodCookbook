@@ -14,7 +14,7 @@
       <!-- Links when logged in -->
       <div class="navbar-wagon-item">
         <div class="dropdown">
-          <span class="dropdown-toggle", data-toggle="dropdown">Recipes</span>
+          <span class="dropdown-toggle", data-toggle="dropdown">Menu</span>
           <ul class="dropdown-menu dropdown-menu-right navbar-wagon-dropdown-menu">
             <li>
               <%= link_to "All recipes", recipes_path , class: "navbar-wagon-item navbar-wagon-link" %>
@@ -35,13 +35,8 @@
           <%= image_tag "http://kitt.lewagon.com/placeholder/users/ssaunier", class: "avatar dropdown-toggle", id: "navbar-wagon-menu", "data-toggle" => "dropdown" %>
           <ul class="dropdown-menu dropdown-menu-right navbar-wagon-dropdown-menu">
             <li>
-              <%= link_to profile_path do %>
+              <%= link_to profile_path, remote: true do %>
                 <i class="fa fa-user"></i> <%= t(".profile", default: "Profile") %>
-              <% end %>
-            </li>
-            <li>
-              <%= link_to "#" do %>
-                <i class="fa fa-cog"></i>  <%= t(".settings", default: "Settings") %>
               <% end %>
             </li>
             <li>

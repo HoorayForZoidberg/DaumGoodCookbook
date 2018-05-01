@@ -1,0 +1,23 @@
+<div class="modal-content">
+  <div class="modal-body">
+    <div class="row">
+      <div class="col-sm-12">
+        <!-- last recipe photo uploaded by user -->
+        <div class="photo" style="background-image: linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.3)), url(<%= cl_image_path("cooking_image_#{rand(10..23)}", width: 800, height: 300, crop: :fill) %>)">
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-12">
+        <!-- user avatar -->
+        <%= image_tag "http://kitt.lewagon.com/placeholder/users/ssaunier", class: "avatar-large" %>
+      </div>
+    </div>
+    <%= @user.name %>
+    <%= @user.email %>
+    photo
+  </div>
+  <div class="modal-footer">
+    <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+  </div>
+</div>
