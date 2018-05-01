@@ -18,9 +18,15 @@
 }
 
 /* User Avatar */
-.navbar-wagon .avatar {
+.avatar {
   height: 65px;
   width: 65px;
+  border-radius: 50%;
+}
+
+.avatar-large {
+  height: 130px;
+  width: 130px;
   border-radius: 50%;
 }
 

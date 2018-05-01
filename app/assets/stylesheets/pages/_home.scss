@@ -39,6 +39,15 @@ h3 {
   font-size: 30px;
 }
 
+// Graphics
+body {
+  background-image: image-url("pink_linen_vichy.png");
+}
+.photo {
+  background-size: cover;
+  height: 400px;
+}
+
 // Icons
 .fa {
   padding: 0 5px;
@@ -57,24 +66,37 @@ a {
   }
 }
 
-// Paragraphs
-p {
-  margin: 20px 0;
-}
-
 // Lists
 ul {
   list-style-type: none;
 }
 
-// Graphics
-body {
-  background-image: image-url("pink_linen_vichy.png");
+// Paragraphs
+p {
+  margin: 20px 0;
 }
-.photo {
-  background-size: cover;
-  height: 400px;
+
+// Margin Spacers
+.mb-10 {
+  margin-bottom: 10px
 }
+.mb-20 {
+  margin-bottom: 20px
+}
+.mb-30 {
+  margin-bottom: 30px
+}
+.mt-10 {
+  margin-top: 10px
+}
+.mt-20 {
+  margin-top: 20px
+}
+.mt-30 {
+  margin-top: 30px
+}
+
+// ------------------------------------------------------------------
 
 // Responsive design
 @media screen and (max-width : 768px) {
