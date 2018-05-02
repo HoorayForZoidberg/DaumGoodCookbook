@@ -74,9 +74,36 @@
     <div class="dropdown">
       <i class="fa fa-bars dropdown-toggle" data-toggle="dropdown"></i>
       <ul class="dropdown-menu dropdown-menu-right navbar-wagon-dropdown-menu">
-        <li><a href="#">Some mobile link</a></li>
-        <li><a href="#">Other one</a></li>
-        <li><a href="#">Other one</a></li>
+        <<li>
+              <%= link_to new_recipe_path , remote: true, class: "navbar-wagon-item navbar-wagon-link" do %>
+                <i class="fa fa-plus-square"></i> New Recipe
+              <% end %>
+            </li>
+            <li>
+              <%= link_to recipes_path , class: "navbar-wagon-item navbar-wagon-link" do %>
+                <i class="fa fa-list-ul"></i> All Recipes
+              <% end %>
+            </li>
+            <li>
+              <%= link_to "#" , class: "navbar-wagon-item navbar-wagon-link" do %>
+                <i class="fa fa-filter"></i> By Category
+              <% end %>
+            </li>
+            <li>
+              <%= link_to recipes_path , class: "navbar-wagon-item navbar-wagon-link" do %>
+                <i class="fa fa-star"></i> Favorites
+              <% end %>
+            </li>
+            <li>
+              <%= link_to profile_path, remote: true do %>
+                <i class="fa fa-user"></i> <%= t(".profile", default: "Profile") %>
+              <% end %>
+            </li>
+            <li>
+              <%= link_to destroy_user_session_path, method: :delete do %>
+                <i class="fa fa-sign-out"></i>  <%= t(".sign_out", default: "Log out") %>
+              <% end %>
+            </li>
       </ul>
     </div>
   </div>
