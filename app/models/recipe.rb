@@ -1,5 +1,5 @@
 class Recipe < ApplicationRecord
-  belongs_to :user
+  belongs_to :user, foreign_key: "owner_id"
   has_many :steps, dependent: :destroy
   has_many :comments, dependent: :destroy
   has_many :recipe_ingredients
