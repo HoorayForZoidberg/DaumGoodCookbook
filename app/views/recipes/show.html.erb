@@ -1,7 +1,7 @@
 <div class="photo" style="background-image: linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.3)), url(<%= cl_image_path("cooking_image_#{rand(10..23)}", width: 800, height: 300, crop: :fill) %>)">
 </div>
 
-<div id="main">
+<div class="main">
   <!-- Recipe Name -->
   <div id="recipe-title" class="flex align-baseline">
     <h1><%= @recipe.name.capitalize %></h1>

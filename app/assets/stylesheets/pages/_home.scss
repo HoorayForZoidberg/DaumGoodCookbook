@@ -15,7 +15,7 @@
   &.justify-between { justify-content: space-between; }
   &.justify-start { justify-content: flex-start; }
 }
-#main{
+.main{
   margin: 0px 100px;
   margin-top: 20px;
   margin-bottom: 100px;
@@ -100,7 +100,7 @@ p {
 
 // Responsive design
 @media screen and (max-width : 768px) {
-  #main{
+  .main{
     margin: 20px;
   }
 }

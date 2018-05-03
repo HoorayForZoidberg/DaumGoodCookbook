@@ -7,7 +7,7 @@
       <%= image_tag "http://kitt.lewagon.com/placeholder/users/ssaunier", class: "avatar-large avatar-profile" %>
       <!-- pencil badge if current user -->
       <% if @user == current_user %>
-        <%= link_to '#', :class => "badge profile-badge", remote: true do %>
+        <%= link_to edit_user_registration_path(current_user), :class => "badge profile-badge" do %>
           <i class="fa fa-pencil" aria-hidden="true"></i>
         <% end %>
       <% end %>
