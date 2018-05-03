@@ -1,5 +1,13 @@
-// ALERT
+// ALERTS
 import swal from 'sweetalert'
+
+// auto-dismiss flashes
+$('document').ready(function() {
+  setTimeout(function() {
+    $('.alert-dismissible').slideUp();
+  }, 3000);
+});
+
 
 // NAVBAR
 
