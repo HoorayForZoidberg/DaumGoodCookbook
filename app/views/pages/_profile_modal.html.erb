@@ -1,33 +1,19 @@
 <div class="modal-content">
-  <div class="col-sm-12" style="padding: 0px">
-    <!-- last recipe photo uploaded by user -->
-    <div class="profile-photo" style="background-image: linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.7)), url(<%= cl_image_path("cooking_image_#{rand(10..23)}", width: 900, height: 200, crop: :fill) %>)">
+  <!-- last recipe photo uploaded by user -->
+  <div class="profile-background" style="background-image: linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.7)), url(<%= cl_image_path("cooking_image_#{rand(10..23)}", width: 900, height: 200, crop: :fill) %>)"></div>
+  <div class="user-info">
+    <div class="profile-image">
+      <!-- user avatar -->
+      <%= image_tag "http://kitt.lewagon.com/placeholder/users/ssaunier", class: "avatar-large avatar-profile" %>
+      <!-- pencil badge if current user -->
+      <% if @user == current_user %>
+        <%= link_to '#', :class => "badge profile-badge", remote: true do %>
+          <i class="fa fa-pencil" aria-hidden="true"></i>
+        <% end %>
+      <% end %>
     </div>
-    <div class="user-info">
-      <div class="row">
-        <div class="col-sm-12">
-          <div class="flex justify-around">
-            <!-- user avatar -->
-            <%= image_tag "http://kitt.lewagon.com/placeholder/users/ssaunier", class: "avatar-large avatar-profile" %>
-            <!-- insert pencil badge to edit here -->
-          </div>
-        </div>
-      </div>
-      <div class="row mt-30">
-        <div class="col-sm-12">
-          <div class="flex justify-around">
-            <h1><%= @user.name %></h1>
-          </div>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-sm-12">
-          <div class="flex justify-around">
-            <%= @user.email %>
-          </div>
-        </div>
-      </div>
-    </div>
+    <h1><%= @user.name %></h1>
+    <%= @user.email %>
   </div>
   <div class="modal-footer">
     <button class="btn btn-primary" data-dismiss="modal" aria-hidden="true">Close</button>

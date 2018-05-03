@@ -18,5 +18,5 @@ Rails.application.routes.draw do
   resources :ingredients
   resources :measures
 
-  get '/profile', to: "pages#profile"
+  get '/profile/:id', to: "pages#profile", as: 'profile'
 end

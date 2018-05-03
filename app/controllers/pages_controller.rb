@@ -5,6 +5,12 @@ class PagesController < ApplicationController
   end
 
   def profile
-    @user = current_user
+    @user = User.find(user_params)
   end
+
+  private
+  def user_params
+    params.require(:id)
+  end
+
 end
