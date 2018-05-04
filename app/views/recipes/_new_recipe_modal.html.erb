@@ -1,0 +1,15 @@
+<div class="modal-content">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h2 id="myModalLabel">
+      <%= "Create a New Recipe" %>
+    </h2>
+  </div>
+  <div class="modal-body">
+    <!-- form to select recipe ingredient from existing ingredients and add it to the recipe -->
+    <%= simple_form_for(@recipe) do |f| %>
+      <%= f.input :name, label: 'What is the name of your new recipe?' %>
+      <%= f.button :submit, 'Create Recipe', :class => 'btn-primary' %>
+      <button class="btn btn-default" data-dismiss="modal" aria-hidden="true">Cancel</button>
+    <% end %>
+</div>

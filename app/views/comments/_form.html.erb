@@ -1,6 +1,6 @@
 <div class="owner-edit">
   <%= simple_form_for [ recipe, comment ], remote: true do |form| %>
-    <%= form.input :content, as: :text, label: false %>
-    <%= form.button :submit %>
+    <%= form.input :content, as: :text, label: false, placeholder: 'Add your comment here' %>
+    <%= form.button :submit, label: 'Add a comment', :class => "btn-primary" %>
   <% end %>
 </div>

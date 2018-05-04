@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  devise_for :users
+  devise_for :users, controllers: { sessions: 'users/sessions', registrations: 'users/registrations' }
   root to: 'pages#home'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
@@ -18,5 +18,5 @@ Rails.application.routes.draw do
   resources :ingredients
   resources :measures
 
-  # get "/recipes/:recipe_id/steps/:id/amend", to: "steps#amend", as: :amend_recipe_step
+  get '/profile/:id', to: "pages#profile", as: 'profile'
 end

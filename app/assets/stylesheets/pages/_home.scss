@@ -1,80 +1,24 @@
-// Site-wide CSS rules
-.btn a {
-  color: white;
+.home-page-background {
+  height: 100vh;
+  background-size: cover;
+  background-position: 50% 50%;
 }
-.flex {
+.home-page-container {
+  height: 100vh;
   display: flex;
 }
-.flex, .flex-wrap {
-  &.align-center { align-items: center; }
-  &.align-baseline { align-items: baseline; }
-  &.align-top { align-items: flex-start; }
-  &.align-bottom { align-items: flex-end; }
-  &.justify-center { justify-content: center; }
-  &.justify-around { justify-content: space-around; }
-  &.justify-between { justify-content: space-between; }
+.home-page-info {
+  text-align: center;
+  margin: auto;
 }
-#main{
-  margin: 0px 100px;
-  margin-top: 20px;
-  margin-bottom: 100px;
-  padding: 10px;
-  border-radius: 20px;
-  background-image: image-url("white_linen.png");
-}
-
-// Headers
-h1, h2, h3, h4 {
-  margin-top: 0.20em;
-  margin-bottom: 0.20em;
-}
-h1 {
-  font-size: 60px;
-}
-h2 {
-  font-size: 45px;
-}
-h3 {
-  font-size: 30px;
-}
-
-// Icons
-.fa {
-  padding: 0 10px;
-}
-.edit-buttons {
-  padding-left: 10px;
-}
-
-// Links
-a {
-  &:hover, &:visited, &:focus {
-    text-decoration: none;
-  }
-}
-
-// Paragraphs
-p {
-  margin: 20px 0;
-}
-
-// Lists
-ul {
-  list-style-type: none;
-}
-
-// Graphics
-body {
-  background-image: image-url("pink_linen_vichy.png");
-}
-.photo {
-  background-size: cover;
-  height: 400px;
+.home-page-logo {
+  height: 300px;
 }
 
 // Responsive design
-@media screen and (max-width : 768px) {
-  #main{
-    margin: 20px;
+@media screen and (max-height : 415px) {
+  .home-page-logo{
+    height: 220px;
   }
 }
+

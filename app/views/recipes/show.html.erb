@@ -1,7 +1,7 @@
 <div class="photo" style="background-image: linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.3)), url(<%= cl_image_path("cooking_image_#{rand(10..23)}", width: 800, height: 300, crop: :fill) %>)">
 </div>
 
-<div id="main">
+<div class="main">
   <!-- Recipe Name -->
   <div id="recipe-title" class="flex align-baseline">
     <h1><%= @recipe.name.capitalize %></h1>
@@ -38,8 +38,6 @@
     <p>(this recipe has no owner)</p>
   <% end %>
 
-  <!-- Modal window -->
-  <div id="modal-window" class="modal modal-lg fade" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"></div>
 
   <!-- Recipe -->
   <div id="recipe">
@@ -87,29 +85,12 @@
       </div>
     </div>
   </div>
-
-
   <!-- Comments -->
-  <div class="comments-container">
-    <div id="comments">
-      <div id="comments-title">
-        <%= render 'comments/title' %>
-      </div>
-      <% if @recipe.comments.blank? %>
-        <p>Be the first to leave a comment for <%= @recipe.name %></p>
-      <% else %>
-        <% @recipe.comments.each do |comment| %>
-          <div id=<%= "comment_#{comment.id}" %> class="flex">
-            <%= render 'comments/show', comment: comment %>
-          </div>
-        <% end %>
-      <% end %>
-    </div>
-
-    <!-- New Comment -->
-    <h3>Add a comment</h3>
-    <div class="new-comment">
-      <%= render 'comments/form', recipe: @recipe, comment: @comment %>
-    </div>
+  <div id="comments-container">
+    <%= render 'comments/show', recipe: @recipe %>
+  </div>
+  <!-- New Comment -->
+  <div id="new-comment">
+    <%= render 'comments/form', recipe: @recipe, comment: Comment.new %>
   </div>
 </div>

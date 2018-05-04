@@ -1,18 +1,6 @@
-function addComment(commentHTML) {
-  const comments = document.getElementById('comments');
-  comments.insertAdjacentHTML('beforeend', commentHTML);
-}
-
-// if not comments, remove the "no comments yet" sentence
-<% if @recipe.comments.size > 0 %>
-  $('#comments p').hide();
-<% end %>
-
-// add html of the comment at the end
-addComment('<%= j render "comments/show", comment: @comment %>')
-
-// reload empty input form
-document.querySelector('.new-comment').innerHTML = '<%= j render "comments/form", recipe: @recipe, comment: Comment.new %>'
-
-// update number of comments
-document.getElementById('comments-title').innerHTML = '<%= j render "comments/title" %>'
+// update comments
+$('comments-container').html('<%= j render "comments/show", recipe: @recipe %>');
+console.log("updated");
+// reload new comment box
+$('new-comment').html('<%= j render "comments/form", recipe: @recipe, comment: Comment.new %>');
+console.log("reloaded");

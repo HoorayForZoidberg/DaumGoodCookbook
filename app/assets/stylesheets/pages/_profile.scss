@@ -1,0 +1,26 @@
+.profile-background {
+  background-size: cover;
+  height: 200px;
+}
+.user-info {
+  margin-top: -130px;
+  text-align: center;
+}
+.profile-image {
+  width: 260px;
+  margin: 0 auto;
+  position: relative;
+}
+.avatar-profile {
+  box-shadow: 0px 0px 30px 10px rgba(0,0,0,0.37);
+}
+.profile-badge {
+  background: $brand-primary;
+  .fa {
+    padding: 5px;
+  }
+  border-radius: 50%;
+  position: absolute;
+  top: 220px;
+  left: 220px;
+}
