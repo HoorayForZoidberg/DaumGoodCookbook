@@ -1,23 +1,14 @@
-<div id='<%= "comment_#{comment.id}" %>'>
-  <p>
-    <strong>
-      <%= User.find(comment.owner_id).name %>
-    </strong>
-    says:
-  </p>
-  <p>
-    <%= comment.content %>
-    <% if current_user.id == comment.owner_id %>
-      <span class="edit-button">
-        <%= link_to '<i class="fa fa-pencil" aria-hidden="true"></i>'.html_safe, edit_recipe_comment_path(@recipe.id, comment.id), remote: true %>
-      </span>
-      <span class="delete-button">
-        <%= link_to '<i class="fa fa-trash-o" aria-hidden="true"></i>'.html_safe,
-          recipe_comment_path(@recipe.id, comment.id),
-          method: :delete,
-          data: { confirm: "Are you sure?" },
-          remote: true %>
-      </span>
+<div class="comments-title">
+  <%= render 'comments/title' %>
+</div>
+<div class="comments">
+  <% if recipe.comments.blank? %>
+    <p>Be the first to leave a comment for <%= @recipe.name %></p>
+  <% else %>
+    <% recipe.comments.each do |comment| %>
+      <div id=<%= "comment_#{comment.id}" %> class="flex">
+        <%= render 'comments/comment', comment: comment %>
+      </div>
     <% end %>
-  </p>
+  <% end %>
 </div>

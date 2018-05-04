@@ -20,9 +20,9 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # end
 
   # PUT /resource
-  def update
-    super
-  end
+  # def update
+  #   super
+  # end
 
   # DELETE /resource
   # def destroy
@@ -47,7 +47,12 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # If you have extra params to permit, append them to the sanitizer.
   def configure_account_update_params
-    devise_parameter_sanitizer.permit(:account_update, keys: [:attribute, :name, :photo, :photo_cache])
+    devise_parameter_sanitizer.permit(:account_update, keys: [:name, :photo, :photo_cache])
+  end
+
+  # send user back to the page they were on before updating their profile
+  def after_update_path_for(resource)
+    stored_location_for(resource) || profile_path(resource)
   end
 
   # The path used after sign up.

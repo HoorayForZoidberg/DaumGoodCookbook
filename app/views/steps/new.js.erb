@@ -1,5 +1,5 @@
 // render new step form
-$('.new-step').append('<%= j render "steps/form", recipe: @recipe, step: @step %>');
+$('.new-step').append('<%= j render "steps/form", recipe: @recipe, step: Step.new %>');
 // hide the + button
 $('.new-step a').hide();
 

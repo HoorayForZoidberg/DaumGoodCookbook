@@ -85,28 +85,12 @@
       </div>
     </div>
   </div>
-
-
   <!-- Comments -->
-  <div class="comments-container">
-    <div id="comments">
-      <div id="comments-title">
-        <%= render 'comments/title' %>
-      </div>
-      <% if @recipe.comments.blank? %>
-        <p>Be the first to leave a comment for <%= @recipe.name %></p>
-      <% else %>
-        <% @recipe.comments.each do |comment| %>
-          <div id=<%= "comment_#{comment.id}" %> class="flex">
-            <%= render 'comments/show', comment: comment %>
-          </div>
-        <% end %>
-      <% end %>
-    </div>
-
-    <!-- New Comment -->
-    <div class="new-comment">
-      <%= render 'comments/form', recipe: @recipe, comment: @comment %>
-    </div>
+  <div id="comments-container">
+    <%= render 'comments/show', recipe: @recipe %>
+  </div>
+  <!-- New Comment -->
+  <div id="new-comment">
+    <%= render 'comments/form', recipe: @recipe, comment: Comment.new %>
   </div>
 </div>
