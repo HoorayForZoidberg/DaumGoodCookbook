@@ -1,7 +1,7 @@
 <div class="home-page-background", style="background-image: linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.4), rgba(0,0,0,0.1)), url(<%= cl_image_path("cooking_image_#{rand(10..23)}") %>)">
   <div class="home-page-container">
     <div class="home-page-info">
-      <%= image_tag "logo-white-text", :class => "home-page-logo" %>
+      <%= cl_image_tag "logo-white-text", :class => "home-page-logo" %>
       <div class="mt-30">
         <%= link_to recipes_path do %>
           <button type="button" class="btn btn-primary">Find your next recipe</button>
