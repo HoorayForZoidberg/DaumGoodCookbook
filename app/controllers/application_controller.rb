@@ -26,6 +26,10 @@ class ApplicationController < ActionController::Base
     store_location_for(:user, request.fullpath)
   end
 
+  def after_sign_out_path_for(resource)
+    recipes_path
+  end
+
   # def configure_account_update_params
   #   devise_parameter_sanitizer.permit(:account_update, keys: [:name, :photo, :photo_cache])
   # end
