@@ -9,6 +9,7 @@
     <!-- form to select recipe ingredient from existing ingredients and add it to the recipe -->
     <%= simple_form_for(@recipe) do |f| %>
       <%= f.input :name, label: 'What is the name of your new recipe?' %>
+      <%= f.input :category, label: "Select a category", requirefd: :true, collection: @categories %>
       <%= f.button :submit, 'Create Recipe', :class => 'btn-primary' %>
       <button class="btn btn-default" data-dismiss="modal" aria-hidden="true">Cancel</button>
     <% end %>

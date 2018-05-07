@@ -12,6 +12,9 @@ class RecipesController < ApplicationController
 
   def new
     @recipe = Recipe.new
+    @categories = %w(Breakfast, Breads & Rolls, Appetizers, Soups, Meat,
+    Fish, Vegetables & Sides, Salads, Pies, Cakes, Cookies, Desserts,
+    Candies & Jams, Sauces & Rubs, Ice Creams & Sorbets)
   end
 
   def create

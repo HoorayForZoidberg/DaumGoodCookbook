@@ -10,5 +10,6 @@
   <% end %>
   <%= f.label :name %>
   <%= f.text_field :name %>
+  <%= f.input :category, label: "Select a category", requirefd: :true, collection: @categories %>
   <%= f.submit %>
 <% end %>
