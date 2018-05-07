@@ -2,7 +2,7 @@ class RecipesController < ApplicationController
   skip_before_action :authenticate_user!, only: [:index]
 
   def index
-    @recipes = Recipe.all
+    @recipes = Recipe.order('LOWER(name)')
   end
 
   def show
@@ -12,17 +12,17 @@ class RecipesController < ApplicationController
 
   def new
     @recipe = Recipe.new
-    @categories = %w(Breakfast, Breads & Rolls, Appetizers, Soups, Meat,
-    Fish, Vegetables & Sides, Salads, Pies, Cakes, Cookies, Desserts,
-    Candies & Jams, Sauces & Rubs, Ice Creams & Sorbets)
+    @categories = %W(Breakfast, Breads\ &\ Rolls, Appetizers, Soups, Meat,
+    Fish, Vegetables\ &\ Sides, Salads, Pies, Cakes, Cookies, Desserts,
+    Candies\ &\ Jams, Sauces\ &\ Rubs, Ice Creams\ &\ Sorbets)
   end
 
   def create
     @recipe = Recipe.new(recipe_params)
     @recipe.owner_id = current_user.id
-    @recipe.save
-
-    redirect_to recipe_path(@recipe)
+    if @recipe.save
+      redirect_to recipe_path(@recipe)
+    end
   end
 
   def edit
@@ -83,7 +83,7 @@ class RecipesController < ApplicationController
   private
 
   def recipe_params
-    params.require(:recipe).permit(:name)
+    params.require(:recipe).permit(:name, :category)
   end
 
   def recipe_ingredient_params

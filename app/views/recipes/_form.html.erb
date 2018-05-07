@@ -1,15 +1,5 @@
 <%= simple_form_for(@recipe) do |f| %>
-  <% if @recipe.errors.any? %>
-    <div class="errors-container">
-      <ul>
-        <% @recipe.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
-  <%= f.label :name %>
-  <%= f.text_field :name %>
-  <%= f.input :category, label: "Select a category", requirefd: :true, collection: @categories %>
-  <%= f.submit %>
+  <%= f.input :name, label: 'What is the name of your new recipe?', required: :true, error: 'You need a recipe name' %>
+  <%= f.input :category, label: "Select a category", requirefd: :true, collection: @categories, error: 'You need to pick a category' %>
+  <%= f.button :submit, 'Create Recipe', :class => 'btn-primary' %>
 <% end %>
