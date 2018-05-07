@@ -21,6 +21,7 @@
     <p>
       Created by <%= @recipe.owner %>
       <% if @recipe.owner_id == current_user.id %>
+        <br>
         (
         <span class="edit-mode">
           <%= link_to "Edit this recipe", "#" %>
