@@ -105,6 +105,19 @@
   white-space: nowrap;
 }
 
+// Sidebar
+.nav-container {
+  display: flex;
+}
+.sidebar {
+  flex: 0 0 250px;
+  height: calc(100vh - 300px);
+  position: sticky;
+  overflow: scroll;
+  display: flex;
+  flex-direction: column;
+}
+
 
 // Responsive design
 @media screen and (max-width : 768px) {

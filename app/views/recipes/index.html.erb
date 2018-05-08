@@ -1,9 +1,24 @@
 <div class="main">
   <h1>Recipes</h1>
-
-  <ul>
-    <% @recipes.each do |recipe| %>
-      <li><%= link_to recipe.name.titleize, recipe_path(recipe) %></li>
-    <% end %>
-  </ul>
+  Search
+  <div class="nav-container">
+    <!-- Navigation pane -->
+    <ul class="sidebar nav nav-tabs" role="tablist">
+      <% @categories.each_with_index do |cat, index| %>
+        <li role="presentation" <%= 'class="active"' if index == 0 %>><a href=<%= "\##{index}" %> role="tab" aria-controls=<%= index %> data-toggle="tab"><%= cat %></a></li>
+      <% end %>
+    </ul>
+    <!-- Tab panes -->
+    <div class="tab-content">
+      <% @categories.each_with_index do |cat, index| %>
+        <div role="tabpanel" class="tab-pane fade <%= 'in active' if index == 0 %>" id=<%= index %>>
+          <ul>
+            <% @recipes.where("category = ?", "#{cat}").each do |recipe| %>
+              <li ><%= link_to recipe.name.titleize, recipe_path(recipe) %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+    </div>
+  </div>
 </div>
