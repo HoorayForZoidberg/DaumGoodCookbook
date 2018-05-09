@@ -105,6 +105,20 @@
   white-space: nowrap;
 }
 
+// Sidebar
+.nav-container {
+  display: flex;
+}
+.sidebar {
+  flex: 0 0 250px;
+  height: calc(100vh - 300px);
+  position: sticky;
+  overflow: scroll;
+  display: flex;
+  flex-direction: column;
+  background: rgba(0,0,0,0.1);
+}
+
 
 // Responsive design
 @media screen and (max-width : 768px) {
@@ -116,5 +130,12 @@
       @include fluid-type(font-size, 400px, 768px, 40px, 80px);
     }
     width: calc(100vw - 200px);
+  }
+}
+@media screen and (max-width : 660px) {
+  .sidebar {
+    height: auto;
+    flex: 1 0 250px;
+    text-align: center;
   }
 }

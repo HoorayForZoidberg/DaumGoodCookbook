@@ -1,8 +1,9 @@
 class RecipesController < ApplicationController
   skip_before_action :authenticate_user!, only: [:index]
+  before_action :load_categories, only: [:index, :new, :edit]
 
   def index
-    @recipes = Recipe.all
+    @recipes = Recipe.order('LOWER(name)')
   end
 
   def show
@@ -17,9 +18,9 @@ class RecipesController < ApplicationController
   def create
     @recipe = Recipe.new(recipe_params)
     @recipe.owner_id = current_user.id
-    @recipe.save
-
-    redirect_to recipe_path(@recipe)
+    if @recipe.save
+      redirect_to recipe_path(@recipe)
+    end
   end
 
   def edit
@@ -80,7 +81,7 @@ class RecipesController < ApplicationController
   private
 
   def recipe_params
-    params.require(:recipe).permit(:name)
+    params.require(:recipe).permit(:name, :category)
   end
 
   def recipe_ingredient_params
@@ -99,6 +100,12 @@ class RecipesController < ApplicationController
     @new_recipe_ingredient = RecipeIngredient.new
     @ingredients = Ingredient.all.order(:name).map{ |ing| [ing.name, ing.id] } #formatted as double array for simple_form_for
     @measures = Measure.all.order(:name).map{ |measure| [measure.name, measure.id] }
+  end
+
+  def load_categories
+    @categories = %W(Breakfast Breads\ &\ Rolls Appetizers Soups Meat
+    Fish Vegetables\ &\ Sides Salads Pies Cakes Cookies Desserts
+    Candies\ &\ Jams Sauces\ &\ Rubs Ice\ Creams\ &\ Sorbets Miscellaneous)
   end
 
 end

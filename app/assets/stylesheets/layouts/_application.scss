@@ -18,8 +18,8 @@
 .main{
   margin: 0px 100px;
   margin-top: 20px;
-  margin-bottom: 100px;
-  padding: 10px;
+  margin-bottom: 20px;
+  padding: 40px;
   border-radius: 20px;
   background-image: image-url("white_linen.png");
 }
@@ -99,8 +99,15 @@ p {
 // ------------------------------------------------------------------
 
 // Responsive design
+@media screen and (max-width : 990px) {
+  .main{
+    margin: 50px;
+    padding: 10px;
+  }
+}
 @media screen and (max-width : 768px) {
   .main{
     margin: 20px;
+    padding: 10px;
   }
 }

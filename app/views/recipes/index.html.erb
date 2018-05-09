@@ -1,9 +1,51 @@
 <div class="main">
   <h1>Recipes</h1>
-
-  <ul>
-    <% @recipes.each do |recipe| %>
-      <li><%= link_to recipe.name, recipe_path(recipe) %></li>
-    <% end %>
-  </ul>
+  Search
+  <div class="nav-container">
+    <!-- Navigation pane -->
+    <ul class="sidebar nav nav-pills" role="tablist">
+      <% @categories.each_with_index do |cat, index| %>
+        <li role="presentation">
+          <a href=<%= "\##{index}" %> role="tab" aria-controls=<%= index %> data-toggle="tab"><%= cat %></a>
+        </li>
+        <!-- Only seen in small screen -->
+        <li class="hidden">
+          <% @recipes.where("category = ?", "#{cat}").each do |recipe| %>
+            <%= render partial: "shared/card", locals: {
+              card_background_image_url: image_path("cooking_images/cooking_image_#{rand(10..23)}.jpg"),
+              card_category: recipe.category,
+              card_title: recipe.name.titleize,
+              card_user_image_url: cl_image_path(recipe.user.photo),
+              card_link: recipe_path(recipe)
+            } %>
+          <% end %>
+        </li>
+      <% end %>
+    </ul>
+    <!-- Tab panes -->
+    <div class="tab-content">
+      <div role="tabpanel" class="tab-pane fade in active" id="search-result">
+        <h3>Search for a recipe, or browse by category</h3>
+      </div>
+      <% @categories.each_with_index do |cat, index| %>
+        <div role="tabpanel" class="tab-pane fade" id=<%= index %>>
+          <div class="tabs-container">
+            <div class="row">
+              <% @recipes.where("category = ?", "#{cat}").each do |recipe| %>
+                <div class="col-xs-12 col-sm-6 col-md-4">
+                  <%= render partial: "shared/card", locals: {
+                    card_background_image_url: image_path("cooking_images/cooking_image_#{rand(10..23)}.jpg"),
+                    card_category: recipe.category,
+                    card_title: recipe.name.titleize,
+                    card_user_image_url: cl_image_path(recipe.user.photo),
+                    card_link: recipe_path(recipe)
+                  } %>
+                </div>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
 </div>

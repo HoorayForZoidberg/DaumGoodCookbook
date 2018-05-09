@@ -18,7 +18,7 @@ $('document').ready(function() {
 
 
 // RECIPE PAGE
-if (window.location.pathname.includes('recipe')) {
+if (window.location.pathname.includes('recipe/')) {
 
   // Add hidden recipe title to navbar
   const title = $("#recipe-title>h1").html();
