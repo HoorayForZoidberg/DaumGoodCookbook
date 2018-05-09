@@ -99,6 +99,12 @@ p {
 // ------------------------------------------------------------------
 
 // Responsive design
+@media screen and (max-width : 990px) {
+  .main{
+    margin: 50px;
+    padding: 10px;
+  }
+}
 @media screen and (max-width : 768px) {
   .main{
     margin: 20px;

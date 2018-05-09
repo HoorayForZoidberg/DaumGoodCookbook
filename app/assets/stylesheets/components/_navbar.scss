@@ -132,3 +132,10 @@
     width: calc(100vw - 200px);
   }
 }
+@media screen and (max-width : 660px) {
+  .sidebar {
+    height: auto;
+    flex: 1 0 250px;
+    text-align: center;
+  }
+}

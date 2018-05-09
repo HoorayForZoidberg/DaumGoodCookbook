@@ -1,5 +1,5 @@
 .tab-content {
-  flex: 1 0 auto;
+  flex: 1 1 auto;
   height: calc(100vh - 300px);
   overflow: scroll;
   margin-left: 30px;
@@ -8,4 +8,18 @@
   border: 1px solid white;
   border-left: none;
   border-right: none;
+}
+
+@media screen and (max-width : 768px) {
+  .tab-content {
+    overflow: auto;
+    height: auto;
+  }
+}
+@media screen and (max-width : 660px) {
+  .tab-content {
+    display: none;
+    width: 0;
+    height: 0;
+  }
 }
