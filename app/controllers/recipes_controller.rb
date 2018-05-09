@@ -3,7 +3,7 @@ class RecipesController < ApplicationController
   before_action :load_categories, only: [:index, :new, :edit]
 
   def index
-    @recipes = Recipe.order('LOWER(name)')
+    @recipes = Recipe.order('LOWER(name)').includes(:user)
   end
 
   def show
