@@ -8,6 +8,28 @@ class Recipe < ApplicationRecord
   validates :name, presence: true
   validates :category, presence: true
 
+  include AlgoliaSearch
+
+  algoliasearch do
+    attribute :name, :category
+    attribute :ingredients do
+      ingredients.each do |ingredient|
+        { ingredient: ingredient.name }
+      end
+    end
+    attribute :steps do
+      steps.each do |s|
+        { instructions: s.instructions }
+      end
+    end
+    attribute :user do
+      { user_name: user.name }
+    end
+
+    searchableAttributes ['unordered(name)', 'unordered(ingredient)',
+     'unordered(instructions)', 'unordered(user_name)', 'unordered(category)']
+  end
+
   def owner
     return User.find(self.owner_id).name
   end
