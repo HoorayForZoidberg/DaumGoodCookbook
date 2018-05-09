@@ -1,24 +1,12 @@
 <div class="main">
   <h1>Recipes</h1>
-  Search
+  <div id="search"></div>
   <div class="nav-container">
     <!-- Navigation pane -->
     <ul class="sidebar nav nav-pills" role="tablist">
       <% @categories.each_with_index do |cat, index| %>
         <li role="presentation">
           <a href=<%= "\##{index}" %> role="tab" aria-controls=<%= index %> data-toggle="tab"><%= cat %></a>
-        </li>
-        <!-- Only seen in small screen -->
-        <li class="hidden">
-          <% @recipes.where("category = ?", "#{cat}").each do |recipe| %>
-            <%= render partial: "shared/card", locals: {
-              card_background_image_url: image_path("cooking_images/cooking_image_#{rand(10..23)}.jpg"),
-              card_category: recipe.category,
-              card_title: recipe.name.titleize,
-              card_user_image_url: cl_image_path(recipe.user.photo),
-              card_link: recipe_path(recipe)
-            } %>
-          <% end %>
         </li>
       <% end %>
     </ul>
