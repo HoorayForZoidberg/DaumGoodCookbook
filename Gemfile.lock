@@ -40,12 +40,6 @@ GEM
       tzinfo (~> 1.1)
     acts_as_list (0.9.11)
       activerecord (>= 3.0)
-    algoliasearch (1.20.0)
-      httpclient (~> 2.8, >= 2.8.3)
-      json (>= 1.5.1)
-    algoliasearch-rails (1.20.4)
-      algoliasearch (>= 1.17.0, < 2.0.0)
-      json (>= 1.5.1)
     arel (8.0.0)
     autoprefixer-rails (7.2.5)
       execjs
@@ -89,7 +83,6 @@ GEM
       activesupport (>= 4.2.0)
     http-cookie (1.0.3)
       domain_name (~> 0.5)
-    httpclient (2.8.3)
     i18n (0.9.1)
       concurrent-ruby (~> 1.0)
     jbuilder (2.7.0)
@@ -101,7 +94,6 @@ GEM
       thor (>= 0.14, < 2.0)
     jquery-ui-rails (6.0.1)
       railties (>= 3.2.16)
-    json (1.8.3.1)
     listen (3.0.8)
       rb-fsevent (~> 0.9, >= 0.9.4)
       rb-inotify (~> 0.9, >= 0.9.7)
@@ -124,6 +116,10 @@ GEM
       mini_portile2 (~> 2.3.0)
     orm_adapter (0.5.0)
     pg (0.21.0)
+    pg_search (2.1.2)
+      activerecord (>= 4.2)
+      activesupport (>= 4.2)
+      arel (>= 6)
     pry (0.11.3)
       coderay (~> 1.1.0)
       method_source (~> 0.9.0)
@@ -230,7 +226,6 @@ PLATFORMS
 
 DEPENDENCIES
   acts_as_list
-  algoliasearch-rails
   autoprefixer-rails
   bootstrap-sass
   bullet
@@ -244,6 +239,7 @@ DEPENDENCIES
   jquery-ui-rails
   listen (~> 3.0.5)
   pg (~> 0.21)
+  pg_search
   pry-byebug
   pry-rails
   puma

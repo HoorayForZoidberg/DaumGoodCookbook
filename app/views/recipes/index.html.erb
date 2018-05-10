@@ -1,19 +1,28 @@
 <div class="main">
-  <h1>Recipes</h1>
-  <div id="search"></div>
+  <div class="input-group mb-30">
+    <input type="text" class="form-control" placeholder="Search for recipe by name, ingredient, author, category...">
+    <span class="input-group-btn">
+      <button class="btn btn-default" type="button">
+        <i class="fa fa-search" aria-hidden="true"></i>
+      </button>
+    </span>
+  </div><!-- /input-group -->
   <div class="nav-container">
     <!-- Navigation pane -->
     <ul class="sidebar nav nav-pills" role="tablist">
       <% @categories.each_with_index do |cat, index| %>
         <li role="presentation">
-          <a href=<%= "\##{index}" %> role="tab" aria-controls=<%= index %> data-toggle="tab"><%= cat %></a>
+          <a href=<%= "\##{index}" %> role="tab" aria-controls=<%= index %> data-toggle="tab"><h3><%= cat %></h3></a>
         </li>
       <% end %>
     </ul>
     <!-- Tab panes -->
     <div class="tab-content">
       <div role="tabpanel" class="tab-pane fade in active" id="search-result">
-        <h3>Search for a recipe, or browse by category</h3>
+        <div class="text-center">
+          <br>
+          <em style="opacity: 0.5">Find your yum!</em>
+        </div>
       </div>
       <% @categories.each_with_index do |cat, index| %>
         <div role="tabpanel" class="tab-pane fade" id=<%= index %>>

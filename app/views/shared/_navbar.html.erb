@@ -4,7 +4,11 @@
     <%= image_tag "logo.png", height: 50 %>
   <% end %>
   <!-- if in recipe page, push title here when scrolled enough -->
-  <div class="hidden" id="navbar-recipe-title"></div>
+  <div id="navbar-title">
+    <% if @navbar_title %>
+      <h1><%= @navbar_title %></h1>
+    <% end %>
+  </div>
 
   <!-- Right Navigation -->
   <div class="navbar-wagon-right">

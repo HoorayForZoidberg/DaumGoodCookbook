@@ -18,19 +18,20 @@ $('document').ready(function() {
 
 
 // RECIPE PAGE
-if (window.location.pathname.includes('recipe/')) {
+if (window.location.pathname.includes('recipes/')) {
 
   // Add hidden recipe title to navbar
   const title = $("#recipe-title>h1").html();
-  $("#navbar-recipe-title").html(`<h1>${title}</h1>`);
+  $("#navbar-title").html(`<h1>${title}</h1>`);
+  $('#navbar-title').hide();
 
   // toggle hidden class on title and navbar title after enough upcscroll
   $(document).scroll(function() {
     var y = $(this).scrollTop();
     if (y > 500) {
-      $('#navbar-recipe-title').removeClass("hidden");
+      $('#navbar-title').show();
     } else {
-      $('#navbar-recipe-title').addClass("hidden");
+      $('#navbar-title').hide();
     }
   });
 

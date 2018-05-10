@@ -30,6 +30,22 @@ class Recipe < ApplicationRecord
   #    'unordered(instructions)', 'unordered(user_name)', 'unordered(category)']
   # end
 
+  include PgSearch
+
+  pg_search_scope :search,
+    against: [ :name, :category ],
+    associated_against: {
+      steps: :instructions,
+      ingredients: :name
+    },
+    using: {
+      tsearch: {
+        prefix: true,
+        dictionary: "english",
+        any_word: true
+      }
+    }
+
   def owner
     return User.find(self.owner_id).name
   end

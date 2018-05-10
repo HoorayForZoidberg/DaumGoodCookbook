@@ -3,6 +3,7 @@ class RecipesController < ApplicationController
   before_action :load_categories, only: [:index, :new, :edit]
 
   def index
+    @navbar_title = "Recipes"
     @recipes = Recipe.order('LOWER(name)').includes(:user)
   end
 
@@ -12,6 +13,7 @@ class RecipesController < ApplicationController
   end
 
   def new
+    @navbar_title = "New Recipe"
     @recipe = Recipe.new
   end
 
@@ -24,6 +26,7 @@ class RecipesController < ApplicationController
   end
 
   def edit
+    @navbar_title = "Edit Recipe"
     @recipe = Recipe.find(params[:id])
     respond_to do |format|
       format.html
