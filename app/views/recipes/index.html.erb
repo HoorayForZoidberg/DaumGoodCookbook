@@ -1,31 +1,48 @@
 <div class="main">
-  <h1>Recipes</h1>
-  Search
+  <%= form_tag recipes_path, class: "full-search-bar", method: :get do %>
+    <%= text_field_tag :query, params[:query], class: "form-control", placeholder: "Search for recipe by name, ingredient, author, category..."   %>
+    <%= submit_tag 'Search', name: nil, class: "btn btn-primary" %>
+    <!-- <span class="input-group-btn">
+      <button class="btn btn-default" type="submit">
+        <i class="fa fa-search" aria-hidden="true"></i>
+      </button>
+    </span> -->
+  <% end %>
   <div class="nav-container">
     <!-- Navigation pane -->
     <ul class="sidebar nav nav-pills" role="tablist">
       <% @categories.each_with_index do |cat, index| %>
         <li role="presentation">
-          <a href=<%= "\##{index}" %> role="tab" aria-controls=<%= index %> data-toggle="tab"><%= cat %></a>
-        </li>
-        <!-- Only seen in small screen -->
-        <li class="hidden">
-          <% @recipes.where("category = ?", "#{cat}").each do |recipe| %>
-            <%= render partial: "shared/card", locals: {
-              card_background_image_url: image_path("cooking_images/cooking_image_#{rand(10..23)}.jpg"),
-              card_category: recipe.category,
-              card_title: recipe.name.titleize,
-              card_user_image_url: cl_image_path(recipe.user.photo),
-              card_link: recipe_path(recipe)
-            } %>
-          <% end %>
+          <a href=<%= "\##{index}" %> role="tab" aria-controls=<%= index %> data-toggle="tab"><h3><%= cat %></h3></a>
         </li>
       <% end %>
     </ul>
     <!-- Tab panes -->
     <div class="tab-content">
       <div role="tabpanel" class="tab-pane fade in active" id="search-result">
-        <h3>Search for a recipe, or browse by category</h3>
+        <% if @results.nil? %>
+          <div class="text-center">
+            <br>
+            <em style="opacity: 0.5">Find your yum!</em>
+          </div>
+        <% elsif @results == [] %>
+            <div class="text-center">
+            <br>
+            <em style="opacity: 0.5">Your search did not yield any results - try again!</em>
+          </div>
+        <% else %>
+          <% @results.each do |recipe| %>
+            <div class="col-xs-12 col-sm-6 col-md-4">
+              <%= render partial: "shared/card", locals: {
+                  card_background_image_url: image_path("cooking_images/cooking_image_#{rand(10..23)}.jpg"),
+                  card_category: recipe.category,
+                  card_title: recipe.name.titleize,
+                  card_user_image_url: cl_image_path(recipe.user.photo),
+                  card_link: recipe_path(recipe)
+                } %>
+            </div>
+          <% end %>
+        <% end %>
       </div>
       <% @categories.each_with_index do |cat, index| %>
         <div role="tabpanel" class="tab-pane fade" id=<%= index %>>

@@ -3,7 +3,11 @@ class RecipesController < ApplicationController
   before_action :load_categories, only: [:index, :new, :edit]
 
   def index
-    @recipes = Recipe.order('LOWER(name)')
+    @navbar_title = "Recipes"
+    @recipes = Recipe.order('LOWER(name)').includes(:user)
+    if params[:query].present?
+      @results = Recipe.search(params[:query])
+    end
   end
 
   def show
@@ -12,6 +16,7 @@ class RecipesController < ApplicationController
   end
 
   def new
+    @navbar_title = "New Recipe"
     @recipe = Recipe.new
   end
 
@@ -24,6 +29,7 @@ class RecipesController < ApplicationController
   end
 
   def edit
+    @navbar_title = "Edit Recipe"
     @recipe = Recipe.find(params[:id])
     respond_to do |format|
       format.html
@@ -104,7 +110,7 @@ class RecipesController < ApplicationController
 
   def load_categories
     @categories = %W(Breakfast Breads\ &\ Rolls Appetizers Soups Meat
-    Fish Vegetables\ &\ Sides Salads Pies Cakes Cookies Desserts
+    Fish\ &\ Seafood Vegetables\ &\ Sides Salads Pies Cakes Cookies Desserts
     Candies\ &\ Jams Sauces\ &\ Rubs Ice\ Creams\ &\ Sorbets Miscellaneous)
   end
 

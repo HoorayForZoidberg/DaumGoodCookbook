@@ -6,6 +6,7 @@ class PagesController < ApplicationController
   end
 
   def profile
+    @navbar_title = "Profile Page"
     @user = User.find(user_params)
   end
 

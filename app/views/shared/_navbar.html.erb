@@ -4,7 +4,11 @@
     <%= image_tag "logo.png", height: 50 %>
   <% end %>
   <!-- if in recipe page, push title here when scrolled enough -->
-  <div class="hidden" id="navbar-recipe-title"></div>
+  <div id="navbar-title">
+    <% if @navbar_title %>
+      <h1><%= @navbar_title %></h1>
+    <% end %>
+  </div>
 
   <!-- Right Navigation -->
   <div class="navbar-wagon-right">
@@ -26,16 +30,16 @@
                 <i class="fa fa-list-ul"></i> All Recipes
               <% end %>
             </li>
-            <li>
-              <%= link_to "#" , class: "navbar-wagon-item navbar-wagon-link" do %>
-                <i class="fa fa-filter"></i> By Category
-              <% end %>
-            </li>
-            <li>
-              <%= link_to recipes_path , class: "navbar-wagon-item navbar-wagon-link" do %>
-                <i class="fa fa-star"></i> Favorites
-              <% end %>
-            </li>
+            <!-- <li> -->
+              <%#= link_to "#" , class: "navbar-wagon-item navbar-wagon-link" do %>
+                <!-- <i class="fa fa-filter"></i> By Category -->
+              <%# end %>
+            <!-- </li> -->
+            <!-- <li> -->
+              <%#= link_to recipes_path , class: "navbar-wagon-item navbar-wagon-link" do %>
+                <!-- <i class="fa fa-star"></i> Favorites -->
+              <%# end %>
+            <!-- </li> -->
           </ul>
         </div>
       </div>
