@@ -110,7 +110,7 @@ class RecipesController < ApplicationController
 
   def load_categories
     @categories = %W(Breakfast Breads\ &\ Rolls Appetizers Soups Meat
-    Fish Vegetables\ &\ Sides Salads Pies Cakes Cookies Desserts
+    Fish\ &\ Seafood Vegetables\ &\ Sides Salads Pies Cakes Cookies Desserts
     Candies\ &\ Jams Sauces\ &\ Rubs Ice\ Creams\ &\ Sorbets Miscellaneous)
   end
 
