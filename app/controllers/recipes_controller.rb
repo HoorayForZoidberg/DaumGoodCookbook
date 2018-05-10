@@ -5,6 +5,9 @@ class RecipesController < ApplicationController
   def index
     @navbar_title = "Recipes"
     @recipes = Recipe.order('LOWER(name)').includes(:user)
+    if params[:query].present?
+      @results = Recipe.search(params[:query])
+    end
   end
 
   def show

@@ -1,0 +1,28 @@
+.full-search-bar {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 30px;
+  :nth-child(2) {
+    flex: 1 1 auto;
+    margin-right: 10px;
+  }
+  :last-child {
+    margin-left: 10px;
+  }
+}
+@media screen and (max-width : 660px) {
+  .full-search-bar {
+    display: block;
+    :nth-child(2) {
+      margin-right: 0px;
+      margin-bottom: 10px;
+      width: 100%;
+    }
+    :last-child {
+      margin-left: 0px;
+      margin-bottom: 10px;
+      width: 100%;
+    }
+  }
+}
+

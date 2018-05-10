@@ -40,9 +40,9 @@ class Recipe < ApplicationRecord
     },
     using: {
       tsearch: {
-        prefix: true,
-        dictionary: "english",
-        any_word: true
+        :prefix => true,
+        :dictionary => "english",
+        :any_word => true
       }
     }
 
