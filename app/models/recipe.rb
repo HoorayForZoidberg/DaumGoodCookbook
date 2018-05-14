@@ -46,16 +46,20 @@ class Recipe < ApplicationRecord
         :prefix => true,
         :dictionary => "english",
         :any_word => true
+      },
+      :trigram => {
+        :only => [:name],
+        :threshold => 0.1
       }
     }
 
-    pg_search_scope :search_by_category,
-      against: :category_id
+  pg_search_scope :search_by_category,
+    against: :category_id
 
-    pg_search_scope :search_by_ingredient,
-      associated_against: {
-        ingredients: :id
-      }
+  pg_search_scope :search_by_ingredient,
+    associated_against: {
+      ingredients: :id
+    }
 
   def owner
     return User.find(self.owner_id).name
