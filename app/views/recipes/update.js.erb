@@ -1,5 +1,7 @@
-// Show new recipe title
-$("#recipe-title>*").show()
-$("#recipe-title>h1").text('<%= @recipe.name %>')
-// delete form
-$("#recipe-title form").remove()
+// Update recipe title
+$("#recipe-title>h1").html('<%= @recipe.name.titleize %>');
+// Update recipe title in navbar
+$("#navbar-title>h1").html('<%= @recipe.name.titleize %>');
+// close modal
+$('#modal-window').modal('toggle');
+

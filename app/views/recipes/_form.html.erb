@@ -1,5 +1,12 @@
 <%= simple_form_for(@recipe) do |f| %>
   <%= f.input :name, label: 'What is the name of your new recipe?', required: :true, error: 'You need a recipe name' %>
-  <%= f.input :category, label: "Select a category", requirefd: :true, collection: @categories, error: 'You need to pick a category' %>
-  <%= f.button :submit, 'Create Recipe', :class => 'btn-primary' %>
+  <div class="input-group">
+    <%= f.label :category_id, "Which category best describes your recipe?" %>
+  </div>
+  <div class="input-group">
+    <%= f.select :category_id, options_from_collection_for_select(Category.all, :id, :name) %>
+  </div>
+  <div class="input-group mt-30 text-right" style="width: 100%">
+    <%= f.button :submit, 'Create Recipe', :class => 'btn-primary' %>
+  </div>
 <% end %>

@@ -8,7 +8,14 @@
       </ul>
     </div>
   <% end %>
-  <%= f.label :name %>
-  <%= f.text_field :name %>
-  <%= f.submit 'Confirm'%>
+  <%= f.input :name, label: 'Recipe name', required: :true, error: 'You need a recipe name' %>
+  <div class="input-group">
+    <%= f.label :category_id, "Recipe category" %>
+  </div>
+  <div class="input-group">
+    <%= f.select :category_id, options_from_collection_for_select(Category.all, :id, :name) %>
+  </div>
+  <div class="input-group mt-30 text-right" style="width: 100%">
+    <%= f.button :submit, 'Update Recipe', :class => 'btn-primary' %>
+  </div>
 <% end %>

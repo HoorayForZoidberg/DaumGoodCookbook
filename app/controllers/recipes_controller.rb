@@ -7,7 +7,9 @@ class RecipesController < ApplicationController
     @recipes = Recipe.order('LOWER(name)').includes(:user)
     if params[:query].present?
       @results = Recipe.search(params[:query])
+      # add logic for al situations (empty params with category or ingredient or both or all three)
     end
+
   end
 
   def show
@@ -87,7 +89,7 @@ class RecipesController < ApplicationController
   private
 
   def recipe_params
-    params.require(:recipe).permit(:name, :category)
+    params.require(:recipe).permit(:name, :category_id)
   end
 
   def recipe_ingredient_params

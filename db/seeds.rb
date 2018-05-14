@@ -11,15 +11,27 @@ puts "Cleaning the current database ..."
 Recipe.destroy_all
 Measure.destroy_all
 Ingredient.destroy_all
+Category.destroy_all
 
 
 # ingredients seed
 puts "Creating ingredients ..."
-ingredients = %w(butter sugar flour egg oil vinegar onion garlic salt pepper chicken beef bread tomato salad corn potato beans)
+ingredients = %w(butter sugar flour egg oil vinegar onion garlic salt pepper chicken beef bread tomato salad corn potato beans)# ingredients seed
 
 ingredients.each do |ingredient|
   Ingredient.create({name: ingredient})
   puts "  #{ingredient}"
+end
+
+# categories seed
+puts "Creating categories ..."
+categories = %W(Breakfast Breads\ &\ Rolls Appetizers Soups Meat
+    Fish\ &\ Seafood Vegetables\ &\ Sides Salads Pies Cakes Cookies Desserts
+    Candies\ &\ Jams Sauces\ &\ Rubs Ice\ Creams\ &\ Sorbets Miscellaneous)
+
+categories.each do |category|
+  Category.create({name: category})
+  puts "  #{category}"
 end
 
 # measures seed
@@ -36,6 +48,6 @@ puts "Creating recipes ..."
 recipes = %w(gloob blarg mlurp prums)
 
 recipes.each do |recipe|
-  Recipe.create({name: recipe, summary: "Recipe for #{recipe}"})
+  Recipe.create({name: recipe, summary: "Recipe for #{recipe}", category: Category.find(rand(0..Category.size -1))})
   puts "  #{recipe}"
 end

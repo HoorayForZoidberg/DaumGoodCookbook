@@ -1,5 +1,2 @@
-// hide current title
-$("#recipe-title>*").hide()
-// render title edit partial form instead
-$("#recipe-title").append('<%= j render "recipes/edit_form" %>')
-
+$('#modal-window').html('<%= j render "recipes/edit_recipe_modal" %>');
+$('#modal-window').modal('toggle');

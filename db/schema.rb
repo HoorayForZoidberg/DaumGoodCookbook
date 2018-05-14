@@ -10,11 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180510145949) do
+ActiveRecord::Schema.define(version: 20180513221037) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
   enable_extension "pg_trgm"
+
+  create_table "categories", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "comments", force: :cascade do |t|
     t.text "content"
@@ -67,7 +73,8 @@ ActiveRecord::Schema.define(version: 20180510145949) do
     t.bigint "owner_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "category"
+    t.bigint "category_id"
+    t.index ["category_id"], name: "index_recipes_on_category_id"
     t.index ["owner_id"], name: "index_recipes_on_owner_id"
   end
 
@@ -104,6 +111,7 @@ ActiveRecord::Schema.define(version: 20180510145949) do
   add_foreign_key "comments", "users", column: "owner_id"
   add_foreign_key "recipe_ingredients", "ingredients"
   add_foreign_key "recipe_ingredients", "recipes"
+  add_foreign_key "recipes", "categories"
   add_foreign_key "recipes", "users", column: "owner_id"
   add_foreign_key "steps", "recipes"
 end
