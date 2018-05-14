@@ -2,13 +2,19 @@
   <%= form_tag recipes_path, method: :get do %>
     <div class="full-search-bar">
       <%= text_field_tag :query, params[:query], class: "form-control", placeholder: "Search for recipe by name, ingredient, author, category..."   %>
-      <%= submit_tag 'Search', name: nil, class: "btn btn-primary" %>
     </div>
     <div class="full-search-bar">
-      <label for="category_id">Category</label>
-      <%= select_tag :category_id, options_from_collection_for_select(Category.all, :id, :name, selected: params[:category_id]), include_blank: "All categories" %>
-      <label for="ingredient_id">Ingredient</label>
-      <%= select_tag :ingredient_id, options_from_collection_for_select(Ingredient.all, :id, :name, selected: params[:ingredient_id]), include_blank: "All ingredients" %>
+      <div class="form-inline mb-30">
+        <label for="category_id">Category</label>
+        <%= select_tag :category_id, options_from_collection_for_select(Category.all, :id, :name, selected: params[:category_id]), include_blank: "All categories", class: "form-control" %>
+      </div>
+      <div class="form-inline mb-30">
+        <label for="ingredient_id">Ingredient</label>
+        <%= select_tag :ingredient_id, options_from_collection_for_select(Ingredient.all, :id, :name, selected: params[:ingredient_id]), include_blank: "All ingredients", class: "form-control" %>
+      </div>
+      <div class="mb-30 form-submit">
+        <%= submit_tag 'Search', name: nil, class: "btn btn-primary" %>
+      </div>
     </div>
     <!-- <span class="input-group-btn">
       <button class="btn btn-default" type="submit">

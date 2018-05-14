@@ -1,12 +1,13 @@
 class RecipesController < ApplicationController
   skip_before_action :authenticate_user!, only: [:index]
-  before_action :load_categories, only: [:index, :new, :edit]
 
   def index
     @navbar_title = "Recipes"
-    @recipes = Recipe.order('LOWER(name)').includes(:user)
-    if params[:query]
-      params[:query] == "" ? @results = Recipe.all : @results = Recipe.search(params[:query]);
+    Recipe.includes(:user, :category)
+    if params[:query] && params[:query] == ""
+      @results = Recipe.all.includes(:user, :category)
+    elsif params[:query]
+      @results = Recipe.search(params[:query]).includes(:user, :category)
     end
     if params[:category_id].present?
       @results = @results.search_by_category(params[:category_id])
@@ -14,7 +15,7 @@ class RecipesController < ApplicationController
         @results = @results.search_by_ingredient(params[:ingredient_id])
       end
     elsif params[:ingredient_id].present?
-      @result = @results.search_by_ingredient(params[:ingredient_id])
+      @results = @results.search_by_ingredient(params[:ingredient_id])
     end
   end
 
@@ -77,6 +78,9 @@ class RecipesController < ApplicationController
     end
   end
 
+  def destroy_recipe_ingredient
+  end
+
   def add_new_ingredient
     @recipe = Recipe.find(params[:recipe_id])
     @ingredients = @recipe.ingredients
@@ -114,12 +118,6 @@ class RecipesController < ApplicationController
     @new_recipe_ingredient = RecipeIngredient.new
     @ingredients = Ingredient.all.order(:name).map{ |ing| [ing.name, ing.id] } #formatted as double array for simple_form_for
     @measures = Measure.all.order(:name).map{ |measure| [measure.name, measure.id] }
-  end
-
-  def load_categories
-    @categories = %W(Breakfast Breads\ &\ Rolls Appetizers Soups Meat
-    Fish\ &\ Seafood Vegetables\ &\ Sides Salads Pies Cakes Cookies Desserts
-    Candies\ &\ Jams Sauces\ &\ Rubs Ice\ Creams\ &\ Sorbets Miscellaneous)
   end
 
 end
