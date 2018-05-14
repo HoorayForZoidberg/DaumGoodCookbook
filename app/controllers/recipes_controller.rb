@@ -4,9 +4,9 @@ class RecipesController < ApplicationController
 
   def index
     @navbar_title = "Recipes"
-    @recipes = Recipe.order('LOWER(name)').includes(:user)
+    Recipe.includes(:user, :category)
     if params[:query]
-      params[:query] == "" ? @results = Recipe.all : @results = Recipe.search(params[:query]);
+      params[:query] == "" ? @results = Recipe.all.includes(:user, :category) : @results = Recipe.search(params[:query]).includes(:user, :category);
     end
     if params[:category_id].present?
       @results = @results.search_by_category(params[:category_id])
@@ -14,7 +14,7 @@ class RecipesController < ApplicationController
         @results = @results.search_by_ingredient(params[:ingredient_id])
       end
     elsif params[:ingredient_id].present?
-      @result = @results.search_by_ingredient(params[:ingredient_id])
+      @results = @results.search_by_ingredient(params[:ingredient_id])
     end
   end
 
