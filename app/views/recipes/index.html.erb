@@ -6,9 +6,9 @@
     </div>
     <div class="full-search-bar">
       <label for="category_id">Category</label>
-      <%= select_tag :category_id, options_from_collection_for_select(Category.all, :id, :name), include_blank: "All categories" %>
+      <%= select_tag :category_id, options_from_collection_for_select(Category.all, :id, :name, selected: params[:category_id]), include_blank: "All categories" %>
       <label for="ingredient_id">Ingredient</label>
-      <%= select_tag :ingredient_id, options_from_collection_for_select(Ingredient.all, :id, :name), include_blank: "All ingredients" %>
+      <%= select_tag :ingredient_id, options_from_collection_for_select(Ingredient.all, :id, :name, selected: params[:ingredient_id]), include_blank: "All ingredients" %>
     </div>
     <!-- <span class="input-group-btn">
       <button class="btn btn-default" type="submit">

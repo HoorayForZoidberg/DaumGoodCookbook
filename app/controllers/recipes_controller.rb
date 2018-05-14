@@ -5,11 +5,17 @@ class RecipesController < ApplicationController
   def index
     @navbar_title = "Recipes"
     @recipes = Recipe.order('LOWER(name)').includes(:user)
-    if params[:query].present?
-      @results = Recipe.search(params[:query])
-      # add logic for al situations (empty params with category or ingredient or both or all three)
+    if params[:query]
+      params[:query] == "" ? @results = Recipe.all : @results = Recipe.search(params[:query]);
     end
-
+    if params[:category_id].present?
+      @results = @results.search_by_category(params[:category_id])
+      if params[:ingredient_id].present?
+        @results = @results.search_by_ingredient(params[:ingredient_id])
+      end
+    elsif params[:ingredient_id].present?
+      @result = @results.search_by_ingredient(params[:ingredient_id])
+    end
   end
 
   def show
