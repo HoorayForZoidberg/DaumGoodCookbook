@@ -2,6 +2,17 @@
 </div>
 
 <div class="main">
+  <!-- Recessed add photo link -->
+  <% if current_user.id == @recipe.owner_id %>
+    <div class="add-photo">
+      <h3>
+        <%= link_to new_recipe_photo_path(recipe_id: :id), {:remote => true}  do %>
+          <i class="fa fa-plus-square" aria-hidden="true"></i>
+          Add a photo
+        <% end %>
+      </h3>
+    </div>
+  <% end %>
   <!-- Recipe Name -->
   <div id="recipe-title" class="flex align-baseline">
     <h1><%= @recipe.name.titleize %></h1>
@@ -19,7 +30,7 @@
   <!-- Recipe Owner Info -->
   <% if @recipe.owner_id %>
     <p>
-      Created by <%= @recipe.owner %>
+      <%= "A #{@recipe.category.name} recipe by #{@recipe.owner}" %>
       <% if @recipe.owner_id == current_user.id %>
         <br>
         (
@@ -38,7 +49,6 @@
   <% else %>
     <p>(this recipe has no owner)</p>
   <% end %>
-
 
   <!-- Recipe -->
   <div id="recipe">

@@ -54,6 +54,10 @@ class PhotoUploader < CarrierWave::Uploader::Base
     resize_to_fit 256, 256
   end
 
+  version :card do
+    resize_to_fit 400, 300
+  end
+
   version :bright_face do
     cloudinary_transformation effect: "brightness:30", radius: 20,
       width: 150, height: 150, crop: :thumb, gravity: :face

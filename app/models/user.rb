@@ -6,6 +6,7 @@ class User < ApplicationRecord
 
   has_many :recipes, foreign_key: "owner_id"
   has_many :comments, foreign_key: "owner_id"
+  has_many :photos
 
   mount_uploader :photo, PhotoUploader
 end

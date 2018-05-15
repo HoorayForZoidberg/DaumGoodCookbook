@@ -1,0 +1,3 @@
+<%= form_tag(new_recipe_photo_path, :method => :post) do  %>
+  <%= cl_image_upload_tag(:image_id) %>
+<% end %>
