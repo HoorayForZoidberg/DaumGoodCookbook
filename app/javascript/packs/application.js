@@ -41,6 +41,13 @@ if (window.location.pathname.includes('recipes/')) {
     $(".edit-mode a").toggleClass("hidden");
     $(".editable:not(.comments-container)").toggleClass("hidden");
   });
+
+  //initialize cloudinary Blueimp file upload library
+  $(function() {
+    if($.fn.cloudinary_fileupload !== undefined) {
+      $("input.cloudinary-fileupload[type=file]").cloudinary_fileupload();
+    }
+  });
 }
 
 

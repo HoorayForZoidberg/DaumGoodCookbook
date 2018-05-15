@@ -3,11 +3,10 @@ class RecipesController < ApplicationController
 
   def index
     @navbar_title = "Recipes"
-    Recipe.includes(:user, :category)
     if params[:query] && params[:query] == ""
-      @results = Recipe.all.includes(:user, :category)
+      @results = Recipe.all.includes(:user, :category, :photos)
     elsif params[:query]
-      @results = Recipe.search(params[:query]).includes(:user, :category)
+      @results = Recipe.search(params[:query]).includes(:user, :category, :photos)
     end
     if params[:category_id].present?
       @results = @results.search_by_category(params[:category_id])
@@ -21,6 +20,11 @@ class RecipesController < ApplicationController
 
   def show
     @recipe = Recipe.find(params[:id])
+    if @recipe.photos.empty?
+      @recipe_photo_id = "cooking_image_#{rand(10..23)}"
+    else
+      @recipe_photo_id = random_recipe_photo_from_owner(@recipe).image_id
+    end
     @ingredients = @recipe.ingredients
   end
 
@@ -118,6 +122,10 @@ class RecipesController < ApplicationController
     @new_recipe_ingredient = RecipeIngredient.new
     @ingredients = Ingredient.all.order(:name).map{ |ing| [ing.name, ing.id] } #formatted as double array for simple_form_for
     @measures = Measure.all.order(:name).map{ |measure| [measure.name, measure.id] }
+  end
+
+  def random_recipe_photo_from_owner(recipe)
+    recipe.photos.where(user_id: recipe.owner_id).sample
   end
 
 end

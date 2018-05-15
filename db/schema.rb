@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180514185949) do
+ActiveRecord::Schema.define(version: 20180515031826) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -53,6 +53,16 @@ ActiveRecord::Schema.define(version: 20180514185949) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["searchable_type", "searchable_id"], name: "index_pg_search_documents_on_searchable_type_and_searchable_id"
+  end
+
+  create_table "photos", force: :cascade do |t|
+    t.string "image_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "recipe_id"
+    t.bigint "user_id"
+    t.index ["recipe_id"], name: "index_photos_on_recipe_id"
+    t.index ["user_id"], name: "index_photos_on_user_id"
   end
 
   create_table "recipe_ingredients", force: :cascade do |t|
@@ -110,6 +120,8 @@ ActiveRecord::Schema.define(version: 20180514185949) do
 
   add_foreign_key "comments", "recipes"
   add_foreign_key "comments", "users", column: "owner_id"
+  add_foreign_key "photos", "recipes"
+  add_foreign_key "photos", "users"
   add_foreign_key "recipe_ingredients", "ingredients"
   add_foreign_key "recipe_ingredients", "recipes"
   add_foreign_key "recipes", "categories"
