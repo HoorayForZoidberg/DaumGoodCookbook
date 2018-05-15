@@ -5,7 +5,7 @@ Rails.application.routes.draw do
 
   resources :recipes do
     resources :comments, except: [ :index, :new ]
-    resources :photos, except: [ :index, :show ]
+    resources :photos, except: [ :index, :new, :show ]
     resources :steps do
       collection do
         patch :sort
