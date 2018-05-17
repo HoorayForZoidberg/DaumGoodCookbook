@@ -70,7 +70,9 @@
             <!-- New Ingredient -->
             <% if current_user.id == @recipe.owner_id %>
               <div class="editable hidden">
-                <%= link_to '<i class="fa fa-plus-square" aria-hidden="true"></i>'.html_safe, recipe_new_recipe_ingredient_path(@recipe),  {:remote => true}  %>
+                <%= link_to recipe_new_recipe_ingredient_path(@recipe), remote: true do %>
+                  <i class="fa fa-plus-square" aria-hidden="true"></i>
+                <% end %>
                 <h3>Add ingredient</h3>
               </div>
             <% end %>

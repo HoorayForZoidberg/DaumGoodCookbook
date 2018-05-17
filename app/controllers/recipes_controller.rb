@@ -109,6 +109,21 @@ class RecipesController < ApplicationController
     end
   end
 
+  def add_new_measure
+    @recipe = Recipe.find(params[:recipe_id])
+    @ingredients = @recipe.ingredients
+    @new_measure = Measure.new(new_measure_params)
+    if @new_measure.save!
+    # @recipe_ingredient = RecipeIngredient.new(recipe_id: params[:recipe_id], ingredient_id: Ingredient.where(name: params[:ingredient][:name])[0].id)
+    # if @recipe_ingredient.save!
+      load_new_recipe_ingredient_params
+      respond_to do |format|
+        format.html { redirect_to recipe_path(params[:recipe_id]) }
+        format.js
+      end
+    end
+  end
+
   private
 
   def recipe_params
@@ -126,8 +141,14 @@ class RecipesController < ApplicationController
     return { name: params[:ingredient][:name] }
   end
 
+  def new_measure_params
+    params.require(:measure).permit(:name)
+    return { name: params[:measure][:name] }
+  end
+
   def load_new_recipe_ingredient_params
     @new_ingredient = Ingredient.new
+    @new_measure = Measure.new
     @new_recipe_ingredient = RecipeIngredient.new
     @ingredients = Ingredient.all.order(:name).map{ |ing| [ing.name, ing.id] } #formatted as double array for simple_form_for
     @measures = Measure.all.order(:name).map{ |measure| [measure.name, measure.id] }

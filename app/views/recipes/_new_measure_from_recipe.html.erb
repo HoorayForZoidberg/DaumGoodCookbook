@@ -1,0 +1,4 @@
+<%= simple_form_for(@new_measure, url: recipe_add_new_measure_path, html: { id: "new-measure-form", class: "hidden" }, remote: true) do |form| %>
+  <%= form.input :name, label: 'Measure name', placeholder: 'Cup, dash, teaspoon, pinch, handful ...' %>
+  <%= form.button :submit, 'Create new measure', :class => "btn btn-primary" %>
+<% end %>
