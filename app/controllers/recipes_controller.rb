@@ -83,6 +83,15 @@ class RecipesController < ApplicationController
   end
 
   def destroy_recipe_ingredient
+    @recipe = Recipe.find(params[:recipe_id])
+    @recipe_ingredient = RecipeIngredient.find(params[:recipe_ingredient_id])
+    if @recipe_ingredient.destroy!
+      @ingredients = @recipe.ingredients
+      respond_to do |format|
+        format.html { redirect_to recipe_path(@recipe) }
+        format.js
+      end
+    end
   end
 
   def add_new_ingredient

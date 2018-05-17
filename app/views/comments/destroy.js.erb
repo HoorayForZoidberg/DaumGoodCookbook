@@ -1,11 +1,1 @@
-// remove comment
-const comment = document.getElementById('<%= "comment_#{@comment.id}" %>');
-comment.parentNode.removeChild(comment);
-
-// update comment count
-$('comments-title').html('<%= j render "comments/title" %>')
-
-// if no comments, add appropriate text
-<% if @recipe.comments.blank? %>
-  $('#comments p').show();
-<% end %>
+$('#comments-container').html('<%= j render "comments/show", recipe: @recipe %>')

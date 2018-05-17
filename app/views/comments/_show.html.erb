@@ -2,10 +2,10 @@
   <%= render 'comments/title' %>
 </div>
 <div class="comments">
-  <% if recipe.comments.blank? %>
+  <% if @recipe.comments.blank? %>
     <p>Be the first to leave a comment for <%= @recipe.name %></p>
   <% else %>
-    <% recipe.comments.each do |comment| %>
+    <% @recipe.comments.each do |comment| %>
       <div id=<%= "comment_#{comment.id}" %> class="flex">
         <%= render 'comments/comment', comment: comment %>
       </div>

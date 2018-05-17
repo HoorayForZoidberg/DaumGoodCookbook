@@ -7,6 +7,7 @@ class CommentsController < ApplicationController
     @comment.recipe = @recipe
     @comment.owner_id = current_user.id
     if @comment.save!
+      @recipe = Recipe.find(params[:recipe_id])
       respond_to do |format|
         format.html { redirect_to recipe_path(@recipe) }
         format.js
@@ -22,18 +23,22 @@ class CommentsController < ApplicationController
   end
 
   def update
-    @comment.update(comment_params)
-    respond_to do |format|
-      format.html { redirect_to recipe_path(@recipe) }
-      format.js
+    if @comment.update!(comment_params)
+      @recipe = Recipe.find(params[:recipe_id])
+      respond_to do |format|
+        format.html { redirect_to recipe_path(@recipe) }
+        format.js
+      end
     end
   end
 
   def destroy
-    @comment.destroy
-    respond_to do |format|
-      format.html { redirect_to recipe_comment_path(@recipe, @comment) }
-      format.js
+    if @comment.destroy!
+      @recipe = Recipe.find(params[:recipe_id])
+      respond_to do |format|
+        format.html { redirect_to recipe_path(@recipe) }
+        format.js
+      end
     end
   end
 

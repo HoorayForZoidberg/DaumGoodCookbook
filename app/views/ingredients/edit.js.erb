@@ -1,11 +1,1 @@
-function editStep(stepHTML) {
-  const step = document.getElementById('<%= "step_#{@step.id}" %>');
-  if (step.querySelector(".owner-edit")) {
-    const element = step.querySelector(".owner-edit");
-    element.parentNode.removeChild(element);
-  } else {
-    step.insertAdjacentHTML('beforeend', stepHTML);
-  }
-}
-
-editStep('<%= j render "steps/form", recipe: @recipe, step: @step %>');
+console.log('nothing in edit.js of ingredients')

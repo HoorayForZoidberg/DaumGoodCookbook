@@ -1,6 +1,7 @@
 // update comments
-$('comments-container').html('<%= j render "comments/show", recipe: @recipe %>');
+$('#comments-container').html('<%= j render "comments/show", recipe: @recipe %>')
+
 console.log("updated");
 // reload new comment box
-$('new-comment').html('<%= j render "comments/form", recipe: @recipe, comment: Comment.new %>');
+$('#new-comment').html('<%= j render "comments/form", recipe: @recipe, comment: Comment.new %>');
 console.log("reloaded");
