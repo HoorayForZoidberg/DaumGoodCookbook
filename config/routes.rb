@@ -14,6 +14,8 @@ Rails.application.routes.draw do
     get '/new_recipe_ingredient', to: "recipes#new_recipe_ingredient"
     post '/new_recipe_ingredient', to: "recipes#create_recipe_ingredient"
     post '/add_new_ingredient', to: "recipes#add_new_ingredient"
+    post '/add_new_measure', to: "recipes#add_new_measure"
+    delete '/destroy_recipe_ingredient', to: "recipes#destroy_recipe_ingredient"
   end
 
   resources :ingredients

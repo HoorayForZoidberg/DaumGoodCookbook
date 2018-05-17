@@ -9,14 +9,17 @@
     <%= comment.content %>
     <% if current_user.id == comment.owner_id %>
       <span class="edit-button">
-        <%= link_to '<i class="fa fa-pencil" aria-hidden="true"></i>'.html_safe, edit_recipe_comment_path(@recipe.id, comment.id), remote: true %>
+        <%= link_to edit_recipe_comment_path(@recipe.id, comment.id), remote: true do %>
+          <i class="fa fa-pencil" aria-hidden="true"></i>
+        <% end %>
       </span>
       <span class="delete-button">
-        <%= link_to '<i class="fa fa-trash-o" aria-hidden="true"></i>'.html_safe,
-          recipe_comment_path(@recipe.id, comment.id),
+        <%= link_to recipe_comment_path(@recipe.id, comment.id),
           method: :delete,
           data: { confirm: "Are you sure?" },
-          remote: true %>
+          remote: true do %>
+            <i class="fa fa-trash-o" aria-hidden="true"></i>
+          <% end %>
       </span>
     <% end %>
   </p>

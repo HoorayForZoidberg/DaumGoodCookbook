@@ -1,11 +1,1 @@
-// remove step
-const step = document.getElementById('<%= "step_#{@step.id}" %>');
-step.parentNode.removeChild(step);
-
-// update step count
-document.getElementById('steps-title').innerHTML = '<%= j render "steps/title" %>'
-
-// if no comments, add appropriate text
-<% if @recipe.steps.blank? %>
-  document.getElementById('steps').innerHTML = 'This recipe has no steps yet.';
-<% end %>
+console.log('nothing in destroy.js of ingredients')

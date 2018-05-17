@@ -1,10 +1,6 @@
-$('#modal-window').modal('toggle');
+swal("New measure added to the list!")
 $('#modal-window').html('<%= j render "recipes/new_ingredient_modal" %>');
-$('#new-ingredient-link').click(function(e) {
-  e.preventDefault();
-  $('#new-ingredient-form').removeClass("hidden")
-});
 $('#new-measure-link').click(function(e) {
   e.preventDefault();
   $('#new-measure-form').removeClass("hidden")
-})
+});

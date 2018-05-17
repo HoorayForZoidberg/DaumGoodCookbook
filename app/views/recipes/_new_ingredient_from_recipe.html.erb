@@ -1,4 +1,4 @@
 <%= simple_form_for(@new_ingredient, url: recipe_add_new_ingredient_path, html: { id: "new-ingredient-form", class: "hidden" }, remote: true) do |form| %>
-  <%= form.input :name, label: 'Ingredient name' %>
+  <%= form.input :name, label: 'Ingredient name', hint: "Ingredient in singular form please (e.g. 'wolf', not 'wolves')" %>
   <%= form.button :submit, 'Create new ingredient', :class => "btn btn-primary" %>
 <% end %>
