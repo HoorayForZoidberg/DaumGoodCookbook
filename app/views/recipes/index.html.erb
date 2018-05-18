@@ -42,11 +42,16 @@
             <% @recipe_photo_id = recipe.photos.where(user_id: recipe.owner_id).sample.image_id %>
           <% end %>
           <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+            <% if recipe.user.photo.blank? %>
+              <% @user_photo = image_path("profile_silhouettes/silhouette_#{rand(1..6)}.png") %>
+            <% else %>
+              <% @user_photo = cl_image_path(recipe.user.photo.url(:bright_face)) %>
+            <% end %>
             <%= render partial: "shared/card", locals: {
                 card_background_image_url: cl_image_path(@recipe_photo_id, height: 175, crop: :fill, gravity: :center),
                 card_category: recipe.category.name,
                 card_title: recipe.name.titleize,
-                card_user_image_url: cl_image_path(recipe.user.photo.url(:bright_face)),
+                card_user_image_url: @user_photo,
                 card_link: recipe_path(recipe)
               } %>
           </div>

@@ -4,7 +4,7 @@
   <div class="user-info">
     <div class="profile-image">
       <!-- user avatar -->
-      <%= image_tag "http://kitt.lewagon.com/placeholder/users/ssaunier", class: "avatar-large avatar-profile" %>
+      <%= image_tag "profile_silhouettes/silhouette_#{rand(1..6)}", class: "avatar-large avatar-profile" %>
       <!-- pencil badge if current user -->
       <% if @user == current_user %>
         <%= link_to edit_user_registration_path(current_user), :class => "badge profile-badge" do %>
