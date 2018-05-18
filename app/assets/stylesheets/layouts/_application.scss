@@ -24,6 +24,11 @@
   background-image: image-url("white_linen.png");
 }
 
+.col-centered{
+    float: none;
+    margin: 0 auto;
+}
+
 // Headers
 h1, h2, h3, h4 {
   margin-top: 0.20em;
