@@ -33,8 +33,12 @@
     // provide indent from headers
     margin-left: 20px;
   }
+  h2 {
+    @include fluid-type(font-size, 768px, 1440px, 30px, 45px);
+  }
   h3 {
    display: inline;
+   @include fluid-type(font-size, 768px, 1440px, 20px, 30px);
   }
   .row>div {
     position: static;
@@ -67,5 +71,8 @@
 @media screen and (max-width : 768px) {
   .steps-container {
     padding-left: 0px;
+  }
+  .top-right-buttons {
+    display: none;
   }
 }

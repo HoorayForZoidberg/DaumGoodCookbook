@@ -167,8 +167,8 @@ class RecipesController < ApplicationController
   end
 
   def display_input_times
-    @recipe.prep_time = ChronicDuration.output(@recipe.prep_time)
-    @recipe.cook_time = ChronicDuration.output(@recipe.cook_time)
-    @recipe.rest_time = ChronicDuration.output(@recipe.rest_time)
+    @recipe.prep_time ? @recipe.prep_time = ChronicDuration.output(@recipe.prep_time) : nil
+    @recipe.cook_time ? @recipe.cook_time = ChronicDuration.output(@recipe.cook_time) : nil
+    @recipe.rest_time ? @recipe.rest_time = ChronicDuration.output(@recipe.rest_time) : nil
   end
 end
