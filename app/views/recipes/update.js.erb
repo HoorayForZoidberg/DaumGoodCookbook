@@ -7,7 +7,9 @@ $(".edit-mode").click(function(e){
     $(".editable:not(.comments-container)").toggleClass("hidden");
   });
 // reset "edit" and "save edits" buttons
-$('.edit-mode').toggleClass("hidden")
+$('.edit-mode').toggleClass("hidden");
+// turn off edit mode on other items
+$(".editable:not(.comments-container)").toggleClass("hidden");
 // update navabr title
 let title = $("#recipe-title h1").html();
   $("#navbar-title").html(`<h1>${title}</h1>`);
