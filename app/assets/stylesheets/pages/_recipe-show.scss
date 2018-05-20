@@ -54,6 +54,15 @@
   }
 }
 
+.top-right-buttons {
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: row-reverse;
+  &>* {
+    margin: 0 5px;
+  }
+}
+
 // Responsive design
 @media screen and (max-width : 768px) {
   .steps-container {

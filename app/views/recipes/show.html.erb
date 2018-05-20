@@ -28,26 +28,32 @@
         </span>
       <% end %>
     </div>
+    <div class="top-right-buttons">
+      <div>
+        <%= link_to "Delete",
+                    recipe_path(@recipe),
+                    method: :delete,
+                    data: { confirm: 'Are you sure you wish to delete this recipe?' },
+                    class: "btn btn-default" %>
+      </div>
+      <div>
+        <%= link_to "Edit", "#", class: "btn btn-primary" %>
+      </div>
+      <div>
+        <%= link_to "Click here when done editing", "#", class: "btn btn-primary hidden" %>
+      </div>
+    </div>
   </div>
 
   <!-- Recipe Owner Info -->
   <% if @recipe.owner_id %>
     <p>
-      <%= "A #{@recipe.category.name} recipe by #{@recipe.owner}" %>
-      <% if @recipe.owner_id == current_user.id %>
-        <br>
-        (
-        <span class="edit-mode">
-          <%= link_to "Edit this recipe", "#" %>
-          <%= link_to "Click here when done editing", "#", class: "hidden" %>
-        </span>
-        -
-        <%= link_to "Delete this recipe",
-                    recipe_path(@recipe),
-                    method: :delete,
-                    data: { confirm: 'Are you sure you wish to delete this recipe?' } %>
-        )
-      <% end %>
+      <%= "#{@recipe.category.name.titleize} recipe by #{@recipe.owner}" %>
+    </p>
+    <p>
+      <%= "Prep time: #{ChronicDuration.output(@recipe.prep_time)}" %>
+      <%= "Cook time: #{ChronicDuration.output(@recipe.cook_time)}" %>
+      <%= "Rest time: #{ChronicDuration.output(@recipe.rest_time)}" %>
     </p>
   <% else %>
     <p>(this recipe has no owner)</p>

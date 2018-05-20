@@ -1,5 +1,6 @@
 class RecipesController < ApplicationController
   skip_before_action :authenticate_user!, only: [:index]
+  before_action :convert_input_times, only: [:create, :update]
 
   def index
     @navbar_title = "Recipes"
@@ -127,7 +128,7 @@ class RecipesController < ApplicationController
   private
 
   def recipe_params
-    params.require(:recipe).permit(:name, :category_id)
+    params.require(:recipe).permit(:name, :category_id, :prep_time, :cook_time, :rest_time)
   end
 
   def recipe_ingredient_params
@@ -158,4 +159,9 @@ class RecipesController < ApplicationController
     recipe.photos.where(user_id: recipe.owner_id).sample
   end
 
+  def convert_input_times
+    params[:recipe][:prep_time] = ChronicDuration.parse(params[:recipe][:prep_time], keep_zero: true)
+    params[:recipe][:cook_time] = ChronicDuration.parse(params[:recipe][:cook_time], keep_zero: true)
+    params[:recipe][:rest_time] = ChronicDuration.parse(params[:recipe][:rest_time], keep_zero: true)
+  end
 end
