@@ -11,11 +11,12 @@ class RecipesController < ApplicationController
     end
     if params[:category_id].present?
       @results = @results.search_by_category(params[:category_id])
-      if params[:ingredient_id].present?
-        @results = @results.search_by_ingredient(params[:ingredient_id])
-      end
-    elsif params[:ingredient_id].present?
+    end
+    if params[:ingredient_id].present?
       @results = @results.search_by_ingredient(params[:ingredient_id])
+    end
+    if params[:total_time].present?
+      @results = @results.where("total_time < ?", ChronicDuration.parse(params[:total_time]))
     end
   end
 
@@ -37,6 +38,7 @@ class RecipesController < ApplicationController
   def create
     @recipe = Recipe.new(recipe_params)
     @recipe.owner_id = current_user.id
+    @recipe.total_time = @recipe.prep_time + @recipe.cook_time + @recipe.rest_time
     if @recipe.save
       redirect_to recipe_path(@recipe)
     end
@@ -55,6 +57,8 @@ class RecipesController < ApplicationController
   def update
     @recipe = Recipe.find(params[:id])
     @recipe.update(recipe_params)
+    @recipe.total_time = @recipe.prep_time + @recipe.cook_time + @recipe.rest_time
+    @recipe.save
     respond_to do |format|
       format.html { redirect_to recipe_path(@recipe) }
       format.js
