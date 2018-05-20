@@ -45,6 +45,7 @@ class RecipesController < ApplicationController
   def edit
     @navbar_title = "Edit Recipe"
     @recipe = Recipe.find(params[:id])
+    display_input_times
     respond_to do |format|
       format.html
       format.js
@@ -163,5 +164,11 @@ class RecipesController < ApplicationController
     params[:recipe][:prep_time] = ChronicDuration.parse(params[:recipe][:prep_time], keep_zero: true)
     params[:recipe][:cook_time] = ChronicDuration.parse(params[:recipe][:cook_time], keep_zero: true)
     params[:recipe][:rest_time] = ChronicDuration.parse(params[:recipe][:rest_time], keep_zero: true)
+  end
+
+  def display_input_times
+    @recipe.prep_time = ChronicDuration.output(@recipe.prep_time)
+    @recipe.cook_time = ChronicDuration.output(@recipe.cook_time)
+    @recipe.rest_time = ChronicDuration.output(@recipe.rest_time)
   end
 end

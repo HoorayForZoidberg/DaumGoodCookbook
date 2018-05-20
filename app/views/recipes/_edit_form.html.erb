@@ -15,6 +15,15 @@
   <div class="input-group">
     <%= f.select :category_id, options_from_collection_for_select(Category.all, :id, :name) %>
   </div>
+  <div class="input-group">
+    <%= f.input :prep_time, as: :string, label: "Preparation time?", value: ChronicDuration.output(@recipe.prep_time) %>
+  </div>
+  <div class="input-group">
+    <%= f.input :cook_time, as: :string, label: "Cook time?" %>
+  </div>
+  <div class="input-group">
+    <%= f.input :rest_time, as: :string, label: "Rest time?" %>
+  </div>
   <div class="input-group mt-30 text-right" style="width: 100%">
     <%= f.button :submit, 'Update Recipe', :class => 'btn-primary' %>
   </div>

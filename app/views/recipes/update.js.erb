@@ -1,7 +1,16 @@
 // Update recipe title
-$("#recipe-title>h1").html('<%= @recipe.name.titleize %>');
-// Update recipe title in navbar
-$("#navbar-title>h1").html('<%= @recipe.name.titleize %>');
+$("#recipe-info").html('<%= j render "recipe_info" %>');
+// reload edit button click listener
+$(".edit-mode").click(function(e){
+    // e.preventDefault();
+    $(".edit-mode a").toggleClass("hidden");
+    $(".editable:not(.comments-container)").toggleClass("hidden");
+  });
+// update navabr title
+let title = $("#recipe-title h1").html();
+  $("#navbar-title").html(`<h1>${title}</h1>`);
+  $('#navbar-title').hide();
+
 // close modal
 $('#modal-window').modal('toggle');
 

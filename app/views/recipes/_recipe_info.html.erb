@@ -1,0 +1,52 @@
+<div id="recipe-title" class="flex space-between">
+  <div class="flex align-baseline">
+    <h1><%= @recipe.name.titleize %></h1>
+    <div class="edit-buttons">
+      <% if @recipe.owner_id == current_user.id %>
+        <span class="editable hidden edit-button">
+          <%= link_to '<i class="fa fa-pencil" aria-hidden="true"></i>'.html_safe,
+              edit_recipe_path(@recipe),
+              remote: true %>
+        </span>
+      <% end %>
+    </div>
+  </div>
+  <div class="top-right-buttons">
+    <div>
+      <%= link_to "Delete Recipe",
+                  recipe_path(@recipe),
+                  method: :delete,
+                  data: { confirm: 'Are you sure? This will delete the entire recipe.' },
+                  class: "btn btn-default" %>
+    </div>
+    <div class="edit-mode">
+      <%= link_to "Edit Recipe", "#", class: "btn btn-primary" %>
+    </div>
+    <div class="edit-mode">
+      <%= link_to "Save Edits", "#", class: "btn btn-primary hidden" %>
+    </div>
+  </div>
+</div>
+
+<!-- Recipe Owner Info -->
+<div class="mb-30">
+  <% if @recipe.owner_id %>
+    <p>
+      <%= "#{@recipe.category.name.titleize} recipe by #{@recipe.owner}" %>
+    </p>
+  <% else %>
+    <p>(this recipe has no owner)</p>
+  <% end %>
+</div>
+
+<!-- Preparation Times -->
+<div class="mb-30">
+  <p>
+    <strong>Prep time:</strong><%= " #{ChronicDuration.output(@recipe.prep_time)}" %>
+    <br>
+    <strong>Cook time:</strong><%= " #{ChronicDuration.output(@recipe.cook_time)}" %>
+    <br>
+    <strong>Rest time:</strong><%= " #{ChronicDuration.output(@recipe.rest_time)}" %>
+    <br>
+  </p>
+</div>
