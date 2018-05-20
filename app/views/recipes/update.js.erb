@@ -2,18 +2,16 @@
 $("#recipe-info").html('<%= j render "recipe_info" %>');
 // reload edit button click listener
 $(".edit-mode").click(function(e){
-    // e.preventDefault();
+    e.preventDefault();
     $(".edit-mode a").toggleClass("hidden");
     $(".editable:not(.comments-container)").toggleClass("hidden");
   });
-// reset "edit" and "save edits" buttons
-$('.edit-mode a').toggleClass("hidden");
-// turn off edit mode on other items
-$(".editable:not(.comments-container)").toggleClass("hidden");
-// update navabr title
+// update navbar title
 let title = $("#recipe-title h1").html();
   $("#navbar-title").html(`<h1>${title}</h1>`);
   $('#navbar-title').hide();
+// turn off edit mode on other items
+$("#recipe .editable").toggleClass("hidden");
 // close modal
 $('#modal-window').modal('toggle');
 
