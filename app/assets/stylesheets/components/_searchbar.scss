@@ -2,10 +2,19 @@
   display: flex;
   justify-content: space-between;
   margin-bottom: 30px;
+  select {
+    max-width: 250px;
+  }
 }
-@media screen and (max-width : 660px) {
+@media screen and (max-width : 1024px) {
   .full-search-bar {
     display: block;
+  }
+}
+@media screen and (max-width : 768px) {
+  .full-search-bar  select {
+    max-width: none;
+    width: 100%;
   }
 }
 
