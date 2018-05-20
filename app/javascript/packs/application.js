@@ -21,7 +21,7 @@ $('document').ready(function() {
 if (window.location.pathname.includes('recipes/')) {
 
   // Add hidden recipe title to navbar
-  const title = $("#recipe-title>h1").html();
+  const title = $("#recipe-title h1").html();
   $("#navbar-title").html(`<h1>${title}</h1>`);
   $('#navbar-title').hide();
 
