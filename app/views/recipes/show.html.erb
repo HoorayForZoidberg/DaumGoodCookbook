@@ -17,16 +17,18 @@
     </div>
   <% end %>
   <!-- Recipe Name -->
-  <div id="recipe-title" class="flex align-baseline">
-    <h1><%= @recipe.name.titleize %></h1>
-    <div class="edit-buttons">
-      <% if @recipe.owner_id == current_user.id %>
-        <span class="editable hidden edit-button">
-          <%= link_to '<i class="fa fa-pencil" aria-hidden="true"></i>'.html_safe,
-              edit_recipe_path(@recipe),
-              remote: true %>
-        </span>
-      <% end %>
+  <div id="recipe-title" class="flex-wrap align-baseline space-between">
+    <div class="flex align-baseline">
+      <h1><%= @recipe.name.titleize %></h1>
+      <div class="edit-buttons">
+        <% if @recipe.owner_id == current_user.id %>
+          <span class="editable hidden edit-button">
+            <%= link_to '<i class="fa fa-pencil" aria-hidden="true"></i>'.html_safe,
+                edit_recipe_path(@recipe),
+                remote: true %>
+          </span>
+        <% end %>
+      </div>
     </div>
     <div class="top-right-buttons">
       <div>
@@ -36,28 +38,36 @@
                     data: { confirm: 'Are you sure you wish to delete this recipe?' },
                     class: "btn btn-default" %>
       </div>
-      <div>
+      <div class="edit-mode">
         <%= link_to "Edit", "#", class: "btn btn-primary" %>
       </div>
-      <div>
-        <%= link_to "Click here when done editing", "#", class: "btn btn-primary hidden" %>
+      <div class="edit-mode">
+        <%= link_to "Save Edits", "#", class: "btn btn-primary hidden" %>
       </div>
     </div>
   </div>
 
   <!-- Recipe Owner Info -->
-  <% if @recipe.owner_id %>
+  <div class="mb-30">
+    <% if @recipe.owner_id %>
+      <p>
+        <%= "#{@recipe.category.name.titleize} recipe by #{@recipe.owner}" %>
+      </p>
+    <% else %>
+      <p>(this recipe has no owner)</p>
+    <% end %>
+  </div>
+
+  <div class="mb-30">
     <p>
-      <%= "#{@recipe.category.name.titleize} recipe by #{@recipe.owner}" %>
+      <strong>Prep time:</strong><%= " #{ChronicDuration.output(@recipe.prep_time)}" %>
+      <br>
+      <strong>Cook time:</strong><%= " #{ChronicDuration.output(@recipe.cook_time)}" %>
+      <br>
+      <strong>Rest time:</strong><%= " #{ChronicDuration.output(@recipe.rest_time)}" %>
+      <br>
     </p>
-    <p>
-      <%= "Prep time: #{ChronicDuration.output(@recipe.prep_time)}" %>
-      <%= "Cook time: #{ChronicDuration.output(@recipe.cook_time)}" %>
-      <%= "Rest time: #{ChronicDuration.output(@recipe.rest_time)}" %>
-    </p>
-  <% else %>
-    <p>(this recipe has no owner)</p>
-  <% end %>
+  </div>
 
   <!-- Recipe -->
   <div id="recipe">
