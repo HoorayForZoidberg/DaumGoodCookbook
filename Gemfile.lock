@@ -58,6 +58,8 @@ GEM
       activemodel (>= 4.0.0)
       activesupport (>= 4.0.0)
       mime-types (>= 1.16)
+    chronic_duration (0.10.6)
+      numerizer (~> 0.1.1)
     cloudinary (1.8.2)
       aws_cf_signer
       rest-client
@@ -114,6 +116,7 @@ GEM
     nio4r (2.2.0)
     nokogiri (1.8.2)
       mini_portile2 (~> 2.3.0)
+    numerizer (0.1.1)
     orm_adapter (0.5.0)
     pg (0.21.0)
     pg_search (2.1.2)
@@ -230,6 +233,7 @@ DEPENDENCIES
   bootstrap-sass
   bullet
   carrierwave (~> 1.2)
+  chronic_duration
   cloudinary
   devise
   figaro
