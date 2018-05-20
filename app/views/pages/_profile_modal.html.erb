@@ -4,7 +4,11 @@
   <div class="user-info">
     <div class="profile-image">
       <!-- user avatar -->
-      <%= image_tag "profile_silhouettes/silhouette_#{rand(1..6)}", class: "avatar-large avatar-profile" %>
+      <% if @user.photo.url %>
+        <%= cl_image_tag @user.photo.url(:bright_face), class: "avatar-large avatar-profile" %>
+      <% else %>
+        <%= image_tag "profile_silhouettes/silhouette_#{rand(1..6)}.png", class: "avatar-large avatar-profile" %>
+      <% end %>
       <!-- pencil badge if current user -->
       <% if @user == current_user %>
         <%= link_to edit_user_registration_path(current_user), :class => "badge profile-badge" do %>

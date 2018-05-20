@@ -12,19 +12,21 @@
     </div>
   </div>
   <div class="top-right-buttons">
-    <div>
-      <%= link_to "Delete Recipe",
-                  recipe_path(@recipe),
-                  method: :delete,
-                  data: { confirm: 'Are you sure? This will delete the entire recipe.' },
-                  class: "btn btn-default" %>
-    </div>
-    <div class="edit-mode">
-      <%= link_to "Edit Recipe", "#", class: "btn btn-primary" %>
-    </div>
-    <div class="edit-mode">
-      <%= link_to "Save Edits", "#", class: "btn btn-primary hidden" %>
-    </div>
+    <% if @recipe.owner_id == current_user.id %>
+      <div>
+        <%= link_to "Delete Recipe",
+                    recipe_path(@recipe),
+                    method: :delete,
+                    data: { confirm: 'Are you sure? This will delete the entire recipe.' },
+                    class: "btn btn-default" %>
+      </div>
+      <div class="edit-mode">
+        <%= link_to "Edit Recipe", "#", class: "btn btn-primary" %>
+      </div>
+      <div class="edit-mode">
+        <%= link_to "Save Edits", "#", class: "btn btn-primary hidden" %>
+      </div>
+    <% end %>
   </div>
 </div>
 
