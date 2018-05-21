@@ -44,11 +44,11 @@
 <!-- Preparation Times -->
 <div class="mb-30">
   <p>
-    <strong>Prep time:</strong><%= @recipe.prep_time ? " #{ChronicDuration.output(@recipe.prep_time)}" : " not specified" %>
+    <strong>Prep time:</strong><%= @recipe.prep_time > 0 ? " #{ChronicDuration.output(@recipe.prep_time)}" : " none" %>
     <br>
-    <strong>Cook time:</strong><%= @recipe.cook_time ? " #{ChronicDuration.output(@recipe.cook_time)}" : " not specified" %>
+    <strong>Cook time:</strong><%= @recipe.cook_time > 0 ? " #{ChronicDuration.output(@recipe.cook_time)}" : " none" %>
     <br>
-    <strong>Rest time:</strong><%= @recipe.rest_time ? " #{ChronicDuration.output(@recipe.rest_time)}" : " not specified" %>
+    <strong>Rest time:</strong><%= @recipe.rest_time > 0 ? " #{ChronicDuration.output(@recipe.rest_time)}" : " none" %>
     <br>
   </p>
 </div>
