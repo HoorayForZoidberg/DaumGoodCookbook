@@ -16,7 +16,7 @@ class RecipesController < ApplicationController
       @results = @results.search_by_ingredient(params[:ingredient_id])
     end
     if params[:total_time].present?
-      @results = @results.where("total_time < ?", ChronicDuration.parse(params[:total_time]))
+      @results = @results.where("total_time <= ?", ChronicDuration.parse(params[:total_time]))
     end
   end
 
