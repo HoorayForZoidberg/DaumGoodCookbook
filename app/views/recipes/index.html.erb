@@ -29,10 +29,7 @@
   <div class="nav-container">
     <div class="row">
       <% if @results.nil? %>
-        <div class="text-center">
-          <br>
-          <em style="opacity: 0.5">Find your yum!</em>
-        </div>
+        <div class="text-center"></div>
       <% elsif @results == [] %>
           <div class="text-center">
           <br>
@@ -55,6 +52,8 @@
                 card_background_image_url: cl_image_path(@recipe_photo_id, height: 175, crop: :fill, gravity: :center),
                 card_category: recipe.category.name,
                 card_title: recipe.name.titleize,
+                card_time: ChronicDuration.output(recipe.total_time),
+                card_portions: recipe.portions,
                 card_user_image_url: @user_photo,
                 card_link: recipe_path(recipe)
               } %>

@@ -7,6 +7,9 @@
     <%= f.select :category_id, options_from_collection_for_select(Category.all, :id, :name) %>
   </div>
   <div class="input-group">
+    <%= f.input :portions, label: "How many servings?" %>
+  </div>
+  <div class="input-group">
     <%= f.input :prep_time, as: :string, label: "Preparation time?" %>
   </div>
   <div class="input-group">
