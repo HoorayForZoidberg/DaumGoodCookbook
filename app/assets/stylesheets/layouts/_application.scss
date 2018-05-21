@@ -36,12 +36,15 @@ h1, h2, h3, h4 {
 }
 h1 {
   font-size: 60px;
+  @include fluid-type(font-size, 768px, 1440px, 45px, 60px);
 }
 h2 {
   font-size: 45px;
+  @include fluid-type(font-size, 768px, 1440px, 30px, 45px);
 }
 h3 {
   font-size: 30px;
+  @include fluid-type(font-size, 768px, 1440px, 20px, 30px);
 }
 
 // Graphics

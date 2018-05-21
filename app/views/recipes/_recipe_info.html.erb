@@ -34,7 +34,7 @@
 <div class="mb-30">
   <% if @recipe.owner_id %>
     <p>
-      <%= "#{@recipe.category.name.titleize} recipe by #{@recipe.owner}" %>
+      <%= "#{@recipe.category.name.singularize.titleize} recipe by #{@recipe.owner} - feeds #{pluralize(@recipe.portions, 'person')}" %>
     </p>
   <% else %>
     <p>(this recipe has no owner)</p>

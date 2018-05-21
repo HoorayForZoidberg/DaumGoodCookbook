@@ -33,12 +33,8 @@
     // provide indent from headers
     margin-left: 20px;
   }
-  h2 {
-    @include fluid-type(font-size, 768px, 1440px, 30px, 45px);
-  }
   h3 {
-   display: inline;
-   @include fluid-type(font-size, 768px, 1440px, 20px, 30px);
+    display: inline;
   }
   .row>div {
     position: static;
@@ -61,6 +57,7 @@
 .top-right-buttons {
   flex: 1 1 auto;
   display: flex;
+  align-items: center;
   flex-direction: row-reverse;
   &>* {
     margin: 0 5px;
