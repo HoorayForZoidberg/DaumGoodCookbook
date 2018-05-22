@@ -29,6 +29,11 @@
     margin: 0 auto;
 }
 
+.full-width {
+  width: 100%;
+  margin: 0 auto;
+}
+
 // Headers
 h1, h2, h3, h4 {
   margin-top: 0.20em;
@@ -55,6 +60,9 @@ body {
   background-size: cover;
   height: 400px;
 }
+.opaque {
+  opacity: 0.5;
+}
 
 // Icons
 .fa {
@@ -62,9 +70,10 @@ body {
 }
 .edit-buttons {
   padding-left: 10px;
+  font-size: $font-size-base;
 }
-.icon-column {
-  flex: 0 0 2em;
+.icon-group {
+  float: right;
 }
 
 // Links
@@ -102,6 +111,24 @@ p {
 }
 .mt-30 {
   margin-top: 30px
+}
+.mr-10 {
+  margin-right: 10px
+}
+.mr-20 {
+  margin-right: 20px
+}
+.mr-30 {
+  margin-right: 30px
+}
+.ml-10 {
+  margin-left: 10px
+}
+.ml-20 {
+  margin-left: 20px
+}
+.ml-30 {
+  margin-left: 30px
 }
 
 // ------------------------------------------------------------------
