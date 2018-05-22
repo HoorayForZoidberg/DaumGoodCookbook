@@ -1,6 +1,12 @@
 <%= simple_form_for(@new_recipe_ingredient, method: :post, url: recipe_new_recipe_ingredient_path, html: {id: "new-recipe-ingredient-form" }, remote: true) do |form| %>
   <%= form.input :ingredient_id, label: 'Select an ingredient', collection: @ingredients %>
-  <%= form.input :measure_amount, label: 'How much?', placeholder: '1, 1/2, 1/3, etc.' %>
-  <%= form.input :measure_id, collection: @measures  %>
-  <%= form.button :submit, 'Add ingredient', :class => "btn btn-primary" %>
+  <div class="row">
+    <div class="col-sm-12 col-lg-6">
+      <%= form.input :measure_amount, label: 'How much?', placeholder: '1, 1/2, 1/3, etc.' %>
+    </div>
+    <div class="col-sm-12 col-lg-6">
+      <%= form.input :measure_id, collection: @measures %>
+    </div>
+  </div>
+  <%= form.button :submit, 'Add ingredient', :class => "btn btn-primary full-width" %>
 <% end %>
