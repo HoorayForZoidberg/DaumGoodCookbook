@@ -2,7 +2,7 @@
   <%= form.input :ingredient_id, label: 'Select an ingredient', collection: @ingredients %>
   <div class="row">
     <div class="col-sm-12 col-lg-6">
-      <%= form.input :measure_amount, label: 'How much?', placeholder: '1, 1/2, 1/3, etc.' %>
+      <%= form.input :measure_amount, label: 'How much?', placeholder: '1, 1/2, 1/3, etc.', autocomplete: "off" %>
     </div>
     <div class="col-sm-12 col-lg-6">
       <%= form.input :measure_id, collection: @measures %>

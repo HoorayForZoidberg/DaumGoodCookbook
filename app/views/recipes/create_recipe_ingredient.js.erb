@@ -3,5 +3,6 @@ $('#modal-window').html('');
 $('#modal-window').modal('toggle');
 // update ingredient list
 $('#ingredient-list').html('<%= j render "ingredient_list"%>')
+$('#ingredient-list .editable').toggleClass("hidden")
 // update ingredient title count
 $('#ingredients-title').html('<%= j render "ingredients/title" %>')
