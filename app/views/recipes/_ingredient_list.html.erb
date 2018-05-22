@@ -5,6 +5,14 @@
     <% @ingredients.each do |ingredient| %>
       <li id=<%= "ingredient_#{ingredient.id}" %>>
         <% recipe_ingredient = RecipeIngredient.where("ingredient_id = ? and recipe_id = ?", ingredient.id, @recipe.id).first %>
+        <% if @recipe.owner_id == current_user.id %>
+          <span class="editable hidden delete-button">
+            <%= link_to recipe_destroy_recipe_ingredient_path(recipe_id: @recipe.id, recipe_ingredient_id: recipe_ingredient.id),
+              method: :delete, remote: true do %>
+              <i class="fa fa-trash-o" aria-hidden="true"></i>
+            <% end %>
+          </span>
+        <% end %>
         <% if (recipe_ingredient.measure_amount && recipe_ingredient.measure_id) %>
           <% amount = recipe_ingredient.measure_amount %>
           <% measure =  Measure.find(recipe_ingredient.measure_id).name %>
@@ -14,14 +22,6 @@
           <%= "#{amount} #{ingredient.name.capitalize.pluralize(amount.to_i)}" %>
         <% else %>
           <%= ingredient.name.capitalize %>
-        <% end %>
-        <% if @recipe.owner_id == current_user.id %>
-          <span class="editable hidden delete-button">
-            <%= link_to recipe_destroy_recipe_ingredient_path(recipe_id: @recipe.id, recipe_ingredient_id: recipe_ingredient.id),
-              method: :delete, remote: true do %>
-              <i class="fa fa-trash-o" aria-hidden="true"></i>
-            <% end %>
-          </span>
         <% end %>
       </li>
     <% end %>
