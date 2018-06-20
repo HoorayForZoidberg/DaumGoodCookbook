@@ -2,7 +2,7 @@
   <div class="flex align-baseline">
     <h1>
       <%= @recipe.name.titleize %>
-      <% if @recipe.owner_id == current_user.id %>
+      <% if (user_signed_in?) && (current_user.id == @recipe.owner_id) %>
         <span class="edit-buttons editable hidden edit-button">
           <%= link_to edit_recipe_path(@recipe), remote: true  do %>
             <i class="fa fa-pencil" aria-hidden="true"></i>
@@ -12,7 +12,7 @@
     </h1>
   </div>
   <div class="top-right-buttons">
-    <% if @recipe.owner_id == current_user.id %>
+    <% if (user_signed_in?) && (current_user.id == @recipe.owner_id) %>
       <div>
         <%= link_to "Delete Recipe",
                     recipe_path(@recipe),
