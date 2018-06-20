@@ -7,7 +7,7 @@
   </p>
   <p>
     <%= comment.content %>
-    <% if current_user.id == comment.owner_id %>
+    <% if (user_signed_in?) && (current_user.id == comment.owner_id) %>
       <span class="edit-button">
         <%= link_to edit_recipe_comment_path(@recipe.id, comment.id), remote: true do %>
           <i class="fa fa-pencil" aria-hidden="true"></i>

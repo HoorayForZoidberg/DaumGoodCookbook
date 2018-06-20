@@ -4,7 +4,7 @@
   <ol class="sortable" data-url=" <%= sort_recipe_steps_path(@recipe.id) %> ">
     <% @recipe.steps.order(:position).each do |step| %>
       <li id=<%= dom_id(step) %>>
-        <% if @recipe.owner_id == current_user.id %>
+        <% if (user_signed_in?) && (current_user.id == @recipe.owner_id) %>
           <div class="editable icon-group hidden">
             <i class="fa fa-arrows handle editable hidden" aria-hidden="true"></i>
             <span class="edit-button">

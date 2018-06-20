@@ -6,7 +6,7 @@
 
 <div class="main">
   <!-- Recessed "add photo" link -->
-  <% if current_user.id == @recipe.owner_id %>
+  <% if (user_signed_in?) && (current_user.id == @recipe.owner_id) %>
     <div class="add-photo">
       <h3>
         <%= link_to '#', id:"upload_widget_opener"  do %>
@@ -37,7 +37,7 @@
             </div>
 
             <!-- New Ingredient -->
-            <% if current_user.id == @recipe.owner_id %>
+            <% if (user_signed_in?) && (current_user.id == @recipe.owner_id) %>
               <div class="editable hidden">
                 <%= link_to recipe_new_recipe_ingredient_path(@recipe), remote: true do %>
                   <i class="fa fa-plus-square" aria-hidden="true"></i>
@@ -60,7 +60,7 @@
             </div>
             <!-- New step form -->
             <div class="new-step editable hidden">
-              <% if current_user.id == @recipe.owner_id %>
+              <% if (user_signed_in?) && (current_user.id == @recipe.owner_id) %>
                 <%= link_to '<i class="fa fa-plus-square" aria-hidden="true"></i>'.html_safe, new_recipe_step_path(@recipe),  {:remote => true}  %>
                 <h3>Add a step</h3>
               <% end %>
@@ -76,14 +76,16 @@
     <%= render 'comments/show', recipe: @recipe %>
   </div>
   <!-- New Comment -->
-  <div id="new-comment">
-    <%= render 'comments/form', recipe: @recipe, comment: Comment.new %>
-  </div>
+  <% if user_signed_in? %>
+    <div id="new-comment">
+      <%= render 'comments/form', recipe: @recipe, comment: Comment.new %>
+    </div>
+  <% end %>
 </div>
 
 
 <!-- cloudinary uploader -->
-<% if current_user.id == @recipe.owner_id %>
+<% if (user_signed_in?) && (current_user.id == @recipe.owner_id) %>
   <script src="//widget.cloudinary.com/global/all.js" type="text/javascript"></script>
   <script>
     document.getElementById("upload_widget_opener").addEventListener("click", function() {
