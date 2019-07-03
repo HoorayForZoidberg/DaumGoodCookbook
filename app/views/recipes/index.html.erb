@@ -38,7 +38,7 @@
       <% else %>
         <% @results.each do |recipe| %>
           <% if recipe.photos.empty? %>
-            <% @recipe_photo_id = "cooking_image_#{rand(10..23)}" %>
+            <% @recipe_photo_id = "#{recipe.category.name.split.first}/#{recipe.category.name.split.first}.jpg" %>
           <% else %>
             <% @recipe_photo_id = recipe.photos.where(user_id: recipe.owner_id).sample.image_id %>
           <% end %>
