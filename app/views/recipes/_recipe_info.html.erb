@@ -34,10 +34,12 @@
 <div class="mb-30">
   <% if @recipe.owner_id %>
     <p>
-      <%= "#{@recipe.category.name.titleize} recipe by #{@recipe.owner} - feeds #{pluralize(@recipe.portions, 'person')}" %>
+      <%= "#{@recipe.category.name.titleize} - makes #{pluralize(@recipe.portions, 'serving')}" %>
     </p>
   <% else %>
-    <p>(this recipe has no owner)</p>
+    <p>
+      <%= "#{@recipe.category.name.titleize} - makes #{pluralize(@recipe.portions, 'serving')}" %>
+    </p>
   <% end %>
 </div>
 
