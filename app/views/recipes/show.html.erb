@@ -6,12 +6,21 @@
 
 <div class="main">
   <!-- Recessed "add photo" link -->
-  <% if (user_signed_in?) && (current_user.id == @recipe.owner_id) %>
+  <% if (user_signed_in?) %>
     <div class="add-photo">
       <h3>
         <%= link_to '#', id:"upload_widget_opener"  do %>
           <i class="fa fa-plus-square" aria-hidden="true"></i>
           Add a photo
+        <% end %>
+      </h3>
+    </div>
+  <% else %>
+    <div class="add-photo">
+      <h3>
+        <%= link_to new_user_session_path  do %>
+          <i class="fa fa-plus-square" aria-hidden="true"></i>
+          Sign in to add a photo of this recipe
         <% end %>
       </h3>
     </div>
