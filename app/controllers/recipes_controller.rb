@@ -8,6 +8,8 @@ class RecipesController < ApplicationController
       @results = Recipe.all.includes(:user, :category, :photos)
     elsif params[:query]
       @results = Recipe.search(params[:query]).includes(:user, :category, :photos)
+    else
+      @results = Recipe.all
     end
     if params[:category_id].present?
       @results = @results.search_by_category(params[:category_id])
