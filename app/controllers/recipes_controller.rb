@@ -26,7 +26,9 @@ class RecipesController < ApplicationController
   def show
     @recipe = Recipe.find(params[:id])
     if @recipe.photos.empty?
-      @recipe_photo_id = "cooking_image_#{rand(10..23)}"
+      # uncomment below and replace next line for random image generation
+      # @recipe_photo_id = "cooking_image_#{rand(10..23)}"
+      @recipe_photo_id = "#{recipe.category.name.split.first}/#{recipe.category.name.split.first}.jpg"
     else
       @recipe_photo_id = random_recipe_photo_from_owner(@recipe).image_id
     end
