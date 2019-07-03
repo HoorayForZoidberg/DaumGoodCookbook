@@ -36,7 +36,7 @@
           <em style="opacity: 0.5">Your search did not yield any results - try again!</em>
         </div>
       <% else %>
-        <% @results.each do |recipe| %>
+        <% @results.shuffle.each do |recipe| %>
           <% if recipe.photos.empty? %>
             <% @recipe_photo_id = "#{recipe.category.name.split.first}/#{recipe.category.name.split.first}.jpg" %>
           <% else %>
