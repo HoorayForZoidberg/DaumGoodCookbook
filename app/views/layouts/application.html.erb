@@ -9,6 +9,7 @@
     <%= stylesheet_link_tag 'application', media: 'all' %>
     <%#= stylesheet_pack_tag 'application', media: 'all' %> <!-- Uncomment if you import CSS in app/javascript/packs/application.js -->
     <link rel="manifest" href="<%= asset_path 'manifest.json' %>">
+    <link rel="serviceworker" href="<%= asset_path 'serviceworker.js' %>">
     <!-- ios support -->
     <link rel="apple-touch-icon" href="<%= image_path 'icons/apple-icon.png' %>">
     <meta name="apple-mobile-web-app-status-bar" content="#FFFFFF">
