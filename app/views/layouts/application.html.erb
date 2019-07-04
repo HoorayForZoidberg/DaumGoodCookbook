@@ -12,6 +12,13 @@
     <!-- ios support -->
     <link rel="apple-touch-icon" href="<%= image_path 'icons/apple-icon.png' %>">
     <meta name="apple-mobile-web-app-status-bar" content="#FFFFFF">
+    <!-- SSL support for Google Domains -->
+    <script>
+      var host = "www.daumgoodcooking.com";
+      if ((host == window.location.host) && (window.location.protocol != "https:")){
+      window.location.protocol = "https";
+      }
+    </script>
   </head>
   <body>
     <%= render 'shared/navbar' %>
