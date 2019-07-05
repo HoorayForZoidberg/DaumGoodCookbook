@@ -67,31 +67,38 @@
         </div>
       </div>
 
-      <!-- Dropdown list appearing on mobile only -->
-      <div class="navbar-wagon-item hidden-md hidden-lg">
-        <div class="dropdown">
-          <i class="fa fa-bars dropdown-toggle" data-toggle="dropdown"></i>
-          <ul class="dropdown-menu dropdown-menu-right navbar-wagon-dropdown-menu">
-            <!-- <li> -->
-              <%#= link_to new_recipe_path, class: "navbar-wagon-item navbar-wagon-link" do %>
-                <!-- <i class="fa fa-plus-square"></i> New Recipe -->
-              <%# end %>
-            <!-- </li> -->
-            <li>
-              <%= link_to recipes_path , class: "navbar-wagon-item navbar-wagon-link" do %>
-                <i class="fa fa-list-ul"></i> All Recipes
-              <% end %>
-            </li>
-            <!-- <li> -->
-              <%#= link_to "#" , class: "navbar-wagon-item navbar-wagon-link" do %>
-                <!-- <i class="fa fa-filter"></i> By Category -->
-              <%# end %>
-            <!-- </li> -->
-            <!-- <li> -->
-              <%#= link_to recipes_path , class: "navbar-wagon-item navbar-wagon-link" do %>
-                <!-- <i class="fa fa-star"></i> Favorites -->
-              <%# end %>
-            <!-- </li> -->
+    <% else %>
+      <!-- Login link (when logged out) -->
+      <%= link_to t(".sign_in", default: "Sign In"), new_user_session_path, class: "navbar-wagon-item navbar-wagon-link round-link hidden-xs hidden-sm" %>
+
+    <% end %>
+
+    <!-- Dropdown list appearing on mobile only -->
+    <div class="navbar-wagon-item hidden-md hidden-lg">
+      <div class="dropdown">
+        <i class="fa fa-bars dropdown-toggle" data-toggle="dropdown"></i>
+        <ul class="dropdown-menu dropdown-menu-right navbar-wagon-dropdown-menu">
+          <!-- <li> -->
+            <%#= link_to new_recipe_path, class: "navbar-wagon-item navbar-wagon-link" do %>
+              <!-- <i class="fa fa-plus-square"></i> New Recipe -->
+            <%# end %>
+          <!-- </li> -->
+          <li>
+            <%= link_to recipes_path , class: "navbar-wagon-item navbar-wagon-link" do %>
+              <i class="fa fa-list-ul"></i> All Recipes
+            <% end %>
+          </li>
+          <!-- <li> -->
+            <%#= link_to "#" , class: "navbar-wagon-item navbar-wagon-link" do %>
+              <!-- <i class="fa fa-filter"></i> By Category -->
+            <%# end %>
+          <!-- </li> -->
+          <!-- <li> -->
+            <%#= link_to recipes_path , class: "navbar-wagon-item navbar-wagon-link" do %>
+              <!-- <i class="fa fa-star"></i> Favorites -->
+            <%# end %>
+          <!-- </li> -->
+          <% if  user_signed_in? %>
             <li>
               <%= link_to profile_path(current_user.id) do %>
                 <i class="fa fa-user"></i> <%= t(".profile", default: "Profile") %>
@@ -102,13 +109,16 @@
                 <i class="fa fa-sign-out"></i>  <%= t(".sign_out", default: "Log out") %>
               <% end %>
             </li>
-          </ul>
-        </div>
+          <% else %>
+            <!-- Login link (when logged out) -->
+            <%= link_to new_user_session_path, class: "navbar-wagon-item navbar-wagon-link" do %>
+              <i class="fa fa-sign-in"></i> Sign In
+            <% end %>
+          <% end %>
+        </ul>
       </div>
-    <% else %>
-      <!-- Login link (when logged out) -->
-      <%= link_to t(".sign_in", default: "Sign In"), new_user_session_path, class: "navbar-wagon-item navbar-wagon-link round-link" %>
-    <% end %>
+    </div>
+
   </div>
 
 </div>
