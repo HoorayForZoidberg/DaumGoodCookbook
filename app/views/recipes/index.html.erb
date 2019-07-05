@@ -1,20 +1,29 @@
 <div class="main">
+  <div  class="hidden-md hidden-lg"
+        style="font-size:20px;
+        margin-top:-20px;
+        position: absolute;
+        left: 50%;
+        margin-right: -50%;
+        transform: translate(-50%, -50%)">
+    (scroll down for results)
+  </div>
   <%= form_tag recipes_path, method: :get do %>
     <div class="full-search-bar">
       <%= text_field_tag :query, params[:query], class: "form-control", placeholder: "Search for recipe by name, ingredient, author, category..."   %>
     </div>
     <div class="full-search-bar">
       <div class="form-inline mb-30">
-        <label for="category_id">Category</label>
+        <label for="category_id" class="hidden-xs hidden-sm">Category</label>
         <%= select_tag :category_id, options_from_collection_for_select(Category.all, :id, :name, selected: params[:category_id]), include_blank: "All categories", class: "form-control" %>
       </div>
       <div class="form-inline mb-30">
-        <label for="ingredient_id">Ingredient</label>
+        <label for="ingredient_id" class="hidden-xs hidden-sm">Ingredient</label>
         <%= select_tag :ingredient_id, options_from_collection_for_select(Ingredient.all, :id, :name, selected: params[:ingredient_id]), include_blank: "All ingredients", class: "form-control" %>
       </div>
       <div class="form-inline mb-30">
-        <label for="total_time">Time</label>
-        <%= select_tag :total_time, options_for_select(["15 mins", "30 mins", "45 mins", "1 hour"], selected: params[:total_time]), include_blank: "any", class: "form-control" %>
+        <label for="total_time" class="hidden-xs hidden-sm">Time</label>
+        <%= select_tag :total_time, options_for_select(["15 mins", "30 mins", "45 mins", "over 1 hour"], selected: params[:total_time]), include_blank: "Any prep time", class: "form-control" %>
       </div>
       <div class="mb-30 form-submit">
         <%= submit_tag 'Search', name: nil, class: "btn btn-primary" %>
