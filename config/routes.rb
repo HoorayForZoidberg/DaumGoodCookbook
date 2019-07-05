@@ -22,4 +22,5 @@ Rails.application.routes.draw do
   resources :measures
 
   get '/profile/:id', to: "pages#profile", as: 'profile'
+
 end
