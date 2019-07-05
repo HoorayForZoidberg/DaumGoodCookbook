@@ -13,37 +13,43 @@
   <!-- Right Navigation -->
   <div class="navbar-wagon-right">
 
-    <% if user_signed_in? %>
-
-      <!-- Links when logged in -->
-      <div class="navbar-wagon-item hidden-xs hidden-sm">
-        <div class="dropdown">
-          <span class="dropdown-toggle", data-toggle="dropdown">Menu</span>
-          <ul class="dropdown-menu dropdown-menu-right navbar-wagon-dropdown-menu">
+    <div class="navbar-wagon-item hidden-xs hidden-sm">
+      <div class="dropdown">
+        <span class="dropdown-toggle", data-toggle="dropdown">Menu</span>
+        <ul class="dropdown-menu dropdown-menu-right navbar-wagon-dropdown-menu">
+          <li>
+            <%= link_to recipes_path , class: "navbar-wagon-item navbar-wagon-link" do %>
+              <i class="fa fa-list-ul"></i> All Recipes
+            <% end %>
+          </li>
+          <% if user_signed_in? %>
             <li>
               <%= link_to new_recipe_path , remote: true, class: "navbar-wagon-item navbar-wagon-link" do %>
                 <i class="fa fa-plus-square"></i> New Recipe
               <% end %>
             </li>
+          <% else %>
             <li>
-              <%= link_to recipes_path , class: "navbar-wagon-item navbar-wagon-link" do %>
-                <i class="fa fa-list-ul"></i> All Recipes
-              <% end %>
+              <%= link_to new_user_session_path, class: "navbar-wagon-item navbar-wagon-link" do %>
+              <i class="fa fa-sign-in"></i> Sign in to add new recipe
+            <% end %>
             </li>
-            <!-- <li> -->
-              <%#= link_to "#" , class: "navbar-wagon-item navbar-wagon-link" do %>
-                <!-- <i class="fa fa-filter"></i> By Category -->
-              <%# end %>
-            <!-- </li> -->
-            <!-- <li> -->
-              <%#= link_to recipes_path , class: "navbar-wagon-item navbar-wagon-link" do %>
-                <!-- <i class="fa fa-star"></i> Favorites -->
-              <%# end %>
-            <!-- </li> -->
-          </ul>
-        </div>
+          <% end %>
+          <!-- <li> -->
+            <%#= link_to "#" , class: "navbar-wagon-item navbar-wagon-link" do %>
+              <!-- <i class="fa fa-filter"></i> By Category -->
+            <%# end %>
+          <!-- </li> -->
+          <!-- <li> -->
+            <%#= link_to recipes_path , class: "navbar-wagon-item navbar-wagon-link" do %>
+              <!-- <i class="fa fa-star"></i> Favorites -->
+            <%# end %>
+          <!-- </li> -->
+        </ul>
       </div>
+    </div>
 
+    <% if user_signed_in? %>
       <!-- Avatar with dropdown menu -->
       <div class="navbar-wagon-item hidden-xs hidden-sm">
         <div class="dropdown">
@@ -66,11 +72,6 @@
           </ul>
         </div>
       </div>
-
-    <% else %>
-      <!-- Login link (when logged out) -->
-      <%= link_to t(".sign_in", default: "Sign In"), new_user_session_path, class: "navbar-wagon-item navbar-wagon-link round-link hidden-xs hidden-sm" %>
-
     <% end %>
 
     <!-- Dropdown list appearing on mobile only -->
