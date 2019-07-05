@@ -50,10 +50,4 @@ if (window.location.pathname.includes('recipes/')) {
   });
 }
 
-// PWA-rails initialize
-import ProgressiveWebApp from 'pwa-rails';
-document.addEventListener( 'turbolinks:load', () => {
-    const progressiveWebApp = new ProgressiveWebApp();
-})
-
 
