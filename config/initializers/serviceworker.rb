@@ -4,6 +4,9 @@ Rails.application.configure do
     match "/serviceworker.js"
     match "/manifest.json"
 
+    # maps to serviceworker "pack" compiled by Webpacker
+    match "/webpack-serviceworker.js" => "serviceworker.js", pack: true
+
     # Examples
     #
     # map to a named asset explicitly
