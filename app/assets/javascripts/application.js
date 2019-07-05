@@ -4,3 +4,4 @@
 //= require jquery-ui/widgets/sortable
 //= require bootstrap
 //= require_tree .
+//= require serviceworker-companion
