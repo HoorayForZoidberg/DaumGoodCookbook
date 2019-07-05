@@ -17,3 +17,4 @@ Rails.application.config.assets.paths << Rails.root.join('node_modules')
 Rails.application.configure do
   config.assets.precompile += %w[serviceworker.js manifest.json]
 end
+Rails.configuration.assets.precompile += %w[serviceworker.js manifest.json]
