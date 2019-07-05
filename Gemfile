@@ -23,7 +23,6 @@ gem 'jquery-ui-rails'
 gem 'acts_as_list'
 gem 'pg_search'
 gem 'chronic_duration'
-gem 'serviceworker-rails'
 
 group :development do
   gem 'web-console', '>= 3.3.0'
