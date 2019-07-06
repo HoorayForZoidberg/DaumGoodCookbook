@@ -83,34 +83,32 @@
 
 
 <!-- cloudinary uploader -->
-<% if (user_signed_in?) && (current_user.id == @recipe.owner_id) %>
-  <script src="//widget.cloudinary.com/global/all.js" type="text/javascript"></script>
-  <script>
-    document.getElementById("upload_widget_opener").addEventListener("click", function() {
-      cloudinary.openUploadWidget({ cloud_name: 'nicohoya',
-        upload_preset: 'epmcvfws',
-        theme: 'minimal',
-        multiple: false,
-        cropping: 'server',
-        max_file_size: 5000000,
-        sources: [ 'local', 'url', 'camera', 'image_search', 'facebook', 'instagram' ]
-         },
-        function(error, result) {
-          if (error == null){
-            $.ajax({
-              type: "POST",
-              beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))},
-              url: '<%= j recipe_photos_path(@recipe) %>',
-              data: {
-                recipe_id: <%= @recipe.id %>,
-                image_id: result["0"].public_id
-              },
-            })
-          } else {
-            console.log("Error with Cloudinary image upload")
-          }
-          console.log(error, result)
-        });
-    }, false);
-  </script>
-<% end %>
+<script src="//widget.cloudinary.com/global/all.js" type="text/javascript"></script>
+<script>
+  document.getElementById("upload_widget_opener").addEventListener("click", function() {
+    cloudinary.openUploadWidget({ cloud_name: 'nicohoya',
+      upload_preset: 'epmcvfws',
+      theme: 'minimal',
+      multiple: false,
+      cropping: 'server',
+      max_file_size: 5000000,
+      sources: [ 'local', 'url', 'camera', 'image_search', 'facebook', 'instagram' ]
+       },
+      function(error, result) {
+        if (error == null){
+          $.ajax({
+            type: "POST",
+            beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))},
+            url: '<%= j recipe_photos_path(@recipe) %>',
+            data: {
+              recipe_id: <%= @recipe.id %>,
+              image_id: result["0"].public_id
+            },
+          })
+        } else {
+          console.log("Error with Cloudinary image upload")
+        }
+        console.log(error, result)
+      });
+  }, false);
+</script>
