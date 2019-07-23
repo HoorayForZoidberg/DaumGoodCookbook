@@ -32,6 +32,11 @@
 
 <!-- Recipe Owner Info -->
 <div class="mb-30">
+  <% if @recipe.cook %>
+    <p>
+      <%= "From the kitchen of #{@recipe.cook}" %>
+    </p>
+  <% end %>
   <% if @recipe.owner_id %>
     <p>
       <%= "#{@recipe.category.name.titleize} - makes #{pluralize(@recipe.portions, 'serving')}" %>

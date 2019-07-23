@@ -15,7 +15,7 @@ class Recipe < ApplicationRecord
   include PgSearch
 
   pg_search_scope :search,
-    against: [ :name ],
+    against: [ :name, :cook ],
     associated_against: {
       category: :name,
       steps: :instructions,
