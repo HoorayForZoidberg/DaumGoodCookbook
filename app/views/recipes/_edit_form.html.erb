@@ -9,25 +9,26 @@
     </div>
   <% end %>
   <%= f.input :name, label: 'Recipe name', required: :true, error: 'You need a recipe name' %>
-  <div class="input-group">
+  <%= f.input :cook, label: 'From the kitchen of?', required: :false %>
+  <div class="form-group">
     <%= f.label :category_id, "Recipe category" %>
   </div>
-  <div class="input-group">
+  <div class="form-group">
     <%= f.select :category_id, options_from_collection_for_select(Category.all, :id, :name, selected: @recipe.category.id) %>
   </div>
-  <div class="input-group">
+  <div class="form-group">
     <%= f.input :portions, label: "How many servings?" %>
   </div>
-  <div class="input-group">
+  <div class="form-group">
     <%= f.input :prep_time, as: :string, label: "Preparation time?" %>
   </div>
-  <div class="input-group">
+  <div class="form-group">
     <%= f.input :cook_time, as: :string, label: "Cook time?" %>
   </div>
-  <div class="input-group">
+  <div class="form-group">
     <%= f.input :rest_time, as: :string, label: "Rest time?" %>
   </div>
-  <div class="input-group mt-30 text-right" style="width: 100%">
+  <div class="form-group mt-30 text-right" style="width: 100%">
     <%= f.button :submit, 'Update Recipe', :class => 'btn-primary' %>
   </div>
 <% end %>

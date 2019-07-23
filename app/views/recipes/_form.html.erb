@@ -1,24 +1,25 @@
 <%= simple_form_for(@recipe) do |f| %>
   <%= f.input :name, label: 'What is the name of your new recipe?', required: :true, error: 'You need a recipe name' %>
-  <div class="input-group">
+  <%= f.input :cook, label: 'From the kitchen of...?', required: :false %>
+  <div class="form-group">
     <%= f.label :category_id, "Which category best describes your recipe?" %>
   </div>
-  <div class="input-group">
+  <div class="form-group">
     <%= f.select :category_id, options_from_collection_for_select(Category.all, :id, :name) %>
   </div>
-  <div class="input-group">
+  <div class="form-group">
     <%= f.input :portions, label: "How many servings?" %>
   </div>
-  <div class="input-group">
+  <div class="form-group">
     <%= f.input :prep_time, as: :string, label: "Preparation time?" %>
   </div>
-  <div class="input-group">
+  <div class="form-group">
     <%= f.input :cook_time, as: :string, label: "Cook time?" %>
   </div>
-  <div class="input-group">
+  <div class="form-group">
     <%= f.input :rest_time, as: :string, label: "Rest time?" %>
   </div>
-  <div class="input-group mt-30 text-right" style="width: 100%">
+  <div class="form-group mt-30 text-right" style="width: 100%">
     <%= f.button :submit, 'Create Recipe', :class => 'btn-primary' %>
   </div>
 <% end %>
