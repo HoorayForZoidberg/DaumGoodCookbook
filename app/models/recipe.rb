@@ -28,7 +28,7 @@ class Recipe < ApplicationRecord
         :any_word => true
       },
       :trigram => {
-        :only => [:name],
+        :only => [:name, :cook],
         :threshold => 0.1
       }
     }
