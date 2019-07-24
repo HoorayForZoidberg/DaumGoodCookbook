@@ -17,11 +17,6 @@ function onInstall(event) {
 
         '/trogdor.png',
 
-        <% Recipe.all.each do |recipe| %>
-          <%= "'/recipes/#{recipe.id}.html'," %>
-        <% end %>
-
-
       ]);
     })
   );
