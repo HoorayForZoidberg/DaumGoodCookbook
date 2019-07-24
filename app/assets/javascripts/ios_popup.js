@@ -1,4 +1,3 @@
-// ios_popup
 function showIosInstall() {
   let iosPrompt = document.querySelector(".ios-prompt");
   iosPrompt.style.display = "block";
