@@ -4,4 +4,5 @@
 //= require jquery-ui/widgets/sortable
 //= require bootstrap
 //= require sortable
+//= require ios_popup
 //= require serviceworker-companion
