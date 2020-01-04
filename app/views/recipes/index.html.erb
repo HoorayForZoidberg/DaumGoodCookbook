@@ -49,7 +49,7 @@
           <% if recipe.photos.empty? %>
             <% @recipe_photo_id = "#{recipe.category.name.split.first}/#{recipe.category.name.split.first}.jpg" %>
           <% else %>
-            <% @recipe_photo_id = recipe.photos.where(user_id: recipe.owner_id).sample.image_id %>
+            <% @recipe_photo_id = recipe.photos.sample.image_id %>
           <% end %>
           <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
             <% if recipe.user.photo.blank? %>
