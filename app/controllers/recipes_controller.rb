@@ -166,7 +166,7 @@ class RecipesController < ApplicationController
   end
 
   def random_recipe_photo_from_owner(recipe)
-    recipe.photos.where(user_id: recipe.owner_id).sample
+    recipe.photos.sample
   end
 
   def convert_input_times
