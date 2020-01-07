@@ -2,7 +2,7 @@
   <h2>
     <%= @measure.name.capitalize %>
     <span class="edit-button">
-      <%= link_to '<i class="far fa-pencil" aria-hidden="true"></i>'.html_safe, edit_measure_path(@measure.id) %>
+      <%= link_to '<i class="far fa-edit" aria-hidden="true"></i>'.html_safe, edit_measure_path(@measure.id) %>
     </span>
     <span class="delete-button">
       <%= link_to '<i class="far fa-trash-o" aria-hidden="true"></i>'.html_safe,
