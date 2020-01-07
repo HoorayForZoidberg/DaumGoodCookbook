@@ -251,6 +251,7 @@ DEPENDENCIES
   rails (= 5.1.4)
   redis
   sass-rails
+  sassc-rails
   serviceworker-rails
   simple_form
   spring
