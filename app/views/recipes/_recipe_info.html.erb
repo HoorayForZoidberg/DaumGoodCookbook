@@ -5,7 +5,7 @@
       <% if (user_signed_in?) && (current_user.id == @recipe.owner_id) %>
         <span class="edit-buttons editable hidden edit-button">
           <%= link_to edit_recipe_path(@recipe), remote: true  do %>
-            <i class="far fa-edit" aria-hidden="true"></i>
+            <i class="fas fa-edit" aria-hidden="true"></i>
           <% end %>
         </span>
       <% end %>
