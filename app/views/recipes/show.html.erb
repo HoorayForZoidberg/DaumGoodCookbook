@@ -9,7 +9,7 @@
   <div class="add-photo">
     <h3>
       <%= link_to '#', id:"upload_widget_opener"  do %>
-        <i class="far fa-plus-square" aria-hidden="true"></i>
+        <i class="fas fa-plus-square" aria-hidden="true"></i>
         Add your photo
       <% end %>
     </h3>
@@ -38,7 +38,7 @@
             <% if (user_signed_in?) && (current_user.id == @recipe.owner_id) %>
               <div class="editable hidden">
                 <%= link_to recipe_new_recipe_ingredient_path(@recipe), remote: true do %>
-                  <i class="far fa-plus-square" aria-hidden="true"></i>
+                  <i class="fas fa-plus-square" aria-hidden="true"></i>
                 <% end %>
                 <h3>Add ingredient</h3>
               </div>
@@ -59,7 +59,7 @@
             <!-- New step form -->
             <div class="new-step editable hidden">
               <% if (user_signed_in?) && (current_user.id == @recipe.owner_id) %>
-                <%= link_to '<i class="far fa-plus-square" aria-hidden="true"></i>'.html_safe, new_recipe_step_path(@recipe),  {:remote => true}  %>
+                <%= link_to '<i class="fas fa-plus-square" aria-hidden="true"></i>'.html_safe, new_recipe_step_path(@recipe),  {:remote => true}  %>
                 <h3>Add a step</h3>
               <% end %>
             </div>
