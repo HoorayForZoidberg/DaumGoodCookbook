@@ -10,7 +10,7 @@
     <% if (user_signed_in?) && (current_user.id == comment.owner_id) %>
       <span class="edit-button">
         <%= link_to edit_recipe_comment_path(@recipe.id, comment.id), remote: true do %>
-          <i class="far fa-pencil" aria-hidden="true"></i>
+          <i class="far fa-edit" aria-hidden="true"></i>
         <% end %>
       </span>
       <span class="delete-button">
