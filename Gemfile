@@ -9,6 +9,7 @@ gem 'puma'
 gem 'rails', '5.1.4'
 gem 'redis'
 gem 'authtrail'
+gem 'ahoy_matey'
 
 gem 'autoprefixer-rails'
 gem 'bootstrap-sass'
