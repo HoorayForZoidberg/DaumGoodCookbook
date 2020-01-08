@@ -6,4 +6,3 @@
 //= require sortable
 //= require ios_popup
 //= require serviceworker-companion
-//= require ahoy
