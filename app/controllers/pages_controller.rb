@@ -10,6 +10,10 @@ class PagesController < ApplicationController
     @user = User.find(user_params)
   end
 
+  def metrics
+    @visits = Ahoy::Visit.all
+  end
+
   private
   def user_params
     params.require(:id)
