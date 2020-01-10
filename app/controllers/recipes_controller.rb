@@ -1,6 +1,7 @@
 class RecipesController < ApplicationController
   skip_before_action :authenticate_user!, only: [:index, :show]
   before_action :convert_input_times, only: [:create, :update]
+  after_action :track, only: [:index, :show]
 
   def index
     @navbar_title = "Recipes"
@@ -21,8 +22,6 @@ class RecipesController < ApplicationController
     if params[:total_time].present?
       @results = @results.where("total_time <= ?", ChronicDuration.parse(params[:total_time]))
     end
-
-    ahoy.track "All recipes"
   end
 
   def show
@@ -35,8 +34,6 @@ class RecipesController < ApplicationController
       @recipe_photo_id = random_recipe_photo_from_owner(@recipe).image_id
     end
     @ingredients = @recipe.ingredients
-
-    ahoy.track "#{@recipe.name}"
   end
 
   def new
@@ -183,5 +180,13 @@ class RecipesController < ApplicationController
     @recipe.prep_time ? @recipe.prep_time = ChronicDuration.output(@recipe.prep_time) : nil
     @recipe.cook_time ? @recipe.cook_time = ChronicDuration.output(@recipe.cook_time) : nil
     @recipe.rest_time ? @recipe.rest_time = ChronicDuration.output(@recipe.rest_time) : nil
+  end
+
+  def track
+    if params[:id]
+      ahoy.track "#{Recipe.find(params[:id]).name}"
+    else
+      ahoy.track "All recipes"
+    end
   end
 end
