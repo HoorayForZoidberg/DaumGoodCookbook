@@ -50,13 +50,11 @@
   background: black;
   opacity: 0;
 }
-.card-link:hover {
-  opacity: 0.1;
-}
 
 // RESPONSIVE DESIGN
-@media (hover:none) {
+@media (hover) {
   .card-link:hover {
+    opacity: 0.1;
   }
 }
 // ensures that the card hover behavior doesn't cause "double tap" problems on mobile
