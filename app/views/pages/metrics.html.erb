@@ -10,10 +10,15 @@
           <% date = "#{t.month}/#{t.day}/#{t.year}" %>
           <% start_time = "#{t.strftime("%T")}" %>
           <%= "#{date} at #{start_time} from #{visit.city} on #{visit.device_type}."  %>
-          <% unless Ahoy::Event.where(visit_id: visit.id).empty? %>
-            <% first_event = Ahoy::Event.where(visit_id: visit.id).first %>
-            <% last_event = Ahoy::Event.where(visit_id: visit.id).last %>
-            <%= "Duration: #{Time.at(last_event.time - first_event.time).utc.strftime("%H:%M:%S")}" %>
+          <% events = Ahoy::Event.where(visit_id: visit.id) %>
+          <% unless events.empty? %>
+            <%= "Duration: #{Time.at(events.last.time - events.first.time).utc.strftime("%H:%M:%S")}" %>
+            <% pages_viewed = events.map{|event| event.name} %>
+            <div>
+              <%= "Pages viewed: #{pages_viewed.uniq.map{ |page|
+                "#{page} (#{pages_viewed.count(page)})"
+              }.join("; ")}" %>
+            </div>
           <% end %>
         </div>
       <% end %>
