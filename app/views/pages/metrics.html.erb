@@ -6,7 +6,15 @@
     <div class="row mb-20 mt-20">
       <% @visits.each do |visit| %>
         <div>
-          <%= "Visit \##{visit.id} on #{visit.started_at} from #{visit.city} on #{visit.device_type}"  %>
+          <% t = visit.started_at %>
+          <% date = "#{t.month}/#{t.day}/#{t.year}" %>
+          <% start_time = "#{t.strftime("%T")}" %>
+          <%= "#{date} at #{start_time} from #{visit.city} on #{visit.device_type}."  %>
+          <% unless Ahoy::Event.where(visit_id: visit.id).empty? %>
+            <% first_event = Ahoy::Event.where(visit_id: visit.id).first %>
+            <% last_event = Ahoy::Event.where(visit_id: visit.id).last %>
+            <%= "Duration: #{Time.at(last_event.time - first_event.time).utc.strftime("%H:%M:%S")}" %>
+          <% end %>
         </div>
       <% end %>
     </div>

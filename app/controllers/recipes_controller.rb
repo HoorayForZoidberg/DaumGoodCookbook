@@ -21,6 +21,8 @@ class RecipesController < ApplicationController
     if params[:total_time].present?
       @results = @results.where("total_time <= ?", ChronicDuration.parse(params[:total_time]))
     end
+
+    ahoy.track "Viewed recipes"
   end
 
   def show
@@ -33,6 +35,8 @@ class RecipesController < ApplicationController
       @recipe_photo_id = random_recipe_photo_from_owner(@recipe).image_id
     end
     @ingredients = @recipe.ingredients
+
+    ahoy.track "Viewed recipe #{@recipe.name}"
   end
 
   def new
