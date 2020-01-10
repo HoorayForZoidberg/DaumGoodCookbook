@@ -272,6 +272,7 @@ DEPENDENCIES
   simple_form
   spring
   spring-watcher-listen (~> 2.0.0)
+  sprockets (= 3.7.2)
   uglifier
   web-console (>= 3.3.0)
   webpacker
