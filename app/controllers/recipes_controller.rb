@@ -22,7 +22,7 @@ class RecipesController < ApplicationController
       @results = @results.where("total_time <= ?", ChronicDuration.parse(params[:total_time]))
     end
 
-    ahoy.track "Viewed recipes"
+    ahoy.track "All recipes"
   end
 
   def show
@@ -36,7 +36,7 @@ class RecipesController < ApplicationController
     end
     @ingredients = @recipe.ingredients
 
-    ahoy.track "Viewed recipe #{@recipe.name}"
+    ahoy.track "#{@recipe.name}"
   end
 
   def new
