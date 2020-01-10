@@ -4,12 +4,17 @@
   </div>
   <div class="container-fluid">
     <div class="row mb-20 mt-20">
-      <div class="col-xs- col-md-3">
-        <em>Visits</em>
-      </div>
       <% @visits.each do |visit| %>
-        <div class="col-xs-12 col-md-9">
-          <%= "Visit \##{visit.id} on #{visit.started_at} from #{visit.city} on #{visit.device_type}"  %>
+        <div>
+          <% t = visit.started_at %>
+          <% date = "#{t.month}/#{t.day}/#{t.year}" %>
+          <% start_time = "#{t.strftime("%T")}" %>
+          <%= "#{date} at #{start_time} from #{visit.city} on #{visit.device_type}."  %>
+          <% unless Ahoy::Event.where(visit_id: visit.id).empty? %>
+            <% first_event = Ahoy::Event.where(visit_id: visit.id).first %>
+            <% last_event = Ahoy::Event.where(visit_id: visit.id).last %>
+            <%= "Duration: #{Time.at(last_event.time - first_event.time).utc.strftime("%H:%M:%S")}" %>
+          <% end %>
         </div>
       <% end %>
     </div>
