@@ -7,7 +7,9 @@
     "coffeescript": "1.12.7",
     "jquery": "^3.3.1",
     "popper.js": "^1.14.3",
-    "sweetalert": "^2.1.0"
+    "sweetalert": "^2.1.0",
+    "webpack": "^4.44.1",
+    "webpack-cli": "^3.3.12"
   },
   "devDependencies": {
     "webpack-dev-server": "^2.10.1"
